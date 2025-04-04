@@ -14,6 +14,20 @@ namespace tarot_card_battler.Core.Statemachines
         {
             SetState(state);
         }
+        public void Update()
+        {
+            if (current_state != null)
+            {
+                current_state.Update();
+            }
+        }
+        public void Render()
+        {
+            if (current_state != null)
+            {
+                current_state.Render();
+            }
+        }
 
         public void SetState(State state)
         {

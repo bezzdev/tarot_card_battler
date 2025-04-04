@@ -17,5 +17,15 @@ namespace tarot_card_battler.Core.Statemachines
         {
 
         }
+
+        public virtual void Update()
+        {
+
+        }
+
+        public virtual void Render()
+        {
+
+        }
     }
 }
