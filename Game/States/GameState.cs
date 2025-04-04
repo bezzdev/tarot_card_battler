@@ -8,7 +8,16 @@ namespace tarot_card_battler.Game.States
     {
         public StateMachine gameLoop;
         public GameState() {
-            gameLoop = new StateMachine(new SetupState());
+            Board board = new Board()
+            {
+                players = new List<PlayerBoard>()
+                {
+                    new PlayerBoard(),
+                    new PlayerBoard()
+                }
+            };
+
+            gameLoop = new StateMachine(new SetupState(board));
         }
 
         public override void Update()

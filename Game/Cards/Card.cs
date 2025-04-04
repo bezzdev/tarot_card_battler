@@ -1,26 +1,32 @@
 using Raylib_cs;
 
-namespace tarot_card_battler.Core.Cards;
+namespace tarot_card_battler.Game.Cards
+{
 
+    public class Card
+    {
+        public Texture2D cardArt;
+        public string name;
+        public string number;
 
-public class Card(
+        public Effect pastEffect;
+        public Card(string name)
+        {
+            this.name = name;
+        }
+        public virtual void TriggerPastEffect()
+        {
+            pastEffect.triggerEffect();
+        }
 
-) {
-    public Texture2D cardArt;
-    public required String name; 
-    public required String number;
+        public virtual void TriggerPresentEffect()
+        {
+            pastEffect.triggerEffect();
+        }
 
-    public required Effect pastEffect;
-
-    public virtual void TriggerPastEffect(){
-        pastEffect.triggerEffect();
-    } 
-
-    public virtual void TriggerPresentEffect(){
-        pastEffect.triggerEffect();
-    }
-
-    public virtual void TriggerFutureEffect(){
-        pastEffect.triggerEffect();
+        public virtual void TriggerFutureEffect()
+        {
+            pastEffect.triggerEffect();
+        }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 using Raylib_cs;
 using tarot_card_battler.Core;
-using tarot_card_battler.Core.Cards;
 using tarot_card_battler.Core.Statemachines;
 using tarot_card_battler.Game;
 using tarot_card_battler.Game.States;
@@ -16,6 +15,7 @@ Raylib.SetConfigFlags(ConfigFlags.MaximizedWindow);
 
 Raylib.SetTargetFPS(60);
 
+References.Load();
 StateMachine gameStateMachine = new StateMachine(new MenuState());
 References.Load();
 

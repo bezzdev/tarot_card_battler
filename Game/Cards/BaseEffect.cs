@@ -1,38 +1,48 @@
-namespace tarot_card_battler.Core.Cards;
+namespace tarot_card_battler.Game.Cards
+{
 
-public class Effect {
-
-    public virtual void triggerEffect(){} //param: playerBoard, param: opponentBoard
-
-}
-
-public class DamageEffect: Effect {
-    public override void triggerEffect() 
+    public class Effect
     {
-        
+
+        public virtual void triggerEffect() { } //param: playerBoard, param: opponentBoard
+
     }
-}
 
-public class Heal : Effect {
+    public class DamageEffect : Effect
+    {
+        public override void triggerEffect()
+        {
 
-}
+        }
+    }
 
-public class Draw : Effect { 
+    public class Heal : Effect
+    {
 
-}
+    }
 
-public class Countdown : Effect { 
+    public class Draw : Effect
+    {
 
-}
+    }
 
-public class BlockOpponentEffect : Effect { 
+    public class Countdown : Effect
+    {
 
-}
+    }
 
-public class Sheild : Effect { 
+    public class BlockOpponentEffect : Effect
+    {
 
-}
+    }
 
-public class Shuffle : Effect { 
-    
+    public class Sheild : Effect
+    {
+
+    }
+
+    public class Shuffle : Effect
+    {
+
+    }
 }

@@ -4,5 +4,8 @@ namespace tarot_card_battler.Game.GameLoop
 {
     public class SetupState : State
     {
+        public SetupState(Board board) {
+            
+        }
     }
 }

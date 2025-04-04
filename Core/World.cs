@@ -1,5 +1,4 @@
 ﻿using Raylib_cs;
-using tarot_card_battler.Core.Cards; 
 
 namespace tarot_card_battler.Core
 {
