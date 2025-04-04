@@ -8,6 +8,7 @@ using tarot_card_battler.Game.States;
 
 References.window_height = 1200;
 References.window_height = 800;
+References.Load();
 
 Raylib.SetConfigFlags(ConfigFlags.Msaa4xHint);
 // Raylib.SetConfigFlags(ConfigFlags.ResizableWindow);
