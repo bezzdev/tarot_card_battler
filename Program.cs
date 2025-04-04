@@ -15,8 +15,6 @@ Raylib.SetTargetFPS(60);
 Coord renderCoordA = new Coord(0.0, 0.0);
 Coord renderCoordB = new Coord(screenWidth, screenHeight);
 RenderTransform renderTransform = new RenderTransform(20.0, -10.0, 20.0);
-
-
 World world = new World();
 
 Player player = new Player();
