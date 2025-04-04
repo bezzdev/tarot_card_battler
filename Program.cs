@@ -1,5 +1,7 @@
-﻿using Raylib_cs;
+﻿using System.Runtime.CompilerServices;
+using Raylib_cs;
 using tarot_card_battler.Core;
+using tarot_card_battler.Core.Cards;
 using tarot_card_battler.Game;
 
 const int screenWidth = 1200;
@@ -15,6 +17,7 @@ Raylib.SetTargetFPS(60);
 Coord renderCoordA = new Coord(0.0, 0.0);
 Coord renderCoordB = new Coord(screenWidth, screenHeight);
 RenderTransform renderTransform = new RenderTransform(20.0, -10.0, 20.0);
+
 World world = new World();
 
 Player player = new Player();

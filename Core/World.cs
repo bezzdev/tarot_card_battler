@@ -7,11 +7,7 @@ namespace tarot_card_battler.Core
     {
         public Color background = Color.DarkGray;
         public List<Entity> entities = new List<Entity>();
-        Card card = new Card {
-            name = "",
-            number = "",
-            pastEffect = new DamageEffect()
-        };
+        public List<Card> deck = new List<Card>();
 
         public void Update(float delta)
         {
