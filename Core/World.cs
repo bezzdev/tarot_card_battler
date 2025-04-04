@@ -1,4 +1,5 @@
 ﻿using Raylib_cs;
+using tarot_card_battler.Core.Cards; 
 
 namespace tarot_card_battler.Core
 {
@@ -6,6 +7,11 @@ namespace tarot_card_battler.Core
     {
         public Color background = Color.DarkGray;
         public List<Entity> entities = new List<Entity>();
+        Card card = new Card {
+            name = "",
+            number = "",
+            pastEffect = new DamageEffect()
+        };
 
         public void Update(float delta)
         {
