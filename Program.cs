@@ -4,7 +4,7 @@ using tarot_card_battler.Core;
 using tarot_card_battler.Core.Cards;
 using tarot_card_battler.Core.Statemachines;
 using tarot_card_battler.Game;
-using tarot_card_battler.Game.Loop;
+using tarot_card_battler.Game.States;
 
 References.window_height = 1200;
 References.window_height = 800;

@@ -1,7 +1,7 @@
 ﻿using Raylib_cs;
 using tarot_card_battler.Core.Statemachines;
 
-namespace tarot_card_battler.Game.Loop
+namespace tarot_card_battler.Game.States
 {
     public class GameState : State
     {
