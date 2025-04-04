@@ -1,6 +1,6 @@
 ﻿using Raylib_cs;
-using pizza_jam_raylib.Core;
-using pizza_jam_raylib.Game;
+using tarot_card_battler.Core;
+using tarot_card_battler.Game;
 
 const int screenWidth = 800;
 const int screenHeight = 450;

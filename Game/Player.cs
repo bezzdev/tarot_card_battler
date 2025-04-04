@@ -1,8 +1,8 @@
 ﻿using Raylib_cs;
-using pizza_jam_raylib.Core;
+using tarot_card_battler.Core;
 using System.Numerics;
 
-namespace pizza_jam_raylib.Game
+namespace tarot_card_battler.Game
 {
     public class Player : Entity
     {

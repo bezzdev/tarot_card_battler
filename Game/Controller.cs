@@ -1,6 +1,6 @@
 ﻿using Raylib_cs;
 
-namespace pizza_jam_raylib.Game
+namespace tarot_card_battler.Game
 {
     public class Controller
     {

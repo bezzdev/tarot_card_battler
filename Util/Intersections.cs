@@ -1,6 +1,6 @@
-﻿using pizza_jam_raylib.Core;
+﻿using tarot_card_battler.Core;
 
-namespace pizza_jam_raylib.Util
+namespace tarot_card_battler.Util
 {
     public static class Intersections
     {

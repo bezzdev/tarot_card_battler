@@ -1,6 +1,6 @@
 ﻿using Raylib_cs;
 
-namespace pizza_jam_raylib.Core
+namespace tarot_card_battler.Core
 {
     public class World
     {
