@@ -18,10 +18,11 @@ namespace tarot_card_battler.Game
         public static Controller controller = new Controller(player);
         public static float delta;
 
-        public static Texture2D sampleTexture = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/SingleCardDraft.png"));
+        public static Texture2D sampleTexture;
 
         public static void Load()
         {
+            sampleTexture = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/SingleCardDraft.png"));
             // load textures
         }
     }
