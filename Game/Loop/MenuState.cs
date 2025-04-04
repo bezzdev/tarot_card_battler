@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Raylib_cs;
-using tarot_card_battler.Core;
+﻿using Raylib_cs;
 using tarot_card_battler.Core.Statemachines;
 
 namespace tarot_card_battler.Game.Loop
@@ -14,8 +8,12 @@ namespace tarot_card_battler.Game.Loop
         public override void Update()
         {
             // update
-            References.controller.Update(References.delta);
-            References.world.Update(References.delta);
+            //References.controller.Update(References.delta);
+            //References.world.Update(References.delta);
+            if (Raylib.IsKeyDown(KeyboardKey.Space))
+            {
+                stateMachine.SetState(new GameState());
+            }
         }
 
         public override void Render()
@@ -24,11 +22,8 @@ namespace tarot_card_battler.Game.Loop
             Raylib.BeginDrawing();
             Raylib.ClearBackground(Color.Black);
 
-            int textX = (References.window_width / 2) - 300;
-            int textY = 100;
-            int fontSize = 80;
-
-            Raylib.DrawText("Tarot Battler", textX, textY, fontSize, Color.White);
+            Raylib.DrawText("Tarot Battler", (References.window_width / 2) - 300, 100, 80, Color.White);
+            Raylib.DrawText("Press Space", (References.window_width / 2) - 100, 200, 40, Color.Gray);
 
             // References.world.Render(References.renderCoordA, References.renderCoordB, References.renderTransform);
             Raylib.EndDrawing();

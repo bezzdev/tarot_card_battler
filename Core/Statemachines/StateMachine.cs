@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace tarot_card_battler.Core.Statemachines
+﻿namespace tarot_card_battler.Core.Statemachines
 {
     public class StateMachine
     {
@@ -12,6 +6,7 @@ namespace tarot_card_battler.Core.Statemachines
 
         public StateMachine(State state)
         {
+            state.stateMachine = this;
             SetState(state);
         }
         public void Update()
