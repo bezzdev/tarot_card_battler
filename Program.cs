@@ -2,8 +2,8 @@
 using tarot_card_battler.Core;
 using tarot_card_battler.Game;
 
-const int screenWidth = 800;
-const int screenHeight = 450;
+const int screenWidth = 1200;
+const int screenHeight = 800;
 
 Raylib.SetConfigFlags(ConfigFlags.Msaa4xHint);
 Raylib.SetConfigFlags(ConfigFlags.ResizableWindow);
