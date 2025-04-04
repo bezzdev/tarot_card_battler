@@ -2,28 +2,21 @@
 using Raylib_cs;
 using tarot_card_battler.Core;
 using tarot_card_battler.Core.Cards;
+using tarot_card_battler.Core.Statemachines;
 using tarot_card_battler.Game;
+using tarot_card_battler.Game.Loop;
 
-const int screenWidth = 1200;
-const int screenHeight = 800;
+References.window_height = 1200;
+References.window_height = 800;
 
 Raylib.SetConfigFlags(ConfigFlags.Msaa4xHint);
-Raylib.SetConfigFlags(ConfigFlags.ResizableWindow);
-Raylib.InitWindow(screenWidth, screenHeight, "Raylib Template");
+// Raylib.SetConfigFlags(ConfigFlags.ResizableWindow);
+Raylib.InitWindow(References.window_width, References.window_height, "Tarot Battler");
 Raylib.SetConfigFlags(ConfigFlags.MaximizedWindow);
 
 Raylib.SetTargetFPS(60);
 
-Coord renderCoordA = new Coord(0.0, 0.0);
-Coord renderCoordB = new Coord(screenWidth, screenHeight);
-RenderTransform renderTransform = new RenderTransform(20.0, -10.0, 20.0);
-
-World world = new World();
-
-Player player = new Player();
-world.entities.Add(player);
-
-Controller controller = new Controller(player);
+StateMachine gameStateMachine = new StateMachine(new MenuState());
 
 // game loop
 while (!Raylib.WindowShouldClose())
@@ -32,19 +25,13 @@ while (!Raylib.WindowShouldClose())
 
     if(Raylib.IsWindowResized())
     {
-        renderCoordB.x = Raylib.GetRenderWidth();
-        renderCoordB.y = Raylib.GetRenderHeight();
+        References.window_width = Raylib.GetRenderWidth();
+        References.window_height = Raylib.GetRenderHeight();
     }
 
-    // update
-    controller.Update(delta);
-    world.Update(delta);
-
-    // render
-    Raylib.BeginDrawing();
-    Raylib.ClearBackground(Color.White);
-    world.Render(renderCoordA, renderCoordB, renderTransform);
-    Raylib.EndDrawing();
+    References.delta = delta;
+    gameStateMachine.Update();
+    gameStateMachine.Render();
 }
 
 Raylib.CloseWindow();
