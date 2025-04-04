@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Raylib_cs;
 using tarot_card_battler.Core;
 
 namespace tarot_card_battler.Game
@@ -13,10 +14,11 @@ namespace tarot_card_battler.Game
         public static int window_height = 800;
 
         public static World world = new World();
-        public static Player player = new Player() {  size = 1};
+        public static Player player = new Player() { size = 1};
         public static Controller controller = new Controller(player);
         public static float delta;
 
+        public static Texture2D sampleTexture = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/SingleCardDraft.png"));
 
         public static void Load()
         {
