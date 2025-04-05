@@ -38,5 +38,23 @@ namespace tarot_card_battler.Game.Cards
 
             return cards;
         }
+
+        public static void Shuffle(List<Card> cards)
+        {
+            List<Card> temp = new List<Card>();
+            foreach(Card card in cards)
+            {
+                temp.Add(card);
+            }
+            cards.Clear();
+
+            while (temp.Count > 0)
+            {
+                int choice = Random.Shared.Next(0, temp.Count);
+                Card card = temp[choice];
+                temp.RemoveAt(choice);
+                cards.Add(card);
+            }
+        }
     }
 }
