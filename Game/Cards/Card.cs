@@ -12,6 +12,8 @@ namespace tarot_card_battler.Game.Cards
         public string number;
 
         public Effect pastEffect;
+        public Effect presentEffect;
+        public Effect futureEffect;
 
         // state
         public bool faceup;
@@ -24,6 +26,10 @@ namespace tarot_card_battler.Game.Cards
             this.cardArt = cardArt;
             position = new Coord(-400, 0); // off screen
             this.mover = new Mover(position);
+
+            pastEffect = new DamageEffect(1);
+            presentEffect = new DamageEffect(2);
+            futureEffect = new DamageEffect(3);
         }
 
         public void Update()
@@ -52,19 +58,19 @@ namespace tarot_card_battler.Game.Cards
                 Raylib.DrawRectangle(x + 8, y + 8, (int)width - 16, (int)height - 16, Color.Black);
             }
         }
-        public virtual void TriggerPastEffect()
+        public virtual void TriggerPastEffect(PlayerBoard player, PlayerBoard opponent)
         {
-            pastEffect.triggerEffect();
+            pastEffect.triggerEffect(player, opponent);
         }
 
-        public virtual void TriggerPresentEffect()
+        public virtual void TriggerPresentEffect(PlayerBoard player, PlayerBoard opponent)
         {
-            pastEffect.triggerEffect();
+            presentEffect.triggerEffect(player, opponent);
         }
 
-        public virtual void TriggerFutureEffect()
+        public virtual void TriggerFutureEffect(PlayerBoard player, PlayerBoard opponent)
         {
-            pastEffect.triggerEffect();
+            futureEffect.triggerEffect(player, opponent);
         }
     }
 }

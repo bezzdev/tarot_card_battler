@@ -23,20 +23,20 @@ namespace tarot_card_battler.Game.GameLoop
             delay2.Update(References.delta);
             delay3.Update(References.delta);
 
-            //if (delay1.CompletedOnce())
-            //{
-            //    SelectPastCard(board.player.hand.cards[0]);
-            //}
-            //if (delay2.CompletedOnce())
-            //{
-            //    SelectPresentCard(board.player.hand.cards[0]);
-            //}
-            //if (delay3.CompletedOnce())
-            //{
-            //    SelectFutureCard(board.player.hand.cards[0]);
-            //}
-            //if (delay1.Completed() && delay2.Completed() && delay3.Completed())
-            //    stateMachine.SetState(new ResolveState(board));
+            if (delay1.CompletedOnce())
+            {
+                SelectPastCard(board.player.hand.cards[0]);
+            }
+            if (delay2.CompletedOnce())
+            {
+                SelectPresentCard(board.player.hand.cards[0]);
+            }
+            if (delay3.CompletedOnce())
+            {
+                SelectFutureCard(board.player.hand.cards[0]);
+            }
+            if (delay1.Completed() && delay2.Completed() && delay3.Completed())
+                stateMachine.SetState(new ResolveState(board));
         }
 
 

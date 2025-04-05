@@ -8,13 +8,20 @@ namespace tarot_card_battler.Game
         public Deck deck = new Deck();
         public Hand hand = new Hand();
         public Field field = new Field();
+        public Candle candle = new Candle();
 
         public List<Effect> pendingEffects = new List<Effect>();
-        public int health;
+        public int health = 20;
 
-        public PlayerBoard()
+        public void TakeDamage(int damage)
         {
+            health -= damage;
+            if (health < 0)
+            {
+                health = 0;
+            }
         }
+
         public void Update()
         {
             field.Update();
@@ -26,6 +33,7 @@ namespace tarot_card_battler.Game
             field.Render();
             deck.Render();
             hand.Render();
+            candle.Render(this);
         }
     }
 }

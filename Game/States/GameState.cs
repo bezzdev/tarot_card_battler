@@ -21,7 +21,11 @@ namespace tarot_card_battler.Game.States
             player.field.position.x = 600;
             player.field.position.y = 350;
 
+            player.candle.position.x = 140;
+            player.candle.position.y = 140;
+
             PlayerBoard opponent = new PlayerBoard();
+            opponent.health = 30;
             opponent.deck.position.x = 140;
             opponent.deck.position.y = 580;
 
@@ -31,6 +35,9 @@ namespace tarot_card_battler.Game.States
 
             opponent.field.position.x = 600;
             opponent.field.position.y = 630;
+
+            opponent.candle.position.x = 1060;
+            opponent.candle.position.y = 580;
 
             board = new Board()
             {
