@@ -7,6 +7,7 @@
             Opponent opponent = new Opponent();
             opponent.name = level.ToString();
             opponent.level = level;
+            opponent.health = 20;
 
             int maxCards = 22;
 
