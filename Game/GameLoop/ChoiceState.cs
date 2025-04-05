@@ -107,8 +107,8 @@ namespace tarot_card_battler.Game.GameLoop
                     else
                     {
                         board.player.hand.SetCardPositions();
-                        selectedCard = null;
                     }
+                    selectedCard = null;
                 }
                 else if (Raylib.IsMouseButtonDown(MouseButton.Left))
                 {
