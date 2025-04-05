@@ -38,6 +38,12 @@ namespace tarot_card_battler.Game.GameLoop
             var screen = Coordinates.ScreenToWorld(x, y);
             hoveredCard = Intersections.isHovered(board.player.hand.cards, screen.x, screen.y);
 
+            if(Raylib.IsMouseButtonPressed(MouseButton.Left) && board.buttonIsHovered){
+                if(board.player.field.past != null && board.player.field.present != null && board.player.field.future != null){
+                    stateMachine.SetState(new ResolveState(board));
+                }
+            }
+
 
             if (hoveredCard != null)
             {

@@ -87,7 +87,7 @@ namespace tarot_card_battler.Game.Cards
         }
         public virtual bool Interact(double x, double y)
         {
-            if((x > position.x - 65 && x < position.x + 65)) {
+            if(x > position.x - 65 && x < position.x + 65) {
                 if(y > position.y - 110 && y < position.y + 110){
                     return true;
                 }

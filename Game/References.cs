@@ -88,7 +88,7 @@ namespace tarot_card_battler.Game
             The_World = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Cards/21_The_World.png"));
 
             CastButton = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Button_Cast_Default.png"));
-            HoverButton = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Cards/Button_Cast_Hover.png"));
+            HoverButton = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Button_Cast_Hover.png"));
 
             GameBackground = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Board.png"));
 
