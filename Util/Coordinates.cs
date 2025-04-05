@@ -19,5 +19,13 @@ namespace tarot_card_battler.Util
 
             return ((int)(xScale * x), References.window_height - (int)(yScale * y));
         }
+
+        public static (int x, int y) ScreenToWorld(float x, float y)
+        {
+            int xScale = References.window_width / worldWidth;
+            int yScale = References.window_height / worldHeight;
+
+            return ((int)(xScale * x), References.window_height - (int)(yScale * y));
+        }
     }
 }
