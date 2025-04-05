@@ -65,6 +65,8 @@ namespace tarot_card_battler.Game.GameLoop
             if (player.deck.cards.Count == 0)
             {
                 List<Card> discardCards = player.discards.cards.ToList();
+                CardList.Shuffle(discardCards);
+
                 foreach (Card card in discardCards)
                 {
                     player.discards.cards.Remove(card);
