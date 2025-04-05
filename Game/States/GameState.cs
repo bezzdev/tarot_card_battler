@@ -1,5 +1,6 @@
 ﻿using Raylib_cs;
 using tarot_card_battler.Core.Statemachines;
+using tarot_card_battler.Game.Cards;
 using tarot_card_battler.Game.GameLoop;
 
 namespace tarot_card_battler.Game.States
@@ -7,13 +8,14 @@ namespace tarot_card_battler.Game.States
     public class GameState : State
     {
         public StateMachine gameLoop;
+        public Board board;
         public GameState() {
-            Board board = new Board()
+            board = new Board()
             {
                 players = new List<PlayerBoard>()
                 {
-                    new PlayerBoard(),
-                    new PlayerBoard()
+                    new PlayerBoard() { deck = CardList.GetAllCards() },
+                    new PlayerBoard() { deck = CardList.GetAllCards() }
                 }
             };
 
@@ -31,6 +33,7 @@ namespace tarot_card_battler.Game.States
             Raylib.ClearBackground(Color.Black);
 
             Raylib.DrawText("Game", (References.window_width / 2) - 300, 200, 80, Color.White);
+            board.Render();
 
             // References.world.Render(References.renderCoordA, References.renderCoordB, References.renderTransform);
             Raylib.EndDrawing();

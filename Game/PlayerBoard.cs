@@ -10,5 +10,13 @@ namespace tarot_card_battler.Game
 
         public List<Effect> pendingEffects = new List<Effect>();
         public int health;
+
+        public void Render()
+        {
+            foreach (Card card in deck) { card.Render(); }
+            foreach (Card card in hand) { card.Render(); }
+            foreach (Card card in field) { card.Render(); }
+
+        }
     }
 }
