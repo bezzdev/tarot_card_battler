@@ -28,7 +28,7 @@ namespace tarot_card_battler.Game
 
         public void Render()
         {
-            var screen = Coordinates.WorldToScreen((int)600, (int)470);
+            var screen = Coordinates.WorldToScreen((int)600, (int)400);
             float scale = 1f;
             
             float width = References.CastButton.Width * scale;
