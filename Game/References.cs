@@ -16,7 +16,16 @@ namespace tarot_card_battler.Game
         public static World world = new World();
         public static Player player = new Player() { size = 1};
         public static Controller controller = new Controller(player);
-        public static float delta;
+
+        public static float frameDelta;
+        public static float gameSpeed = 10f;
+        public static float delta
+        {
+            get
+            {
+                return frameDelta * gameSpeed;
+            }
+        }
 
         public static Texture2D sampleTexture;
 

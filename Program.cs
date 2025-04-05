@@ -30,7 +30,7 @@ while (!Raylib.WindowShouldClose())
         References.window_height = Raylib.GetRenderHeight();
     }
 
-    References.delta = delta;
+    References.frameDelta = delta;
     gameStateMachine.Update();
     gameStateMachine.Render();
 }

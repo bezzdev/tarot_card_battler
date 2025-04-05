@@ -24,6 +24,9 @@ namespace tarot_card_battler.Game.States
             player.candle.position.x = 140;
             player.candle.position.y = 140;
 
+            player.discards.position.x = player.candle.position.x;
+            player.discards.position.y = player.candle.position.y;
+
             PlayerBoard opponent = new PlayerBoard();
             opponent.health = 30;
             opponent.deck.position.x = 140;
@@ -38,6 +41,9 @@ namespace tarot_card_battler.Game.States
 
             opponent.candle.position.x = 1060;
             opponent.candle.position.y = 580;
+
+            opponent.discards.position.x = opponent.candle.position.x;
+            opponent.discards.position.y = opponent.candle.position.y;
 
             board = new Board()
             {

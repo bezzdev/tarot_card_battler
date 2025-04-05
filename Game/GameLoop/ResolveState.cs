@@ -15,6 +15,8 @@ namespace tarot_card_battler.Game.GameLoop
 
         private Delay delay5 = new Delay(4f);
         private Delay delay6 = new Delay(4.5f);
+        
+        private Delay delay7 = new Delay(6f);
 
 
         public ResolveState(Board board)
@@ -30,7 +32,8 @@ namespace tarot_card_battler.Game.GameLoop
             delay4.Update(References.delta);
             delay5.Update(References.delta);
             delay6.Update(References.delta);
-
+            delay7.Update(References.delta);
+            
             PlayerBoard player = board.player;
             PlayerBoard opponent = board.players[1];
 
@@ -62,6 +65,11 @@ namespace tarot_card_battler.Game.GameLoop
             if (delay6.CompletedOnce())
             {
                 player.field.future.TriggerFutureEffect(opponent, player);
+            }
+
+            if (delay7.Completed())
+            {
+                stateMachine.SetState(new DiscardState(board));
             }
         }
     }

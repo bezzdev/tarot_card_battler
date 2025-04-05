@@ -2,7 +2,7 @@
 {
     public class Delay
     {
-        private float time;
+        public float time;
         private float goal;
         private bool resolved;
         public Delay(float goal)

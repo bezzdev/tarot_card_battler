@@ -9,6 +9,9 @@ namespace tarot_card_battler.Game.GameLoop
         private Board board;
         private Delay delay = new Delay(1f);
 
+        private int playerDraw = 3;
+        private int opponentDraw = 3;
+
         public DrawState(Board board)
         {
             this.board = board;
@@ -17,32 +20,74 @@ namespace tarot_card_battler.Game.GameLoop
         {
             delay.Update(References.delta);
 
+            if (opponentDraw > 0)
+            {
+                if (delay.Completed()) {
+                    if (TryDrawCard(board.players[1]))
+                    {
+                        DrawCard(board.players[1]);
+                        opponentDraw -= 1;
+                        delay.time = 0f;
+                    } else
+                    {
+                        delay.time = 0f;
+                        return;
+                    }
+                }
+            }
+
+            if (playerDraw > 0)
+            {
+                if (delay.Completed())
+                {
+                    if (TryDrawCard(board.player))
+                {
+                        DrawCard(board.player);
+                        playerDraw -= 1;
+                        delay.time = 0f;
+                    }
+                    else
+                    {
+                        delay.time = 0f;
+                        return;
+                    }
+                }
+            }
+
             if (delay.Completed())
             {
                 stateMachine.SetState(new OpponentChoiceState(board, board.players[1]));
             }
         }
 
-        public override void OnEnter()
+        public bool TryDrawCard(PlayerBoard player)
         {
-            int draw = 3;
-
-            foreach (PlayerBoard player in board.players)
+            if (player.deck.cards.Count == 0)
             {
-                for (int i = 0; i < draw; i++) {
-                    if (player.deck.cards.Count > 0)
-                    {
-                        int last = player.deck.cards.Count - 1;
-                        Card card = player.deck.cards[last];
-                        player.deck.cards.RemoveAt(last);
-
-                        player.hand.Add(card);
-
-                        card.mover.delay = i * 0.4f;
-                    }
+                List<Card> discardCards = player.discards.cards.ToList();
+                foreach (Card card in discardCards)
+                {
+                    player.discards.cards.Remove(card);
+                    player.deck.Add(card);
                 }
-                player.hand.SetCardPositions();
+                player.deck.SetCardPositions();
+                return false;
+            } else
+            {
+                return true;
             }
+        }
+
+        public void DrawCard(PlayerBoard player)
+        {
+            int last = player.deck.cards.Count - 1;
+            Card card = player.deck.cards[last];
+            player.deck.cards.RemoveAt(last);
+
+            player.hand.Add(card);
+
+            player.hand.SetCardPositions();
+            // card.mover.delay = i * 0.4f;
         }
     }
 }
