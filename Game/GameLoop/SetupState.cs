@@ -8,8 +8,9 @@ namespace tarot_card_battler.Game.GameLoop
     {
         private Board board;
         private Delay delay = new Delay(1f);
+        private int level;
 
-        public SetupState(Board board) {
+        public SetupState(Board board, int level) {
             this.board = board;
         }
 
@@ -22,12 +23,33 @@ namespace tarot_card_battler.Game.GameLoop
                 stateMachine.SetState(new DrawState(board));
             }
         }
-
+ 
         public override void OnEnter()
         {
-            foreach(PlayerBoard player in board.players)
+            Opponent opponent = Opponents.GetOpponentForLevel(level);
+
+            foreach (PlayerBoard player in board.players)
             {
-                List<Card> cards = CardList.GetAllCards();
+                player.hand.cards.Clear();
+                player.deck.cards.Clear();
+                player.discards.cards.Clear();
+                player.field.past = null;
+                player.field.present = null;
+                player.field.future = null;
+
+                List<Card> cards = null;
+
+                if (player == board.player)
+                {
+                    player.health = 20;
+                    cards = CardList.GetAllCards();
+                }
+                else
+                {
+                    player.health = opponent.health;
+                    cards = opponent.cards;
+                }
+
                 CardList.Shuffle(cards);
 
                 foreach (Card card in cards)

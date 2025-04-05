@@ -13,6 +13,7 @@ namespace tarot_card_battler.Game
 
         public List<Effect> pendingEffects = new List<Effect>();
         public int health = 20;
+        public int level = 0;
 
         public void TakeDamage(int damage)
         {

@@ -55,7 +55,7 @@ namespace tarot_card_battler.Game.States
                 }
             };
 
-            gameLoop = new StateMachine(new SetupState(board));
+            gameLoop = new StateMachine(new SetupState(board, 0));
         }
 
         public override void Update()

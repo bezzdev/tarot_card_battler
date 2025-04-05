@@ -14,6 +14,22 @@ namespace tarot_card_battler.Game.GameLoop
         {
             this.board = board;
         }
+
+        public override void Update()
+        {
+
+            delay.Update(References.delta);
+
+            if (delay.CompletedOnce())
+            {
+                foreach(PlayerBoard player in board.players)
+                {
+                    player.level += 1;
+                }
+                stateMachine.SetState(new SetupState(board, board.player.level));
+            }
+        }
+
         public override void Render()
         {
             Raylib.DrawText("Game Win", (References.window_width / 2) - 300, 100, 80, Color.White);
