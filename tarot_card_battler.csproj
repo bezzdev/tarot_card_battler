@@ -15,6 +15,9 @@
       <None Update="./Game/Res/*">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
+      <None Update="./Game/Res/Cards/*">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
   </ItemGroup>
 
 </Project>
