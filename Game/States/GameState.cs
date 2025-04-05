@@ -16,7 +16,7 @@ namespace tarot_card_battler.Game.States
             player.deck.position.y = 140;
 
             player.hand.position.x = 600;
-            player.hand.position.y = 80;
+            player.hand.position.y = 40;
 
             player.field.position.x = 600;
             player.field.position.y = 350;
@@ -34,6 +34,7 @@ namespace tarot_card_battler.Game.States
 
             board = new Board()
             {
+                player = player,
                 players = new List<PlayerBoard>()
                 {
                     player,
@@ -54,6 +55,8 @@ namespace tarot_card_battler.Game.States
             // render
             Raylib.BeginDrawing();
             Raylib.ClearBackground(Color.Black);
+
+            Raylib.DrawText(gameLoop.current_state.ToString(), 0, 20, 20, Color.White);
 
             board.Render();
 

@@ -19,7 +19,7 @@ namespace tarot_card_battler.Game.GameLoop
 
             if (delay.Completed())
             {
-                stateMachine.SetState(new ChoiceState(board));
+                stateMachine.SetState(new OpponentChoiceState(board, board.players[1]));
             }
         }
 
