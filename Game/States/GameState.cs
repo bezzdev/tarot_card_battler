@@ -1,4 +1,5 @@
-﻿using Raylib_cs;
+﻿using System.Runtime.Versioning;
+using Raylib_cs;
 using tarot_card_battler.Core.Statemachines;
 using tarot_card_battler.Game.Cards;
 using tarot_card_battler.Game.GameLoop;
@@ -68,6 +69,8 @@ namespace tarot_card_battler.Game.States
             // render
             Raylib.BeginDrawing();
             Raylib.ClearBackground(Color.Black);
+
+            Raylib.DrawTexture(References.GameBackground, 0, 0, Color.White);
 
             Raylib.DrawText(gameLoop.current_state.ToString(), 0, 20, 20, Color.White);
 

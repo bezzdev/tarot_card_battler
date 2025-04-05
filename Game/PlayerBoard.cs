@@ -10,7 +10,6 @@ namespace tarot_card_battler.Game
         public Field field = new Field();
         public Candle candle = new Candle();
         public Discards discards = new Discards();
-
         public List<Effect> pendingEffects = new List<Effect>();
         public int health = 20;
 
