@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -52,13 +53,15 @@ namespace tarot_card_battler.Game
         public static Texture2D Judgement;
         public static Texture2D The_World;
 
+        public static Texture2D CastButton;
+        public static Texture2D HoverButton; 
+        public static Texture2D GameBackground; 
 
         public static void Load()
         {
             sampleTexture = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/SingleCardDraft.png"));
 
             // load textures
-
             The_Fool = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Cards/00_The_Fool.png"));
             The_Magician = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Cards/01_The_Magician.png"));
             The_High_Priestess = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Cards/02_The_High_Priestess.png"));
@@ -81,6 +84,11 @@ namespace tarot_card_battler.Game
             The_Sun = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Cards/19_The_Sun.png"));
             Judgement = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Cards/20_Judgement.png"));
             The_World = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Cards/21_The_World.png"));
+
+            CastButton = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Button_Cast_Default.png"));
+            HoverButton = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Cards/Button_Cast_Hover.png"));
+
+            GameBackground = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Board.png"));
         }
     }
 }

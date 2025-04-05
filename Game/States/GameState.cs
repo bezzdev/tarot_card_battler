@@ -1,4 +1,5 @@
-﻿using Raylib_cs;
+﻿using System.Runtime.Versioning;
+using Raylib_cs;
 using tarot_card_battler.Core.Statemachines;
 using tarot_card_battler.Game.Cards;
 using tarot_card_battler.Game.GameLoop;
@@ -16,10 +17,10 @@ namespace tarot_card_battler.Game.States
             player.deck.position.y = 140;
 
             player.hand.position.x = 600;
-            player.hand.position.y = 40;
+            player.hand.position.y = -54;
 
             player.field.position.x = 600;
-            player.field.position.y = 350;
+            player.field.position.y = 221;
 
             player.candle.position.x = 140;
             player.candle.position.y = 140;
@@ -33,11 +34,11 @@ namespace tarot_card_battler.Game.States
             opponent.deck.position.y = 580;
 
             opponent.hand.position.x = 600;
-            opponent.hand.position.y = 900;
+            opponent.hand.position.y = 854;
             opponent.hand.faceup = false;
 
             opponent.field.position.x = 600;
-            opponent.field.position.y = 630;
+            opponent.field.position.y = 579;
 
             opponent.candle.position.x = 1060;
             opponent.candle.position.y = 580;
@@ -68,6 +69,8 @@ namespace tarot_card_battler.Game.States
             // render
             Raylib.BeginDrawing();
             Raylib.ClearBackground(Color.Black);
+
+            Raylib.DrawTexture(References.GameBackground, 0, 0, Color.White);
 
             Raylib.DrawText(gameLoop.current_state.ToString(), 0, 20, 20, Color.White);
 
