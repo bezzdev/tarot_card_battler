@@ -44,70 +44,54 @@ namespace tarot_card_battler.Game.GameLoop
             var screen = Coordinates.ScreenToWorld(x, y);
             hoveredCard = Intersections.isHovered(board.players[0].hand.cards, screen.x, screen.y);
 
-            if(hoveredCard != null){
-                if(Raylib.IsMouseButtonPressed(MouseButton.Left)){
+            if (hoveredCard != null)
+            {
+                if (Raylib.IsMouseButtonPressed(MouseButton.Left))
+                {
                     selectedCard = hoveredCard;
                     originalX = hoveredCard.position.x;
                     originalY = hoveredCard.position.y;
                 }
             }
 
-            if(selectedCard != null){
-                if(Raylib.IsMouseButtonUp(MouseButton.Left)){
-                       selectedCard.mover.SetPosition(originalX, originalY, 2500);
-                       selectedCard = null;
-                    } else if(Raylib.IsMouseButtonDown(MouseButton.Left)){
-                        selectedCard.mover.SetPosition(screen.x, screen.y, float.MaxValue);
+            if (selectedCard != null)
+            {
+                if (Raylib.IsMouseButtonReleased(MouseButton.Left))
+                {
+                    var pastPos = ((int)(board.player.field.position.x + board.player.field.pastPosition.x), (int)(board.player.field.position.y + board.player.field.pastPosition.y));
+                    var presentPosition = ((int)(board.player.field.position.x + board.player.field.presentPosition.x), (int)(board.player.field.position.y + board.player.field.presentPosition.y));
+                    var futurePosition = ((int)(board.player.field.position.x + board.player.field.futurePosition.x), (int)(board.player.field.position.y + board.player.field.futurePosition.y));
+
+                    var pastDiffX = screen.x - pastPos.Item1;
+                    var pastDiffY = screen.y - pastPos.Item2;
+                    var pasPyth = Math.Sqrt((pastDiffX * pastDiffX) + (pastDiffY * pastDiffY));
+
+                    var presentDiffX = screen.x - presentPosition.Item1;
+                    var presentDiffY = screen.y - presentPosition.Item2;
+                    var presentPyth = Math.Sqrt((presentDiffX * presentDiffX) + (presentDiffY * presentDiffY));
+
+                    var futureDiffX = screen.x - futurePosition.Item1;
+                    var futureDiffY = screen.y - futurePosition.Item2;
+                    var futuretPyth = Math.Sqrt((futureDiffX * futureDiffX) + (futureDiffY * futureDiffY));
+
+                    Console.WriteLine($"Past: {pasPyth}, Present: {presentPyth}, Future: {futuretPyth}");
+                    if(pasPyth < 100){
+                        SelectPastCard(selectedCard);
+                    } else if(presentPyth < 100) {
+                        SelectPresentCard(selectedCard);
+                    } else if(futuretPyth < 100){
+                        SelectFutureCard(selectedCard);
+                    } else {
+                        selectedCard.mover.SetPosition(originalX, originalY, 2500);
+                        selectedCard = null;
+                    }    
+                }
+                else if (Raylib.IsMouseButtonDown(MouseButton.Left))
+                {
+                    selectedCard.mover.SetPosition(screen.x, screen.y, float.MaxValue);
                 }
             }
         }
-
-            //if (hoveredCard != null)
-            // {
-            //     if (Raylib.IsMouseButtonPressed(MouseButton.Left))
-            //     {
-            //         selectedCard = hoveredCard;
-            //         if (!isLocked)
-            //         {
-            //             Console.WriteLine($"Locked, {hoveredCard.position.x}, {hoveredCard.position.y}");
-            //             isLocked = true;
-            //             originalPos = hoveredCard.position;
-            //         }
-            //     }
-            //     if (Raylib.IsMouseButtonReleased(MouseButton.Left))
-            //     {
-            //         Console.WriteLine($"Selected");
-            //         selectedCard = hoveredCard;
-            //     }
-            // }
-
-
-            // if (isLocked && selectedCard != null)
-            // {
-            //     Console.WriteLine("Moving back");
-            //     selectedCard.mover.SetPosition(originalPos.x, originalPos.y, float.MaxValue);
-            //     if (selectedCard.position == originalPos)
-            //     {   
-            //         Console.WriteLine("Returned to OG position");
-            //         isLocked = false;
-            //         selectedCard = null;
-            //     }
-            // }
-
-            //if (delay1.CompletedOnce())
-            //{
-            //    SelectPastCard(board.player.hand.cards[0]);
-            //}
-            //if (delay2.CompletedOnce())
-            //{
-            //    SelectPresentCard(board.player.hand.cards[0]);
-            //}
-            //if (delay3.CompletedOnce())
-            //{
-            //    SelectFutureCard(board.player.hand.cards[0]);
-            //}
-            //if (delay1.Completed() && delay2.Completed() && delay3.Completed())
-            //    stateMachine.SetState(new ResolveState(board));
 
         public void SelectPastCard(Card card)
         {
