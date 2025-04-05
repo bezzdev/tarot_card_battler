@@ -1,4 +1,5 @@
 ﻿using tarot_card_battler.Core;
+using tarot_card_battler.Game.Cards;
 
 namespace tarot_card_battler.Util
 {
@@ -24,6 +25,19 @@ namespace tarot_card_battler.Util
 
             return null;
         }
+
+        public static Card isHovered(List<Card> cards, double x, double y){
+            List<Card> hits = new List<Card>();
+            foreach (Card card in cards)
+            {
+                if (card.Interact(x, y))
+                {
+                    return card;
+                }
+            }
+            return null;
+        }
+
 
         public static Entity GetClosestInteractableOnTop(List<Entity> entities, double x, double y)
         {

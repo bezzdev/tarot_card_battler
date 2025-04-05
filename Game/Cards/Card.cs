@@ -1,5 +1,7 @@
+using System.Globalization;
 using Raylib_cs;
 using tarot_card_battler.Core;
+using tarot_card_battler.Game.GameLoop;
 using tarot_card_battler.Util;
 
 namespace tarot_card_battler.Game.Cards
@@ -42,6 +44,7 @@ namespace tarot_card_battler.Game.Cards
 
             int x = screen.x - (int)(width / 2);
             int y = screen.y - (int)(height/ 2);
+
             
             if (faceup)
             {
@@ -65,6 +68,15 @@ namespace tarot_card_battler.Game.Cards
         public virtual void TriggerFutureEffect()
         {
             pastEffect.triggerEffect();
+        }
+        public virtual bool Interact(double x, double y)
+        {
+            if((x > position.x - 65 && x < position.x + 65)) {
+                if(y > position.y - 110 && y < position.y + 110){
+                    return true;
+                }
+            }
+            return false; 
         }
     }
 }
