@@ -19,7 +19,7 @@ namespace tarot_card_battler.Game
             int x = screen.x; // - (int)(width / 2);
             int y = screen.y; // - (int)(height / 2);
 
-            Raylib.DrawText(playerBoard.health.ToString(), x, y, 24, Color.Orange);
+            Raylib.DrawText(playerBoard.health.ToString(), x, y, 48, Color.Orange);
         }
     }
 }

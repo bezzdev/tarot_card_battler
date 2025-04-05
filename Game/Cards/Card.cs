@@ -16,7 +16,7 @@ namespace tarot_card_battler.Game.Cards
         public Effect futureEffect;
 
         // state
-        public bool faceup;
+        public bool faceup = true;
         public Coord position;
         public Mover mover;
 
@@ -31,6 +31,17 @@ namespace tarot_card_battler.Game.Cards
             pastEffect = new DamageEffect(1);
             presentEffect = new DamageEffect(2);
             futureEffect = new DamageEffect(3);
+        }
+
+        public Card Clone()
+        {
+            Card card = new Card(name, number, cardArt)
+            {
+                pastEffect = pastEffect,
+                presentEffect = presentEffect,
+                futureEffect = futureEffect
+            };
+            return card;
         }
 
         public void Update()

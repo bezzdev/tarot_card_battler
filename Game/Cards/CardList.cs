@@ -9,6 +9,8 @@ namespace tarot_card_battler.Game.Cards
 {
     public static class CardList
     {
+        public static List<Card> cards;
+
         public static List<Card> GetAllCards()
         {
             List<Card> cards = new List<Card>();
@@ -43,6 +45,11 @@ namespace tarot_card_battler.Game.Cards
             cards.Add(new Card("The_World", 21, References.The_World));
 
             return cards;
+        }
+
+        public static Card GetCard(int n)
+        {
+            return cards[n].Clone();
         }
 
         public static void Shuffle(List<Card> cards)

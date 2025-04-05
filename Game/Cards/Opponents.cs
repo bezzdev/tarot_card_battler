@@ -30,13 +30,13 @@
                 }
             }
 
-            int cardCount = 10;
+            int cardCount = Math.Max(3, cardPoolSize);
             for (int i = 0; i < cardCount; i++)
             {
                 int offset = i % (cardPoolEnd - cardPoolStart);
                 int choice = cardPoolStart + offset;
 
-                opponent.cards.Add(CardList.GetAllCards()[choice]);
+                opponent.cards.Add(CardList.GetCard(choice));
             }
             return opponent;
         }

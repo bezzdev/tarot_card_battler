@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Raylib_cs;
 using tarot_card_battler.Core;
+using tarot_card_battler.Game.Cards;
 
 namespace tarot_card_battler.Game
 {
@@ -59,6 +60,7 @@ namespace tarot_card_battler.Game
 
         public static void Load()
         {
+
             sampleTexture = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/SingleCardDraft.png"));
 
             // load textures
@@ -89,6 +91,8 @@ namespace tarot_card_battler.Game
             HoverButton = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Cards/Button_Cast_Hover.png"));
 
             GameBackground = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Board.png"));
+
+            CardList.cards = CardList.GetAllCards();
         }
     }
 }
