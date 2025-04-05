@@ -36,7 +36,7 @@ namespace tarot_card_battler.Game.GameLoop
                         Card card = player.deck.cards[last];
                         player.deck.cards.RemoveAt(last);
 
-                        player.hand.cards.Add(card);
+                        player.hand.Add(card);
 
                         card.mover.delay = i * 0.4f;
                     }

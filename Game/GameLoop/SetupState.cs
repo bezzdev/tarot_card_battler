@@ -27,7 +27,10 @@ namespace tarot_card_battler.Game.GameLoop
         {
             foreach(PlayerBoard player in board.players)
             {
-                player.deck.cards = CardList.GetAllCards();
+                foreach (Card card in CardList.GetAllCards())
+                {
+                    player.deck.Add(card);
+                }
                 player.deck.SetCardPositions(true);
             }
         }

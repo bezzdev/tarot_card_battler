@@ -12,6 +12,9 @@ namespace tarot_card_battler.Game.Cards
         public string number;
 
         public Effect pastEffect;
+
+        // state
+        public bool faceup;
         public Coord position;
         public Mover mover;
 
@@ -39,8 +42,15 @@ namespace tarot_card_battler.Game.Cards
 
             int x = screen.x - (int)(width / 2);
             int y = screen.y - (int)(height/ 2);
-
-            Raylib.DrawTextureEx(cardArt, new System.Numerics.Vector2(x, y), rotation, scale, Color.White);
+            
+            if (faceup)
+            {
+                Raylib.DrawTextureEx(cardArt, new System.Numerics.Vector2(x, y), rotation, scale, Color.White);
+            } else
+            {
+                Raylib.DrawRectangle(x, y, (int)width, (int)height, Color.White);
+                Raylib.DrawRectangle(x + 8, y + 8, (int)width - 16, (int)height - 16, Color.Black);
+            }
         }
         public virtual void TriggerPastEffect()
         {

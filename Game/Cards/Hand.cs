@@ -13,7 +13,8 @@ namespace tarot_card_battler.Game.Cards
         public List<Card> cards = new List<Card>();
 
         public double cardSpacing = 160;
-        public float cardSpeed = 1000f;
+        public float cardSpeed = 1400f;
+        public bool faceup = true;
 
         public void Update()
         {
@@ -22,6 +23,11 @@ namespace tarot_card_battler.Game.Cards
                 card.Update();
             }
         }
+        public void Add(Card card)
+        {
+            cards.Add(card);
+            card.faceup = faceup;
+        }
 
         public void SetCardPositions(bool instant = false)
         {
@@ -29,11 +35,18 @@ namespace tarot_card_battler.Game.Cards
 
             for (int i = 0; i < cards.Count; i++)
             {
-                double goalX = position.x + (-width / 2) + (i * cardSpacing);
-                double goalY = position.y;
-
-                cards[i].mover.SetPosition(goalX, goalY, instant ? float.MaxValue : cardSpeed);
+                SetCardPosition(cards[i], instant);
             }
+        }
+
+        public void SetCardPosition(Card card, bool instant = false)
+        {
+            double width = (cards.Count - 1) * cardSpacing;
+            int i = cards.IndexOf(card);
+            double goalX = position.x + (-width / 2) + (i * cardSpacing);
+            double goalY = position.y;
+
+            cards[i].mover.SetPosition(goalX, goalY, instant ? float.MaxValue : cardSpeed);
         }
 
         public void Render()

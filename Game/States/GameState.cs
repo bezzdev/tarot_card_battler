@@ -12,18 +12,25 @@ namespace tarot_card_battler.Game.States
 
         public GameState() {
             PlayerBoard player = new PlayerBoard();
-            player.deck.position.x = 1000;
-            player.deck.position.y = 240;
+            player.deck.position.x = 1060;
+            player.deck.position.y = 140;
 
             player.hand.position.x = 600;
-            player.hand.position.y = 130;
+            player.hand.position.y = 80;
+
+            player.field.position.x = 600;
+            player.field.position.y = 350;
 
             PlayerBoard opponent = new PlayerBoard();
-            opponent.deck.position.x = 200;
-            opponent.deck.position.y = 560;
+            opponent.deck.position.x = 140;
+            opponent.deck.position.y = 580;
 
             opponent.hand.position.x = 600;
-            opponent.hand.position.y = 670;
+            opponent.hand.position.y = 900;
+            opponent.hand.faceup = false;
+
+            opponent.field.position.x = 600;
+            opponent.field.position.y = 630;
 
             board = new Board()
             {
@@ -48,7 +55,6 @@ namespace tarot_card_battler.Game.States
             Raylib.BeginDrawing();
             Raylib.ClearBackground(Color.Black);
 
-            Raylib.DrawText("Game", (References.window_width / 2) - 100, 350, 80, Color.White);
             board.Render();
 
             Raylib.EndDrawing();

@@ -17,15 +17,15 @@ namespace tarot_card_battler.Game
         }
         public void Update()
         {
+            field.Update();
             deck.Update();
             hand.Update();
-            field.Update();
         }
         public void Render()
         {
+            field.Render();
             deck.Render();
             hand.Render();
-            field.Render();
         }
     }
 }
