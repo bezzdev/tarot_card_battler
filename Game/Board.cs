@@ -13,6 +13,14 @@ namespace tarot_card_battler.Game
             }
         }
 
+        public void EarlyRender()
+        {
+            foreach (PlayerBoard player in players)
+            {
+                player.EarlyRender();
+            }
+        }
+
         public void Render()
         {
             foreach (PlayerBoard player in players)

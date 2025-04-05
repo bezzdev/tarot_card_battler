@@ -7,7 +7,7 @@ namespace tarot_card_battler.Game.GameLoop
     public class DrawState : State
     {
         private Board board;
-        private Delay delay = new Delay(1f);
+        private Delay delay = new Delay(0.5f);
 
         private int playerDraw = 3;
         private int opponentDraw = 3;
@@ -16,6 +16,7 @@ namespace tarot_card_battler.Game.GameLoop
         {
             this.board = board;
         }
+
         public override void Update()
         {
             delay.Update(References.delta);

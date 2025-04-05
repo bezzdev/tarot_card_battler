@@ -19,6 +19,11 @@
 
         }
 
+        public virtual void EarlyRender()
+        {
+
+        }
+
         public virtual void Render()
         {
 

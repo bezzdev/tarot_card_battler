@@ -9,7 +9,7 @@ namespace tarot_card_battler.Game.Cards
     {
         public Texture2D cardArt;
         public string name;
-        public string number;
+        public int number;
 
         public Effect pastEffect;
         public Effect presentEffect;
@@ -20,9 +20,10 @@ namespace tarot_card_battler.Game.Cards
         public Coord position;
         public Mover mover;
 
-        public Card(string name, Texture2D cardArt)
+        public Card(string name, int number, Texture2D cardArt)
         {
             this.name = name;
+            this.number = number;
             this.cardArt = cardArt;
             position = new Coord(-400, 0); // off screen
             this.mover = new Mover(position);

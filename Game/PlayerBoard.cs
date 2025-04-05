@@ -31,9 +31,15 @@ namespace tarot_card_battler.Game
             discards.Update();
         }
 
-        public void Render()
+        public void EarlyRender()
         {
             field.Render();
+        }
+
+
+        public void Render()
+        {
+            // field.Render();
             deck.Render();
             hand.Render();
             discards.Render();

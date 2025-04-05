@@ -60,39 +60,7 @@ namespace tarot_card_battler.Game.GameLoop
                         selectedCard.mover.SetPosition(screen.x, screen.y, float.MaxValue);
                 }
             }
-        }
 
-            //if (hoveredCard != null)
-            // {
-            //     if (Raylib.IsMouseButtonPressed(MouseButton.Left))
-            //     {
-            //         selectedCard = hoveredCard;
-            //         if (!isLocked)
-            //         {
-            //             Console.WriteLine($"Locked, {hoveredCard.position.x}, {hoveredCard.position.y}");
-            //             isLocked = true;
-            //             originalPos = hoveredCard.position;
-            //         }
-            //     }
-            //     if (Raylib.IsMouseButtonReleased(MouseButton.Left))
-            //     {
-            //         Console.WriteLine($"Selected");
-            //         selectedCard = hoveredCard;
-            //     }
-            // }
-
-
-            // if (isLocked && selectedCard != null)
-            // {
-            //     Console.WriteLine("Moving back");
-            //     selectedCard.mover.SetPosition(originalPos.x, originalPos.y, float.MaxValue);
-            //     if (selectedCard.position == originalPos)
-            //     {   
-            //         Console.WriteLine("Returned to OG position");
-            //         isLocked = false;
-            //         selectedCard = null;
-            //     }
-            // }
 
             //if (delay1.CompletedOnce())
             //{
@@ -108,6 +76,40 @@ namespace tarot_card_battler.Game.GameLoop
             //}
             //if (delay1.Completed() && delay2.Completed() && delay3.Completed())
             //    stateMachine.SetState(new ResolveState(board));
+        }
+
+        //if (hoveredCard != null)
+        // {
+        //     if (Raylib.IsMouseButtonPressed(MouseButton.Left))
+        //     {
+        //         selectedCard = hoveredCard;
+        //         if (!isLocked)
+        //         {
+        //             Console.WriteLine($"Locked, {hoveredCard.position.x}, {hoveredCard.position.y}");
+        //             isLocked = true;
+        //             originalPos = hoveredCard.position;
+        //         }
+        //     }
+        //     if (Raylib.IsMouseButtonReleased(MouseButton.Left))
+        //     {
+        //         Console.WriteLine($"Selected");
+        //         selectedCard = hoveredCard;
+        //     }
+        // }
+
+
+        // if (isLocked && selectedCard != null)
+        // {
+        //     Console.WriteLine("Moving back");
+        //     selectedCard.mover.SetPosition(originalPos.x, originalPos.y, float.MaxValue);
+        //     if (selectedCard.position == originalPos)
+        //     {   
+        //         Console.WriteLine("Returned to OG position");
+        //         isLocked = false;
+        //         selectedCard = null;
+        //     }
+        // }
+
 
         public void SelectPastCard(Card card)
         {

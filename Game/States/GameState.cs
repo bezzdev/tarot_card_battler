@@ -71,6 +71,9 @@ namespace tarot_card_battler.Game.States
 
             Raylib.DrawText(gameLoop.current_state.ToString(), 0, 20, 20, Color.White);
 
+            gameLoop.EarlyRender();
+            board.EarlyRender();
+
             gameLoop.Render();
             board.Render();
 

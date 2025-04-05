@@ -16,6 +16,14 @@
                 current_state.Update();
             }
         }
+        public void EarlyRender()
+        {
+            if (current_state != null)
+            {
+                current_state.EarlyRender();
+            }
+        }
+
         public void Render()
         {
             if (current_state != null)

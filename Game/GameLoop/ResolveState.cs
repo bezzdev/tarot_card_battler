@@ -69,7 +69,21 @@ namespace tarot_card_battler.Game.GameLoop
 
             if (delay7.Completed())
             {
-                stateMachine.SetState(new DiscardState(board));
+                // player game over
+                if (board.player.health == 0)
+                {
+                    stateMachine.SetState(new GameOverState(board));
+                }
+
+                // opponent game over, player wins
+                else if (board.players[1].health == 0)
+                {
+                    stateMachine.SetState(new GameWinState(board));
+                } 
+                else
+                {
+                    stateMachine.SetState(new DiscardState(board));
+                }
             }
         }
     }
