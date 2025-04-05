@@ -16,10 +16,10 @@ namespace tarot_card_battler.Game.States
             player.deck.position.y = 140;
 
             player.hand.position.x = 600;
-            player.hand.position.y = 40;
+            player.hand.position.y = 20;
 
             player.field.position.x = 600;
-            player.field.position.y = 350;
+            player.field.position.y = 300;
 
             player.candle.position.x = 140;
             player.candle.position.y = 140;

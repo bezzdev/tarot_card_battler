@@ -20,12 +20,9 @@ namespace tarot_card_battler.Game.GameLoop
         private Delay delay2 = new Delay(1.5f);
         private Delay delay3 = new Delay(2f);
 
-        private Card hoveredCard;
+        private Card? hoveredCard;
 
         private Card? selectedCard;
-
-        private double originalX;
-        private double originalY;
 
         public ChoiceState(Board board)
         {
@@ -42,16 +39,40 @@ namespace tarot_card_battler.Game.GameLoop
             int y = Raylib.GetMouseY();
 
             var screen = Coordinates.ScreenToWorld(x, y);
-            hoveredCard = Intersections.isHovered(board.players[0].hand.cards, screen.x, screen.y);
+            hoveredCard = Intersections.isHovered(board.player.hand.cards, screen.x, screen.y);
+
 
             if (hoveredCard != null)
             {
                 if (Raylib.IsMouseButtonPressed(MouseButton.Left))
                 {
                     selectedCard = hoveredCard;
-                    originalX = hoveredCard.position.x;
-                    originalY = hoveredCard.position.y;
                 }
+            }
+
+            List<Card> fieldList = new List<Card>();
+
+            if (board.player.field.past != null)
+            {
+                fieldList.Add(board.player.field.past);
+            }
+            else if (board.player.field.present != null)
+            {
+                fieldList.Add(board.player.field.present);
+            }
+            else if (board.player.field.future != null)
+            {
+                fieldList.Add(board.player.field.future);
+            }
+
+            var hoveredField = Intersections.isHovered(fieldList, screen.x, screen.y);
+
+            if (hoveredField != null && Raylib.IsMouseButtonPressed(MouseButton.Left))
+            {
+                RemoveCardFromField(hoveredField);
+                hoveredCard = null;
+                selectedCard = null;
+                return;
             }
 
             if (selectedCard != null)
@@ -74,17 +95,23 @@ namespace tarot_card_battler.Game.GameLoop
                     var futureDiffY = screen.y - futurePosition.Item2;
                     var futuretPyth = Math.Sqrt((futureDiffX * futureDiffX) + (futureDiffY * futureDiffY));
 
-                    Console.WriteLine($"Past: {pasPyth}, Present: {presentPyth}, Future: {futuretPyth}");
-                    if(pasPyth < 100){
+                    if (pasPyth < 100 && board.player.field.past == null)
+                    {
                         SelectPastCard(selectedCard);
-                    } else if(presentPyth < 100) {
+                    }
+                    else if (presentPyth < 100 && board.player.field.present == null)
+                    {
                         SelectPresentCard(selectedCard);
-                    } else if(futuretPyth < 100){
+                    }
+                    else if (futuretPyth < 100 && board.player.field.future == null)
+                    {
                         SelectFutureCard(selectedCard);
-                    } else {
-                        selectedCard.mover.SetPosition(originalX, originalY, 2500);
+                    }
+                    else
+                    {
+                        board.player.hand.SetCardPositions();
                         selectedCard = null;
-                    }    
+                    }
                 }
                 else if (Raylib.IsMouseButtonDown(MouseButton.Left))
                 {
@@ -118,6 +145,26 @@ namespace tarot_card_battler.Game.GameLoop
 
             board.player.field.future = card;
             board.player.field.SetFutureCardPosition();
+        }
+
+        public void RemoveCardFromField(Card card)
+        {
+            if (board.player.field.past == card)
+            {
+                board.player.field.past = null;
+            }
+            else if (board.player.field.present == card)
+            {
+                board.player.field.present = null;
+            }
+            else if (board.player.field.future == card)
+            {
+                board.player.field.future = null;
+            }
+
+            board.player.hand.Add(card);
+
+            board.player.hand.SetCardPositions();
         }
 
         public override void Render()

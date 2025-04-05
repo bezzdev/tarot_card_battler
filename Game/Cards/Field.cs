@@ -7,9 +7,9 @@ namespace tarot_card_battler.Game.Cards
 {
     public class Field
     {
-        public Card past;
-        public Card present;
-        public Card future;
+        public Card? past;
+        public Card? present;
+        public Card? future;
 
         public Coord position = new Coord(0, 0);
         public Coord pastPosition = new Coord(-170, 0);
