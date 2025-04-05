@@ -1,5 +1,6 @@
 using Raylib_cs;
 using tarot_card_battler.Core;
+using tarot_card_battler.Util;
 
 namespace tarot_card_battler.Game.Cards
 {
@@ -11,18 +12,35 @@ namespace tarot_card_battler.Game.Cards
         public string number;
 
         public Effect pastEffect;
-        public Coord pos;
+        public Coord position;
+        public Mover mover;
 
         public Card(string name, Texture2D cardArt)
         {
             this.name = name;
             this.cardArt = cardArt;
-            pos = new Coord(6, 4);
+            position = new Coord(-400, 0); // off screen
+            this.mover = new Mover(position);
+        }
+
+        public void Update()
+        {
+            mover.Update();
         }
 
         public void Render()
         {
-            Raylib.DrawTexture(cardArt, (int)(pos.x / References.window_width), (int)(pos.y / References.window_height), Color.White);
+            var screen = Coordinates.WorldToScreen((int)position.x, (int)position.y);
+            float rotation = 0f;
+            float scale = 1f;
+            
+            float width = cardArt.Width * scale;
+            float height = cardArt.Height * scale;
+
+            int x = screen.x - (int)(width / 2);
+            int y = screen.y - (int)(height/ 2);
+
+            Raylib.DrawTextureEx(cardArt, new System.Numerics.Vector2(x, y), rotation, scale, Color.White);
         }
         public virtual void TriggerPastEffect()
         {

@@ -35,6 +35,7 @@
 
             if (current_state != null)
             {
+                current_state.stateMachine = this;
                 current_state.OnEnter();
             }
         }

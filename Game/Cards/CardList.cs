@@ -11,10 +11,26 @@ namespace tarot_card_battler.Game.Cards
         public static List<Card> GetAllCards()
         {
             List<Card> cards = new List<Card>();
-            cards.Add(new Card("Card Draft", References.sampleTexture) { pos = new Core.Coord(6, 2)});
-            cards.Add(new Card("Card Draft", References.sampleTexture) { pos = new Core.Coord(6, 6) });
-            cards.Add(new Card("Card Draft", References.sampleTexture) { pos = new Core.Coord(6, 5) });
-            cards.Add(new Card("Card Draft", References.sampleTexture) { pos = new Core.Coord(6, 4) });
+            cards.Add(new Card("Card Draft", References.sampleTexture));
+            cards.Add(new Card("Card Draft", References.sampleTexture));
+            cards.Add(new Card("Card Draft", References.sampleTexture));
+            cards.Add(new Card("Card Draft", References.sampleTexture));
+            cards.Add(new Card("Card Draft", References.sampleTexture));
+            cards.Add(new Card("Card Draft", References.sampleTexture));
+            cards.Add(new Card("Card Draft", References.sampleTexture));
+            cards.Add(new Card("Card Draft", References.sampleTexture));
+            cards.Add(new Card("Card Draft", References.sampleTexture));
+            cards.Add(new Card("Card Draft", References.sampleTexture));
+            cards.Add(new Card("Card Draft", References.sampleTexture));
+            cards.Add(new Card("Card Draft", References.sampleTexture));
+            cards.Add(new Card("Card Draft", References.sampleTexture));
+            cards.Add(new Card("Card Draft", References.sampleTexture));
+            cards.Add(new Card("Card Draft", References.sampleTexture));
+            cards.Add(new Card("Card Draft", References.sampleTexture));
+            cards.Add(new Card("Card Draft", References.sampleTexture));
+            cards.Add(new Card("Card Draft", References.sampleTexture));
+            cards.Add(new Card("Card Draft", References.sampleTexture));
+            cards.Add(new Card("Card Draft", References.sampleTexture));
             return cards;
         }
     }
