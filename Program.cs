@@ -16,8 +16,8 @@ Raylib.SetConfigFlags(ConfigFlags.MaximizedWindow);
 Raylib.SetTargetFPS(60);
 
 References.Load();
+
 StateMachine gameStateMachine = new StateMachine(new MenuState());
-References.Load();
 
 // game loop
 while (!Raylib.WindowShouldClose())
