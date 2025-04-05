@@ -1,13 +1,15 @@
-﻿using System.Numerics;
+using System.Numerics;
 using tarot_card_battler.Core;
 using tarot_card_battler.Core.Statemachines;
 using tarot_card_battler.Game.Cards;
-﻿using Raylib_cs;
+using Raylib_cs;
 using tarot_card_battler.Core;
 using tarot_card_battler.Core.Statemachines;
 using tarot_card_battler.Game.Cards;
 using tarot_card_battler.Util;
 using System.Security;
+using System.Data.Common;
+using System.Runtime.InteropServices;
 
 namespace tarot_card_battler.Game.GameLoop
 {
@@ -19,6 +21,11 @@ namespace tarot_card_battler.Game.GameLoop
         private Delay delay3 = new Delay(2f);
 
         private Card hoveredCard;
+
+        private Card? selectedCard;
+
+        private double originalX;
+        private double originalY;
 
         public ChoiceState(Board board)
         {
@@ -37,15 +44,55 @@ namespace tarot_card_battler.Game.GameLoop
             var screen = Coordinates.ScreenToWorld(x, y);
             hoveredCard = Intersections.isHovered(board.players[0].hand.cards, screen.x, screen.y);
 
-
             if(hoveredCard != null){
-                if(Raylib.IsMouseButtonDown(MouseButton.Left)){
-                    hoveredCard.mover.SetPosition(screen.x, screen.y, float.MaxValue);
-                }
-                if(Raylib.IsMouseButtonReleased(MouseButton.Left)){
-
+                if(Raylib.IsMouseButtonPressed(MouseButton.Left)){
+                    selectedCard = hoveredCard;
+                    originalX = hoveredCard.position.x;
+                    originalY = hoveredCard.position.y;
                 }
             }
+
+            if(selectedCard != null){
+                if(Raylib.IsMouseButtonUp(MouseButton.Left)){
+                       selectedCard.mover.SetPosition(originalX, originalY, 2500);
+                       selectedCard = null;
+                    } else if(Raylib.IsMouseButtonDown(MouseButton.Left)){
+                        selectedCard.mover.SetPosition(screen.x, screen.y, float.MaxValue);
+                }
+            }
+        }
+
+            //if (hoveredCard != null)
+            // {
+            //     if (Raylib.IsMouseButtonPressed(MouseButton.Left))
+            //     {
+            //         selectedCard = hoveredCard;
+            //         if (!isLocked)
+            //         {
+            //             Console.WriteLine($"Locked, {hoveredCard.position.x}, {hoveredCard.position.y}");
+            //             isLocked = true;
+            //             originalPos = hoveredCard.position;
+            //         }
+            //     }
+            //     if (Raylib.IsMouseButtonReleased(MouseButton.Left))
+            //     {
+            //         Console.WriteLine($"Selected");
+            //         selectedCard = hoveredCard;
+            //     }
+            // }
+
+
+            // if (isLocked && selectedCard != null)
+            // {
+            //     Console.WriteLine("Moving back");
+            //     selectedCard.mover.SetPosition(originalPos.x, originalPos.y, float.MaxValue);
+            //     if (selectedCard.position == originalPos)
+            //     {   
+            //         Console.WriteLine("Returned to OG position");
+            //         isLocked = false;
+            //         selectedCard = null;
+            //     }
+            // }
 
             //if (delay1.CompletedOnce())
             //{
@@ -61,7 +108,6 @@ namespace tarot_card_battler.Game.GameLoop
             //}
             //if (delay1.Completed() && delay2.Completed() && delay3.Completed())
             //    stateMachine.SetState(new ResolveState(board));
-        }
 
         public void SelectPastCard(Card card)
         {
@@ -92,18 +138,19 @@ namespace tarot_card_battler.Game.GameLoop
 
         public override void Render()
         {
-           if(hoveredCard != null){
-            var screen = Coordinates.WorldToScreen((int)hoveredCard.position.x, (int)hoveredCard.position.y);
-            float scale = 1f;
-            
-            float width = hoveredCard.cardArt.Width * scale + 10;
-            float height = hoveredCard.cardArt.Height * scale + 10;
+            if (hoveredCard != null)
+            {
+                var screen = Coordinates.WorldToScreen((int)hoveredCard.position.x, (int)hoveredCard.position.y);
+                float scale = 1f;
 
-            int x = screen.x - (int)(width / 2);
-            int y = screen.y - (int)(height/ 2);
+                float width = hoveredCard.cardArt.Width * scale + 10;
+                float height = hoveredCard.cardArt.Height * scale + 10;
 
-            Raylib.DrawRectangle(x, y, (int) width, (int) height, Color.Yellow);
-           }
+                int x = screen.x - (int)(width / 2);
+                int y = screen.y - (int)(height / 2);
+
+                Raylib.DrawRectangle(x, y, (int)width, (int)height, Color.Yellow);
+            }
         }
     }
 }
