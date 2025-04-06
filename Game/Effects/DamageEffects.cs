@@ -8,11 +8,11 @@ using tarot_card_battler.Game.PlayArea;
 
 namespace tarot_card_battler.Game.Effects
 {
-    public class DamageEffect : Effect
+    public class Damage : Effect
     {
         public int damage;
 
-        public DamageEffect(int damage)
+        public Damage(int damage)
         {
             tooltip = $"Does {damage} damage";
             this.damage = damage;

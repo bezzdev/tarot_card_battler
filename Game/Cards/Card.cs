@@ -32,9 +32,9 @@ namespace tarot_card_battler.Game.Cards
             position = new Coord(-400, 0); // off screen
             this.mover = new Mover(position);
 
-            pastEffect = new DamageEffect(1);
-            presentEffect = new DamageEffect(2);
-            futureEffect = new DamageEffect(3);
+            pastEffect = new Damage(1);
+            presentEffect = new Damage(2);
+            futureEffect = new Damage(3);
         }
 
         public Card Clone()

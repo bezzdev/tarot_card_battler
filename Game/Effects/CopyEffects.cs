@@ -10,10 +10,8 @@ namespace tarot_card_battler.Game.Effects
 {
     public class CopyOpposite : Effect
     {
-        int fieldIndex;
-        public CopyOpposite(int index)
+        public CopyOpposite()
         {
-            fieldIndex = index;
             tooltip = "Copies opposite fields card effect";
         }
 
@@ -55,29 +53,33 @@ namespace tarot_card_battler.Game.Effects
         {
             if (player.debugName == "player") Console.WriteLine($"Triggered random discard effect;");
             List<Card> discardCards = player.discards.cards.ToList();
-            CardList.Shuffle(discardCards);
 
-            Card discard = discardCards[0];
-            Random rnd = new Random();
-            int randomInt = rnd.Next(2);
-
-            switch (randomInt)
+            if (discardCards.Count > 0)
             {
-                case 0:
-                    discard.pastEffect.triggerEffect(player, opponent, slot, card);
-                    break;
-                case 1:
-                    discard.presentEffect.triggerEffect(player, opponent, slot, card);
-                    break;
-                case 2:
-                    discard.futureEffect.triggerEffect(player, opponent, slot, card);
-                    break;
-                default:
-                    discard.pastEffect.triggerEffect(player, opponent, slot, card);
-                    break;
-            }
+                CardList.Shuffle(discardCards);
 
-            player.deck.SetCardPositions();
+                Card discard = discardCards[0];
+                Random rnd = new Random();
+                int randomInt = rnd.Next(2);
+
+                switch (randomInt)
+                {
+                    case 0:
+                        discard.pastEffect.triggerEffect(player, opponent, slot, card);
+                        break;
+                    case 1:
+                        discard.presentEffect.triggerEffect(player, opponent, slot, card);
+                        break;
+                    case 2:
+                        discard.futureEffect.triggerEffect(player, opponent, slot, card);
+                        break;
+                    default:
+                        discard.pastEffect.triggerEffect(player, opponent, slot, card);
+                        break;
+                }
+
+                player.deck.SetCardPositions();
+            }
         }
     }
 }

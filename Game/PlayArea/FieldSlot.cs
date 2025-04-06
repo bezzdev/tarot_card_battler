@@ -10,16 +10,21 @@ namespace tarot_card_battler.Game.PlayArea
 {
     public class FieldSlot
     {
+        public static string[] slotNames = ["past", "present", "future"];
+
         public Field field;
         public int number;
         public Coord position = new Coord(0, 0);
         public Card? card = null;
         public float cardSpeed = 1400f;
         public bool faceup = true;
+        public string debugName = "";
 
         public FieldSlot(int number)
         {
             this.number = number;
+
+            this.debugName = slotNames[number];
         }
 
         public void SetCard(Card card)

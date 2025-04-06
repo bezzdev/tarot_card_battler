@@ -44,6 +44,38 @@ namespace tarot_card_battler.Game.Effects
             opponent.field.future.SetCardPosition();
         }
     }
+
+    public class SwapAboveWithRandomFromHand : Effect
+    {
+        public SwapAboveWithRandomFromHand()
+        {
+            tooltip = "Swaps the above card with a random card from the opponents hand";
+        }
+
+        public override void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
+        {
+            FieldSlot opponentSlot = opponent.field.slots[slot.number];
+            Card opponentCard = opponentSlot.card;
+
+            Hand opponentHand = opponent.hand;
+            if (opponentCard != null && opponentHand.cards.Count > 0)
+            {
+                int choice = Random.Shared.Next(0, opponentHand.cards.Count);
+                Card cardChoice = opponentHand.cards[choice];
+                opponentSlot.card = null;
+
+                opponentHand.Add(opponentCard);
+                opponentHand.cards.Remove(cardChoice);
+                opponentHand.SetCardPositions();
+
+                opponentSlot.SetCard(cardChoice);
+
+                if (player.debugName == "player") Console.WriteLine($"Swapping opponents {opponentSlot.debugName} card with a random card from their hand");
+            }
+        }
+    }
+
+
     public class ShuffleDiscard : Effect
     {
         public ShuffleDiscard()

@@ -33,10 +33,10 @@ namespace tarot_card_battler.Game.PlayArea
         public void Render()
         {
             // field.Render();
+            candle.Render(this);
             deck.Render();
             hand.Render();
             //discards.Render();
-            candle.Render(this);
         }
     }
 }
