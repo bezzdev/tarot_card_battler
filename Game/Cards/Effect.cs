@@ -121,9 +121,21 @@ namespace tarot_card_battler.Game.Cards
         }
     }
 
-    public class Shuffle : Effect
+    public class ShuffleField : Effect {
+        public ShuffleField()
+        {
+            this.tooltip = "Randomises Opponent Field";
+        }
+
+        public override void triggerEffect(PlayerBoard player, PlayerBoard opponent)
+        {
+
+        }
+    }
+
+    public class ShuffleDiscard : Effect
     {
-        public Shuffle()
+        public ShuffleDiscard()
         {
             this.tooltip = "Shuffles discarded cards back into deck";
         }

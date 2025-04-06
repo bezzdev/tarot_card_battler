@@ -17,9 +17,9 @@ namespace tarot_card_battler.Game.Cards
 
             cards.Add(new Card("The_Fool", 00, References.The_Fool)
             {
-                pastEffect = new Shuffle(),
-                presentEffect = new Shuffle(),
-                futureEffect = new Shuffle()
+                pastEffect = new ShuffleDiscard(),
+                presentEffect = new ShuffleDiscard(),
+                futureEffect = new ShuffleDiscard()
             });
             cards.Add(new Card("The_Magician", 01, References.The_Magician){
                 pastEffect = new CopyOpposite(0),
@@ -40,21 +40,21 @@ namespace tarot_card_battler.Game.Cards
                 presentEffect = new Heal(2),
                 futureEffect = new Heal(3),
             });
-            // cards.Add(new Card("The_Chariot", 07, References.The_Chariot));
-            // cards.Add(new Card("Strength", 08, References.Strength));
-            // cards.Add(new Card("The_Hermit", 09, References.The_Hermit));
-            // cards.Add(new Card("Wheel_Of_Fortune", 10, References.Wheel_Of_Fortune));
-            // cards.Add(new Card("Justice", 11, References.Justice));
-            // cards.Add(new Card("The_Hanged_Man", 12, References.The_Hanged_Man));
-            // cards.Add(new Card("Death", 13, References.Death));
-            // cards.Add(new Card("Temperance", 14, References.Temperance));
-            // cards.Add(new Card("The_Devil", 15, References.The_Devil));
-            // cards.Add(new Card("The_Tower", 16, References.The_Tower));
-            // cards.Add(new Card("The_Star", 17, References.The_Star));
-            // cards.Add(new Card("The_Moon", 18, References.The_Moon));
-            // cards.Add(new Card("The_Sun", 19, References.The_Sun));
-            // cards.Add(new Card("Judgement", 20, References.Judgement));
-            // cards.Add(new Card("The_World", 21, References.The_World));
+            cards.Add(new Card("The_Chariot", 07, References.The_Chariot));
+            cards.Add(new Card("Strength", 08, References.Strength));
+            cards.Add(new Card("The_Hermit", 09, References.The_Hermit));
+            cards.Add(new Card("Wheel_Of_Fortune", 10, References.Wheel_Of_Fortune));
+            cards.Add(new Card("Justice", 11, References.Justice));
+            cards.Add(new Card("The_Hanged_Man", 12, References.The_Hanged_Man));
+            cards.Add(new Card("Death", 13, References.Death));
+            cards.Add(new Card("Temperance", 14, References.Temperance));
+            cards.Add(new Card("The_Devil", 15, References.The_Devil));
+            cards.Add(new Card("The_Tower", 16, References.The_Tower));
+            cards.Add(new Card("The_Star", 17, References.The_Star));
+            cards.Add(new Card("The_Moon", 18, References.The_Moon));
+            cards.Add(new Card("The_Sun", 19, References.The_Sun));
+            cards.Add(new Card("Judgement", 20, References.Judgement));
+            cards.Add(new Card("The_World", 21, References.The_World));
 
             return cards;
         }
