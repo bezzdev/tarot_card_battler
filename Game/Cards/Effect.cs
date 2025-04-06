@@ -78,17 +78,26 @@ namespace tarot_card_battler.Game.Cards
 
         public override void triggerEffect(PlayerBoard player, PlayerBoard opponent)
         {
-            if(!(opponent.field.past.pastEffect is CopyOpposite)){
+            if(!(player.field.past.pastEffect is CopyOpposite) && !(opponent.field.past.pastEffect is CopyOpposite)){
+                if(player.debugName == "player") Console.WriteLine($"Skipping as magician is in both fields");
+                return;
+            }
+            if(!(player.field.present.presentEffect is CopyOpposite) && !(opponent.field.present.presentEffect is CopyOpposite)){
+                if(player.debugName == "player") Console.WriteLine($"Skipping as magician is in both fields");
+                return;
+            }
+            if(!(player.field.future.futureEffect is CopyOpposite) && !(opponent.field.future.futureEffect is CopyOpposite)){
+                if(player.debugName == "player") Console.WriteLine($"Skipping as magician is in both fields");
                 return;
             }
             if(fieldIndex == 0){
                 if(player.debugName == "player") Console.WriteLine($"Player copied past effect of {opponent.field.past.name}");
                 opponent.field.past.pastEffect.triggerEffect(opponent, player);
             } else if(fieldIndex == 1){
-                if(player.debugName == "player") Console.WriteLine($"Player copied present effect of {opponent.field.past.name}");
+                if(player.debugName == "player") Console.WriteLine($"Player copied present effect of {opponent.field.present.name}");
                 opponent.field.past.presentEffect.triggerEffect(opponent, player);
             } else if(fieldIndex == 2){
-                if(player.debugName == "player") Console.WriteLine($"Player copied future effect of {opponent.field.past.name}");
+                if(player.debugName == "player") Console.WriteLine($"Player copied future effect of {opponent.field.future.name}");
                 opponent.field.past.presentEffect.triggerEffect(opponent, player);
             } else {
                 return;
