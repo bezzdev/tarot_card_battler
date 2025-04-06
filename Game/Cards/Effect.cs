@@ -138,7 +138,7 @@ namespace tarot_card_battler.Game.Cards
                 return;
             }
 
-            if (player.debugName == "player") Console.WriteLine($"Player copied past effect of {opponent.field.past.card.name}");
+            if (player.debugName == "player") Console.WriteLine($"Player copied effect of {opponentCard.name}");
 
             opponentEffect.triggerEffect(player, opponent, slot, card);
         }
