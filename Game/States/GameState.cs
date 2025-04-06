@@ -12,7 +12,7 @@ namespace tarot_card_battler.Game.States
         public Board board;
 
         public GameState() {
-            PlayerBoard player = new PlayerBoard();
+            PlayerBoard player = new PlayerBoard(name: "player");
             player.deck.position.x = 1060;
             player.deck.position.y = 140;
 
@@ -28,7 +28,7 @@ namespace tarot_card_battler.Game.States
             player.discards.position.x = player.candle.position.x;
             player.discards.position.y = player.candle.position.y;
 
-            PlayerBoard opponent = new PlayerBoard();
+            PlayerBoard opponent = new PlayerBoard(name: "opponent");
             opponent.health = 30;
             opponent.deck.position.x = 140;
             opponent.deck.position.y = 580;

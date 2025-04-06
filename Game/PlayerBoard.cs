@@ -3,8 +3,9 @@ using tarot_card_battler.Game.Cards;
 
 namespace tarot_card_battler.Game
 {
-    public class PlayerBoard
+    public class PlayerBoard(string name)
     {
+        public string debugName = name;
         public Deck deck = new Deck();
         public Hand hand = new Hand();
         public Field field = new Field();
