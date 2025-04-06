@@ -1,5 +1,6 @@
 ﻿using tarot_card_battler.Core;
 using tarot_card_battler.Core.Statemachines;
+using tarot_card_battler.Game.Cards;
 using tarot_card_battler.Game.PlayArea;
 
 namespace tarot_card_battler.Game.GameLoop
@@ -42,36 +43,36 @@ namespace tarot_card_battler.Game.GameLoop
             if (delay1.CompletedOnce())
             {
                 if (player.field.past.card != null)
-                    player.field.past.card.TriggerPastEffect(player, opponent);
+                    player.field.past.card.TriggerPastEffect(player, opponent, player.field.past, player.field.past.card);
             }
             if (delay2.CompletedOnce())
             {
                 if (opponent.field.past.card != null)
-                    opponent.field.past.card.TriggerPastEffect(opponent, player);
+                    opponent.field.past.card.TriggerPastEffect(opponent, player, opponent.field.past, opponent.field.past.card);
             }
 
             // present
             if (delay3.CompletedOnce())
             {
                 if (player.field.present.card != null)
-                    player.field.present.card.TriggerPresentEffect(player, opponent);
+                    player.field.present.card.TriggerPresentEffect(player, opponent, player.field.present, player.field.present.card);
             }
             if (delay4.CompletedOnce())
             {
                 if (opponent.field.present.card != null)
-                    opponent.field.present.card.TriggerPresentEffect(opponent, player);
+                    opponent.field.present.card.TriggerPresentEffect(opponent, player, opponent.field.present, opponent.field.present.card);
             }
 
             // future
             if (delay5.CompletedOnce())
             {
                 if (player.field.future.card != null)
-                    player.field.future.card.TriggerFutureEffect(player, opponent);
+                    player.field.future.card.TriggerFutureEffect(player, opponent, player.field.future, player.field.future.card);
             }
             if (delay6.CompletedOnce())
             {
                 if (opponent.field.future.card != null)
-                    opponent.field.future.card.TriggerFutureEffect(opponent, player);
+                    opponent.field.future.card.TriggerFutureEffect(opponent, player, opponent.field.future, opponent.field.future.card);
             }
 
             if (delay7.Completed())

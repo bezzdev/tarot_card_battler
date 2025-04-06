@@ -73,19 +73,19 @@ namespace tarot_card_battler.Game.Cards
                 Raylib.DrawTextureEx(cardBack, new System.Numerics.Vector2(x, y), rotation, scale, Color.White);
             }
         }
-        public virtual void TriggerPastEffect(PlayerBoard player, PlayerBoard opponent)
+        public virtual void TriggerPastEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
         {
-            pastEffect.triggerEffect(player, opponent, null, null);
+            pastEffect.triggerEffect(player, opponent, slot, card);
         }
 
-        public virtual void TriggerPresentEffect(PlayerBoard player, PlayerBoard opponent)
+        public virtual void TriggerPresentEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
         {
-            presentEffect.triggerEffect(player, opponent, null, null);
+            presentEffect.triggerEffect(player, opponent, slot, card);
         }
 
-        public virtual void TriggerFutureEffect(PlayerBoard player, PlayerBoard opponent)
+        public virtual void TriggerFutureEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
         {
-            futureEffect.triggerEffect(player, opponent, null, null);
+            futureEffect.triggerEffect(player, opponent, slot, null);
         }
         public virtual bool IsInBounds(double x, double y)
         {
