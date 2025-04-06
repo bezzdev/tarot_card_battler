@@ -20,7 +20,7 @@ namespace tarot_card_battler.Game
         public static Controller controller = new Controller(player);
 
         public static float frameDelta;
-        public static float gameSpeed = 10f;
+        public static float gameSpeed = 1f;
         public static float delta
         {
             get
