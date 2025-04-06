@@ -12,7 +12,7 @@ namespace tarot_card_battler.Game.Cards
         public Coord position = new Coord(0, 0);
         public List<Card> cards = new List<Card>();
 
-        public double cardSpacing = 160;
+        public double cardSpacing = 150;
         public float cardSpeed = 1400f;
         public bool faceup = true;
 

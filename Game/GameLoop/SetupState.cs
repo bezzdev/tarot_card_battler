@@ -20,7 +20,7 @@ namespace tarot_card_battler.Game.GameLoop
 
             if (delay.Completed())
             {
-                stateMachine.SetState(new DrawState(board));
+                stateMachine.SetState(new FirstDrawState(board));
             }
         }
  

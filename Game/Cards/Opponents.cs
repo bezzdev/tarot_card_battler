@@ -12,7 +12,7 @@
             int maxCards = 22;
 
             int additionalCardsPerLevel = 2;
-            int cardPoolSize = 5;
+            int cardPoolSize = 8;
 
             int cardPoolStart = 0;
             cardPoolStart = level * additionalCardsPerLevel;

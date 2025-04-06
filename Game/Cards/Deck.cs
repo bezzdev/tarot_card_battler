@@ -8,7 +8,7 @@ namespace tarot_card_battler.Game.Cards
         public List<Card> cards = new List<Card>();
 
         public double cardSpacing = 4;
-        public float cardSpeed = 600f;
+        public float cardSpeed = 2000f;
 
         public void Update()
         {
