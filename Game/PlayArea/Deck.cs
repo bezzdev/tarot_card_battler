@@ -1,6 +1,7 @@
 ﻿using tarot_card_battler.Core;
+using tarot_card_battler.Game.Cards;
 
-namespace tarot_card_battler.Game.Cards
+namespace tarot_card_battler.Game.PlayArea
 {
     public class Deck
     {
@@ -28,7 +29,7 @@ namespace tarot_card_battler.Game.Cards
         {
             for (int i = 0; i < cards.Count; i++)
             {
-                cards[i].mover.SetPosition(position.x, position.y + (i * cardSpacing), instant ? float.MaxValue : cardSpeed);
+                cards[i].mover.SetPosition(position.x, position.y + i * cardSpacing, instant ? float.MaxValue : cardSpeed);
             }
         }
 

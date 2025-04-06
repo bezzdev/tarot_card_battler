@@ -8,6 +8,7 @@ using System.Security;
 using System.Data.Common;
 using System.Runtime.InteropServices;
 using System.Text;
+using tarot_card_battler.Game.PlayArea;
 
 namespace tarot_card_battler.Game.GameLoop
 {
@@ -24,6 +25,8 @@ namespace tarot_card_battler.Game.GameLoop
 
         private Card? selectedCard;
 
+        private List<Card> hoverableCards = new List<Card>();
+
         public ChoiceState(Board board)
         {
             this.board = board;
@@ -39,7 +42,13 @@ namespace tarot_card_battler.Game.GameLoop
             int y = Raylib.GetMouseY();
 
             var screen = Coordinates.ScreenToWorld(x, y);
-            hoveredCard = Intersections.isHovered(board.player.hand.cards, screen.x, screen.y);
+
+            hoverableCards.Clear();
+            hoverableCards.AddRange(board.player.hand.cards);
+
+            // hoverableCards.Add(board.player.hand.cards);
+
+            hoveredCard = Intersections.GetHoveredCard(board.player.hand.cards, screen.x, screen.y);
 
             if (Raylib.IsMouseButtonPressed(MouseButton.Left) && board.buttonIsHovered)
             {
@@ -74,7 +83,7 @@ namespace tarot_card_battler.Game.GameLoop
                 fieldList.Add(board.player.field.future);
             }
 
-            var hoveredField = Intersections.isHovered(fieldList, screen.x, screen.y);
+            var hoveredField = Intersections.GetHoveredCard(fieldList, screen.x, screen.y);
 
             if (hoveredField != null && Raylib.IsMouseButtonPressed(MouseButton.Left))
             {

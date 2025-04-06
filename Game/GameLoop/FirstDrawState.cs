@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using tarot_card_battler.Core;
+﻿using tarot_card_battler.Core;
 using tarot_card_battler.Core.Statemachines;
 using tarot_card_battler.Game.Cards;
+using tarot_card_battler.Game.PlayArea;
 
 namespace tarot_card_battler.Game.GameLoop
 {

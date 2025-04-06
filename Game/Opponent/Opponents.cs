@@ -1,10 +1,12 @@
-﻿namespace tarot_card_battler.Game.Cards
+﻿using tarot_card_battler.Game.Cards;
+
+namespace tarot_card_battler.Game.Opponent
 {
     public static class Opponents
     {
-        public static Opponent GetOpponentForLevel(int level)
+        public static OpponentData GetOpponentForLevel(int level)
         {
-            Opponent opponent = new Opponent();
+            OpponentData opponent = new OpponentData();
             opponent.name = level.ToString();
             opponent.level = level;
             opponent.health = 20;
@@ -22,7 +24,7 @@
             {
                 int overshoot = cardPoolEnd - maxCards;
                 cardPoolEnd = maxCards;
-                
+
                 cardPoolStart += overshoot;
                 if (cardPoolStart > maxCards)
                 {

@@ -1,9 +1,10 @@
 ﻿using System.Numerics;
 using Raylib_cs;
 using tarot_card_battler.Core;
+using tarot_card_battler.Game.Cards;
 using tarot_card_battler.Util;
 
-namespace tarot_card_battler.Game.Cards
+namespace tarot_card_battler.Game.PlayArea
 {
     public class Field
     {
@@ -21,19 +22,21 @@ namespace tarot_card_battler.Game.Cards
         {
             if (past != null)
                 past.Update();
-            if(present != null)
+            if (present != null)
                 present.Update();
-            if(future != null)
+            if (future != null)
                 future.Update();
         }
 
-        public void SetPastCard(Card card) {
+        public void SetPastCard(Card card)
+        {
             past = card;
             card.faceup = true;
             SetPastCardPosition();
         }
 
-        public void SetPastCardPosition(bool instant = false) {
+        public void SetPastCardPosition(bool instant = false)
+        {
             double goalX = position.x + pastPosition.x;
             double goalY = position.y + pastPosition.y;
 
@@ -73,10 +76,10 @@ namespace tarot_card_battler.Game.Cards
         {
             if (past != null)
                 past.Render();
-            
+
             if (present != null)
                 present.Render();
-            
+
             if (future != null)
                 future.Render();
         }

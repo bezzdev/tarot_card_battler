@@ -2,7 +2,7 @@ using Raylib_cs;
 using tarot_card_battler.Game.Cards;
 using tarot_card_battler.Util;
 
-namespace tarot_card_battler.Game
+namespace tarot_card_battler.Game.PlayArea
 {
     public class Board
     {
@@ -20,13 +20,19 @@ namespace tarot_card_battler.Game
 
             var screen = Coordinates.ScreenToWorld(x, y);
 
-            if(x > buttonX - References.CastButton.Width / 2 && x < buttonX + References.CastButton.Width / 2){
-                if(y > buttonY - References.CastButton.Height / 2 && y < buttonY+ References.CastButton.Height / 2) {
-                  buttonIsHovered = true;
-                } else {
+            if (x > buttonX - References.CastButton.Width / 2 && x < buttonX + References.CastButton.Width / 2)
+            {
+                if (y > buttonY - References.CastButton.Height / 2 && y < buttonY + References.CastButton.Height / 2)
+                {
+                    buttonIsHovered = true;
+                }
+                else
+                {
                     buttonIsHovered = false;
                 }
-            } else {
+            }
+            else
+            {
                 buttonIsHovered = false;
             }
 

@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using tarot_card_battler.Core;
+using tarot_card_battler.Game.Cards;
 
-namespace tarot_card_battler.Game.Cards
+namespace tarot_card_battler.Game.PlayArea
 {
     public class Hand
     {
@@ -18,7 +19,7 @@ namespace tarot_card_battler.Game.Cards
 
         public void Update()
         {
-            foreach(Card card in cards)
+            foreach (Card card in cards)
             {
                 card.Update();
             }
@@ -43,7 +44,7 @@ namespace tarot_card_battler.Game.Cards
         {
             double width = (cards.Count - 1) * cardSpacing;
             int i = cards.IndexOf(card);
-            double goalX = position.x + (-width / 2) + (i * cardSpacing);
+            double goalX = position.x + -width / 2 + i * cardSpacing;
             double goalY = position.y;
 
             cards[i].mover.SetPosition(goalX, goalY, instant ? float.MaxValue : cardSpeed);

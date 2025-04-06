@@ -1,6 +1,8 @@
-﻿namespace tarot_card_battler.Game.Cards
+﻿using tarot_card_battler.Game.Cards;
+
+namespace tarot_card_battler.Game.Opponent
 {
-    public class Opponent
+    public class OpponentData
     {
         public string name;
         public int level;

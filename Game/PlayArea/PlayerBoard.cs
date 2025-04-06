@@ -1,7 +1,7 @@
 using tarot_card_battler.Core;
 using tarot_card_battler.Game.Cards;
 
-namespace tarot_card_battler.Game
+namespace tarot_card_battler.Game.PlayArea
 {
     public class PlayerBoard(string name)
     {
@@ -20,10 +20,12 @@ namespace tarot_card_battler.Game
         {
             int remainder = shield - damage;
             shield -= shield;
-            if(shield < 0){
+            if (shield < 0)
+            {
                 shield = 0;
             }
-            if(shield <= 0){
+            if (shield <= 0)
+            {
                 health += remainder;
             }
             if (health < 0)
@@ -32,14 +34,17 @@ namespace tarot_card_battler.Game
             }
         }
 
-        public void Heal(int heal){
+        public void Heal(int heal)
+        {
             health += heal;
-            if(health > 20){
+            if (health > 20)
+            {
                 health = 20;
             }
         }
 
-        public void Shield(int shield){
+        public void Shield(int shield)
+        {
             this.shield += shield;
         }
 

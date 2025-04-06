@@ -1,6 +1,8 @@
 ﻿using tarot_card_battler.Core;
 using tarot_card_battler.Core.Statemachines;
 using tarot_card_battler.Game.Cards;
+using tarot_card_battler.Game.PlayArea;
+using tarot_card_battler.Game.Opponent;
 
 namespace tarot_card_battler.Game.GameLoop
 {
@@ -26,7 +28,7 @@ namespace tarot_card_battler.Game.GameLoop
  
         public override void OnEnter()
         {
-            Opponent opponent = Opponents.GetOpponentForLevel(level);
+            OpponentData opponent = Opponents.GetOpponentForLevel(level);
 
             foreach (PlayerBoard player in board.players)
             {

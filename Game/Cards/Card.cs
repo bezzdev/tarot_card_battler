@@ -1,5 +1,6 @@
 using Raylib_cs;
 using tarot_card_battler.Core;
+using tarot_card_battler.Game.PlayArea;
 using tarot_card_battler.Util;
 
 namespace tarot_card_battler.Game.Cards
@@ -86,12 +87,12 @@ namespace tarot_card_battler.Game.Cards
         {
             futureEffect.triggerEffect(player, opponent);
         }
-        public virtual bool Interact(double x, double y)
+        public virtual bool IsInBounds(double x, double y)
         {
-            if(x > position.x - 65 && x < position.x + 65) {
-                if(y > position.y - 110 && y < position.y + 110){
+            int halfWidth = cardArt.Width / 2;
+            int halfHeight = cardArt.Height / 2;
+            if (x > position.x - halfWidth && x < position.x + halfWidth && y > position.y - halfHeight && y < position.y + halfHeight){
                     return true;
-                }
             }
             return false; 
         }

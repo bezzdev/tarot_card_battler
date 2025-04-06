@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Raylib_cs;
 using tarot_card_battler.Core;
+using tarot_card_battler.Game.PlayArea;
 using tarot_card_battler.Util;
 
 namespace tarot_card_battler.Game

@@ -26,11 +26,10 @@ namespace tarot_card_battler.Util
             return null;
         }
 
-        public static Card isHovered(List<Card> cards, double x, double y){
-            List<Card> hits = new List<Card>();
+        public static Card GetHoveredCard(List<Card> cards, double x, double y){
             foreach (Card card in cards)
             {
-                if (card.Interact(x, y))
+                if (card.IsInBounds(x, y))
                 {
                     return card;
                 }
