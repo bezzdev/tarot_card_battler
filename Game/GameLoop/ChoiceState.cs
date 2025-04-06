@@ -26,6 +26,7 @@ namespace tarot_card_battler.Game.GameLoop
         private Card? selectedCard;
 
         private List<Card> hoverableCards = new List<Card>();
+        private List<Card> draggableCards = new List<Card>();
 
         public ChoiceState(Board board)
         {
@@ -45,8 +46,6 @@ namespace tarot_card_battler.Game.GameLoop
 
             // determine valid hover targets
             hoverableCards.Clear();
-
-
             hoverableCards.AddRange(board.player.hand.cards);
             foreach (PlayerBoard player in board.players)
             {
@@ -58,8 +57,10 @@ namespace tarot_card_battler.Game.GameLoop
                     hoverableCards.Add(player.field.future.card);
             }
 
-
             hoveredCard = Intersections.GetHoveredCard(hoverableCards, screen.x, screen.y);
+
+            draggableCards.Clear();
+            draggableCards.AddRange(board.player.hand.cards);
 
             if (Raylib.IsMouseButtonPressed(MouseButton.Left) && board.buttonIsHovered)
             {
@@ -72,7 +73,7 @@ namespace tarot_card_battler.Game.GameLoop
 
             if (hoveredCard != null)
             {
-                if (Raylib.IsMouseButtonPressed(MouseButton.Left))
+                if (Raylib.IsMouseButtonPressed(MouseButton.Left) && draggableCards.Contains(hoveredCard))
                 {
                     selectedCard = hoveredCard;
                     isDragged = true;

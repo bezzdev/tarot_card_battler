@@ -15,8 +15,6 @@ namespace tarot_card_battler.Game.PlayArea
         public List<Effect> pendingEffects = new List<Effect>();
 
         public PlayerStats playerStats = new PlayerStats();
-        public int health = 20;
-
         
         public void Update()
         {

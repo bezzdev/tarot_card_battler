@@ -43,12 +43,12 @@ namespace tarot_card_battler.Game.GameLoop
 
                 if (player == board.player)
                 {
-                    player.health = 20;
+                    player.playerStats.health = 20;
                     cards = CardList.GetAllCards();
                 }
                 else
                 {
-                    player.health = opponent.health;
+                    player.playerStats.health = opponent.health;
                     cards = opponent.cards;
                 }
 
