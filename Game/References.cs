@@ -54,6 +54,11 @@ namespace tarot_card_battler.Game
         public static Texture2D Judgement;
         public static Texture2D The_World;
 
+        public static Texture2D Back_Plain;
+        public static Texture2D Back_Text;
+        public static Texture2D Back_Marbled;
+        public static Texture2D Back_Eye_Sigil;
+
         public static Texture2D CastButton;
         public static Texture2D HoverButton; 
         public static Texture2D GameBackground; 
@@ -86,6 +91,11 @@ namespace tarot_card_battler.Game
             The_Sun = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Cards/19_The_Sun.png"));
             Judgement = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Cards/20_Judgement.png"));
             The_World = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Cards/21_The_World.png"));
+
+            Back_Plain = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Cards/Back_Plain.png"));
+            Back_Text = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Cards/Back_Text.png"));
+            Back_Marbled = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Cards/Back_Marbled.png"));
+            Back_Eye_Sigil = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Cards/Back_Eye_Sigil.png"));
 
             CastButton = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Button_Cast_Default.png"));
             HoverButton = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Button_Cast_Hover.png"));

@@ -8,6 +8,7 @@ namespace tarot_card_battler.Game.Cards
     public class Card
     {
         public Texture2D cardArt;
+        public Texture2D cardBack;
         public string name;
         public int number;
 
@@ -25,6 +26,7 @@ namespace tarot_card_battler.Game.Cards
             this.name = name;
             this.number = number;
             this.cardArt = cardArt;
+            cardBack = References.Back_Plain;
             position = new Coord(-400, 0); // off screen
             this.mover = new Mover(position);
 
@@ -67,8 +69,7 @@ namespace tarot_card_battler.Game.Cards
                 Raylib.DrawTextureEx(cardArt, new System.Numerics.Vector2(x, y), rotation, scale, Color.White);
             } else
             {
-                Raylib.DrawRectangle(x, y, (int)width, (int)height, Color.White);
-                Raylib.DrawRectangle(x + 8, y + 8, (int)width - 16, (int)height - 16, Color.Black);
+                Raylib.DrawTextureEx(cardBack, new System.Numerics.Vector2(x, y), rotation, scale, Color.White);
             }
         }
         public virtual void TriggerPastEffect(PlayerBoard player, PlayerBoard opponent)
