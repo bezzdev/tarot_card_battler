@@ -12,11 +12,19 @@ namespace tarot_card_battler.Game
         public Discards discards = new Discards();
         public List<Effect> pendingEffects = new List<Effect>();
         public int health = 20;
+        public int shield = 0;
         public int level = 0;
 
         public void TakeDamage(int damage)
         {
-            health -= damage;
+            int remainder = shield - damage;
+            shield -= shield;
+            if(shield < 0){
+                shield = 0;
+            }
+            if(shield <= 0){
+                health += remainder;
+            }
             if (health < 0)
             {
                 health = 0;
@@ -28,6 +36,10 @@ namespace tarot_card_battler.Game
             if(health > 20){
                 health = 20;
             }
+        }
+
+        public void Shield(int shield){
+            this.shield += shield;
         }
 
         public void Update()

@@ -42,7 +42,15 @@ namespace tarot_card_battler.Game.Cards
 
     public class Draw : Effect
     {
-
+        public Draw(string tooltip)
+        {
+            this.tooltip = tooltip;
+        }
+    
+        public override void triggerEffect(PlayerBoard player, PlayerBoard opponent)
+        {
+            
+        }
     }
 
     public class Countdown : Effect
@@ -57,7 +65,17 @@ namespace tarot_card_battler.Game.Cards
 
     public class Sheild : Effect
     {
-
+        public int shield; 
+        public Sheild(int shield, string tooltip)
+        {
+            this.shield = shield;
+            this.tooltip = tooltip;
+        }
+    
+        public override void triggerEffect(PlayerBoard player, PlayerBoard opponent)
+        {
+            player.Shield(shield);
+        }
     }
 
     public class Shuffle : Effect
