@@ -27,6 +27,23 @@ namespace tarot_card_battler.Game.Cards
         }
     }
 
+    public class RandomDamage : Effect
+    {
+        public RandomDamage()
+        {
+            this.tooltip = $"Does random damage";
+        }
+
+        public override void triggerEffect(PlayerBoard player, PlayerBoard opponent)
+        {
+            Random rnd = new Random();
+
+            int damage = rnd.Next(5);
+            if (player.debugName == "player") Console.WriteLine($"Did random {damage} damage to {opponent.debugName}");
+            opponent.TakeDamage(damage);
+        }
+    }
+
     public class Heal : Effect
     {
         public int heal;
@@ -43,12 +60,28 @@ namespace tarot_card_battler.Game.Cards
             player.Heal(heal);
         }
     }
+    public class RandomHeal : Effect
+    {
+        public RandomHeal()
+        {
+            this.tooltip = $"Heals random amount";
+        }
+
+        public override void triggerEffect(PlayerBoard player, PlayerBoard opponent)
+        {
+            Random rnd = new Random();
+
+            int heal = rnd.Next(5);
+            if (player.debugName == "player") Console.WriteLine($"Did random {heal} damage to {opponent.debugName}");
+            opponent.Heal(heal);
+        }
+    }
 
     public class Draw : Effect
     {
         public Draw()
         {
-            this.tooltip = tooltip;
+            this.tooltip = "Draw 1 extra card next turn";
         }
 
         public override void triggerEffect(PlayerBoard player, PlayerBoard opponent)
@@ -88,7 +121,7 @@ namespace tarot_card_battler.Game.Cards
                 if (player.debugName == "player") Console.WriteLine($"Skipping as magician is in both fields");
                 return;
             }
-            if ((player.field.future.futureEffect is CopyOpposite) && (opponent.field.future.futureEffect is CopyOpposite))
+            if ((player.field.future.futureEffect is CopyOpposite) && !(opponent.field.future.futureEffect is CopyOpposite))
             {
                 if (player.debugName == "player") Console.WriteLine($"Skipping as magician is in both fields");
                 return;
@@ -120,7 +153,7 @@ namespace tarot_card_battler.Game.Cards
         public int shield;
         public Shield(int shield)
         {
-            this.shield = shield;;
+            this.shield = shield; ;
         }
 
         public override void triggerEffect(PlayerBoard player, PlayerBoard opponent)
@@ -184,6 +217,43 @@ namespace tarot_card_battler.Game.Cards
                 player.discards.cards.Remove(card);
                 player.deck.Add(card);
             }
+            player.deck.SetCardPositions();
+        }
+    }
+
+    public class RandomDiscardEffect : Effect
+    {
+        public RandomDiscardEffect()
+        {
+            this.tooltip = "Does a random effect from the discard pile";
+        }
+
+        public override void triggerEffect(PlayerBoard player, PlayerBoard opponent)
+        {
+            if (player.debugName == "player") Console.WriteLine($"Triggered random discard effect;");
+            List<Card> discardCards = player.discards.cards.ToList();
+            CardList.Shuffle(discardCards);
+
+            Card card = discardCards[0];
+            Random rnd = new Random();
+            int randomInt = rnd.Next(2);
+
+            switch (randomInt)
+            {
+                case 0:
+                    card.pastEffect.triggerEffect(player, opponent);
+                    break;
+                case 1:
+                    card.presentEffect.triggerEffect(player, opponent);
+                    break;
+                case 2:
+                    card.futureEffect.triggerEffect(player, opponent);
+                    break;
+                default:
+                    card.pastEffect.triggerEffect(player, opponent);
+                    break;
+            }
+
             player.deck.SetCardPositions();
         }
     }
