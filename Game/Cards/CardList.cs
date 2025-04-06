@@ -27,7 +27,12 @@ namespace tarot_card_battler.Game.Cards
             cards.Add(new Card("The_Empress", 03, References.The_Empress));
             cards.Add(new Card("The_Emperor", 04, References.The_Emperor));
             cards.Add(new Card("The_Hierophant", 05, References.The_Hierophant));
-            cards.Add(new Card("The_Lovers", 06, References.The_Lovers));
+            cards.Add(new Card("The_Lovers", 06, References.The_Lovers)
+            {
+                pastEffect = new Heal(1, "Heals 1 damage"),
+                presentEffect = new Heal(2, "Heals 2 damage"),
+                futureEffect = new Heal(3,  "Heals 3 damage"),
+            });
             cards.Add(new Card("The_Chariot", 07, References.The_Chariot));
             cards.Add(new Card("Strength", 08, References.Strength));
             cards.Add(new Card("The_Hermit", 09, References.The_Hermit));
