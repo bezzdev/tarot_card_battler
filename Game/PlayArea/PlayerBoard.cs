@@ -67,7 +67,7 @@ namespace tarot_card_battler.Game.PlayArea
             // field.Render();
             deck.Render();
             hand.Render();
-            discards.Render();
+            //discards.Render();
             candle.Render(this);
         }
     }
