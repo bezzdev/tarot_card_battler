@@ -17,7 +17,7 @@ namespace tarot_card_battler.Game.Cards
 
             cards.Add(new Card("The_Fool", 00, References.The_Fool)
             {
-                pastEffect = new ShuffleDiscard(),
+                pastEffect = new ShuffleField(),
                 presentEffect = new ShuffleDiscard(),
                 futureEffect = new ShuffleDiscard()
             });
@@ -47,7 +47,11 @@ namespace tarot_card_battler.Game.Cards
             });
             cards.Add(new Card("Strength", 08, References.Strength));
             cards.Add(new Card("The_Hermit", 09, References.The_Hermit));
-            cards.Add(new Card("Wheel_Of_Fortune", 10, References.Wheel_Of_Fortune));
+            cards.Add(new Card("Wheel_Of_Fortune", 10, References.Wheel_Of_Fortune){
+                pastEffect = new RandomDiscardEffect(),
+                presentEffect = new RandomDamage(),
+                futureEffect = new RandomHeal(),
+            });
             cards.Add(new Card("Justice", 11, References.Justice));
             cards.Add(new Card("The_Hanged_Man", 12, References.The_Hanged_Man));
             cards.Add(new Card("Death", 13, References.Death));
