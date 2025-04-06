@@ -42,8 +42,8 @@ namespace tarot_card_battler.Game.States
         }
         public override void Update()
         {
-            int x = Raylib.GetMouseX();
-            int y = Raylib.GetMouseY();
+            int x = Raylib.GetMouseX() - startButton.baseTexture.Width / 2; //hehe i'm evil
+            int y = Raylib.GetMouseY()  - startButton.baseTexture.Height / 2;
 
             if (startButton.IsInBounds(x, y))
             {
