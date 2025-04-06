@@ -21,8 +21,11 @@ namespace tarot_card_battler.Game.Cards
                 presentEffect = new DamageEffect(2, "Applies 2 damage"),
                 futureEffect = new DamageEffect(3,  "Applies 3 damage"),
             });
-
-            cards.Add(new Card("The_Magician", 01, References.The_Magician));
+            cards.Add(new Card("The_Magician", 01, References.The_Magician){
+                pastEffect = new Shuffle("Shuffles discarded cards back into deck"),
+                presentEffect = new Shuffle("Shuffles discarded cards back into deck"),
+                futureEffect = new Shuffle("Shuffles discarded cards back into deck"),
+            });
             cards.Add(new Card("The_High_Priestess", 02, References.The_High_Priestess));
             cards.Add(new Card("The_Empress", 03, References.The_Empress));
             cards.Add(new Card("The_Emperor", 04, References.The_Emperor));

@@ -17,7 +17,7 @@ namespace tarot_card_battler.Game.Cards
             this.tooltip = tooltip;
             this.damage = damage;
         }
-    
+
         public override void triggerEffect(PlayerBoard player, PlayerBoard opponent)
         {
             opponent.TakeDamage(damage);
@@ -33,7 +33,7 @@ namespace tarot_card_battler.Game.Cards
             this.tooltip = tooltip;
             this.heal = heal;
         }
-    
+
         public override void triggerEffect(PlayerBoard player, PlayerBoard opponent)
         {
             player.Heal(heal);
@@ -46,10 +46,10 @@ namespace tarot_card_battler.Game.Cards
         {
             this.tooltip = tooltip;
         }
-    
+
         public override void triggerEffect(PlayerBoard player, PlayerBoard opponent)
         {
-            
+
         }
     }
 
@@ -65,13 +65,13 @@ namespace tarot_card_battler.Game.Cards
 
     public class Sheild : Effect
     {
-        public int shield; 
+        public int shield;
         public Sheild(int shield, string tooltip)
         {
             this.shield = shield;
             this.tooltip = tooltip;
         }
-    
+
         public override void triggerEffect(PlayerBoard player, PlayerBoard opponent)
         {
             player.Shield(shield);
@@ -80,6 +80,22 @@ namespace tarot_card_battler.Game.Cards
 
     public class Shuffle : Effect
     {
+        public Shuffle(string tooltip)
+        {
+            this.tooltip = tooltip;
+        }
 
+        public override void triggerEffect(PlayerBoard player, PlayerBoard opponent)
+        {
+            List<Card> discardCards = player.discards.cards.ToList();
+            CardList.Shuffle(discardCards);
+
+            foreach (Card card in discardCards)
+            {
+                player.discards.cards.Remove(card);
+                player.deck.Add(card);
+            }
+            player.deck.SetCardPositions();
+        }
     }
 }
