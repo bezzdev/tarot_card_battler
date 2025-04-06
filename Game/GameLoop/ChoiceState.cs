@@ -7,6 +7,7 @@ using tarot_card_battler.Util;
 using System.Security;
 using System.Data.Common;
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace tarot_card_battler.Game.GameLoop
 {
@@ -18,6 +19,8 @@ namespace tarot_card_battler.Game.GameLoop
         private Delay delay3 = new Delay(2f);
 
         private Card? hoveredCard;
+
+        private bool isDragged;
 
         private Card? selectedCard;
 
@@ -38,8 +41,10 @@ namespace tarot_card_battler.Game.GameLoop
             var screen = Coordinates.ScreenToWorld(x, y);
             hoveredCard = Intersections.isHovered(board.player.hand.cards, screen.x, screen.y);
 
-            if(Raylib.IsMouseButtonPressed(MouseButton.Left) && board.buttonIsHovered){
-                if(board.player.field.past != null && board.player.field.present != null && board.player.field.future != null){
+            if (Raylib.IsMouseButtonPressed(MouseButton.Left) && board.buttonIsHovered)
+            {
+                if (board.player.field.past != null && board.player.field.present != null && board.player.field.future != null)
+                {
                     stateMachine.SetState(new ResolveState(board));
                 }
             }
@@ -50,6 +55,7 @@ namespace tarot_card_battler.Game.GameLoop
                 if (Raylib.IsMouseButtonPressed(MouseButton.Left))
                 {
                     selectedCard = hoveredCard;
+                    isDragged = true;
                 }
             }
 
@@ -82,6 +88,7 @@ namespace tarot_card_battler.Game.GameLoop
             {
                 if (Raylib.IsMouseButtonReleased(MouseButton.Left))
                 {
+                    isDragged = false;
                     var pastPos = ((int)(board.player.field.position.x + board.player.field.pastPosition.x), (int)(board.player.field.position.y + board.player.field.pastPosition.y));
                     var presentPosition = ((int)(board.player.field.position.x + board.player.field.presentPosition.x), (int)(board.player.field.position.y + board.player.field.presentPosition.y));
                     var futurePosition = ((int)(board.player.field.position.x + board.player.field.futurePosition.x), (int)(board.player.field.position.y + board.player.field.futurePosition.y));
@@ -172,7 +179,7 @@ namespace tarot_card_battler.Game.GameLoop
 
         public override void Render()
         {
-            if (hoveredCard != null)
+            if (hoveredCard != null && isDragged == false)
             {
                 var screen = Coordinates.WorldToScreen((int)hoveredCard.position.x, (int)hoveredCard.position.y);
                 float scale = 1f;
@@ -183,7 +190,19 @@ namespace tarot_card_battler.Game.GameLoop
                 int x = screen.x - (int)(width / 2);
                 int y = screen.y - (int)(height / 2);
 
-                Raylib.DrawRectangle(x, y, (int)width, (int)height, Color.Yellow);
+                string pastText = $"Past: {hoveredCard.pastEffect.tooltip}";
+                string presentText = $"Present: {hoveredCard.presentEffect.tooltip}";
+                string futureText = $"Future: {hoveredCard.futureEffect.tooltip}";
+
+                int maxLength = new [] { pastText.Length, presentText.Length, futureText.Length }.Max();
+                int maxSize = maxLength * 12;
+
+                Raylib.DrawRectangle(x, y, (int)width, (int)height, Color.Yellow); //CARD HOVER
+
+                Raylib.DrawRectangle((int)(x - (maxSize / 2)), (y - 200), maxSize, (int)height / 2, Color.White); //CARD TOOLTIP
+                Raylib.DrawText("Past: " + hoveredCard.pastEffect.tooltip, x - (maxSize / 2), (int)(y - 200), 24, Color.Purple);
+                Raylib.DrawText("Present: " + hoveredCard.presentEffect.tooltip, x - (maxSize / 2), (y - 200 + 20), 24, Color.SkyBlue);
+                Raylib.DrawText("Future: " + hoveredCard.futureEffect.tooltip, x - (maxSize / 2), (y - 200 + 40), 24, Color.Red);
             }
         }
     }

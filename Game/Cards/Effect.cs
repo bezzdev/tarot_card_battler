@@ -1,8 +1,8 @@
 namespace tarot_card_battler.Game.Cards
 {
-
     public class Effect
     {
+        public string tooltip = "Generic tooltip";
 
         public virtual void triggerEffect(PlayerBoard player, PlayerBoard opponent) { } //param: playerBoard, param: opponentBoard
 
@@ -12,8 +12,9 @@ namespace tarot_card_battler.Game.Cards
     {
         public int damage;
 
-        public DamageEffect(int damage)
+        public DamageEffect(int damage, string tooltip)
         {
+            this.tooltip = tooltip;
             this.damage = damage;
         }
     

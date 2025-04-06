@@ -17,9 +17,9 @@ namespace tarot_card_battler.Game.Cards
 
             cards.Add(new Card("The_Fool", 00, References.The_Fool)
             {
-                pastEffect = new DamageEffect(1),
-                presentEffect = new DamageEffect(2),
-                futureEffect = new DamageEffect(3),
+                pastEffect = new DamageEffect(1, "Applies 1 damage"),
+                presentEffect = new DamageEffect(2, "Applies 2 damage"),
+                futureEffect = new DamageEffect(3,  "Applies 3 damage"),
             });
 
             cards.Add(new Card("The_Magician", 01, References.The_Magician));
