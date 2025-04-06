@@ -26,6 +26,9 @@
       <None Update="./Game/Res/Cards/*">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
+      <None Update="./Game/Res/Cardbacks/*">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
        <None Update="./Game/Res/Candle/*">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
