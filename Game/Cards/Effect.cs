@@ -26,7 +26,18 @@ namespace tarot_card_battler.Game.Cards
 
     public class Heal : Effect
     {
+        public int heal;
 
+        public Heal(int heal, string tooltip)
+        {
+            this.tooltip = tooltip;
+            this.heal = heal;
+        }
+    
+        public override void triggerEffect(PlayerBoard player, PlayerBoard opponent)
+        {
+            player.Heal(heal);
+        }
     }
 
     public class Draw : Effect

@@ -23,6 +23,13 @@ namespace tarot_card_battler.Game
             }
         }
 
+        public void Heal(int heal){
+            health += heal;
+            if(health > 20){
+                health = 20;
+            }
+        }
+
         public void Update()
         {
             field.Update();
