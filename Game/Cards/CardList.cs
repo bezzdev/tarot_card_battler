@@ -40,7 +40,11 @@ namespace tarot_card_battler.Game.Cards
                 presentEffect = new Heal(2),
                 futureEffect = new Heal(3),
             });
-            cards.Add(new Card("The_Chariot", 07, References.The_Chariot));
+            cards.Add(new Card("The_Chariot", 07, References.The_Chariot){
+                pastEffect = new ShuffleField(),
+                presentEffect = new ShuffleField(),
+                futureEffect = new ShuffleField(),
+            });
             cards.Add(new Card("Strength", 08, References.Strength));
             cards.Add(new Card("The_Hermit", 09, References.The_Hermit));
             cards.Add(new Card("Wheel_Of_Fortune", 10, References.Wheel_Of_Fortune));
