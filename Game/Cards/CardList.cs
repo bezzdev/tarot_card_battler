@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using tarot_card_battler.Game.Effects;
 
 namespace tarot_card_battler.Game.Cards
 {

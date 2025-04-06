@@ -1,5 +1,6 @@
 using Raylib_cs;
 using tarot_card_battler.Core;
+using tarot_card_battler.Game.Effects;
 using tarot_card_battler.Game.PlayArea;
 using tarot_card_battler.Util;
 

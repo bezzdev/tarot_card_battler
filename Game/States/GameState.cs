@@ -65,13 +65,10 @@ namespace tarot_card_battler.Game.States
         }
         public override void Render()
         {
-            // render
             Raylib.BeginDrawing();
             Raylib.ClearBackground(Color.Black);
 
             Raylib.DrawTexture(References.GameBackground, 0, 0, Color.White);
-
-            Raylib.DrawText(gameLoop.current_state.ToString(), 0, 20, 20, Color.White);
 
             gameLoop.EarlyRender();
             board.EarlyRender();
