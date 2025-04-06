@@ -6,7 +6,7 @@ namespace tarot_card_battler.Game.Cards
     {
         public string tooltip = "Generic tooltip";
 
-        public virtual void triggerEffect(PlayerBoard player, PlayerBoard opponent) { } //param: playerBoard, param: opponentBoard
+        public virtual void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card) { }
 
     }
 
@@ -20,27 +20,30 @@ namespace tarot_card_battler.Game.Cards
             this.damage = damage;
         }
 
-        public override void triggerEffect(PlayerBoard player, PlayerBoard opponent)
+        public override void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
         {
             if (player.debugName == "player") Console.WriteLine($"Did {damage} damage to {opponent.debugName}");
-            opponent.TakeDamage(damage);
+            opponent.playerStats.TakeDamage(damage);
         }
     }
 
     public class RandomDamage : Effect
     {
-        public RandomDamage()
+        private int min;
+        private int max;
+        public RandomDamage(int min, int max)
         {
-            this.tooltip = $"Does random damage";
+            this.min = min;
+            this.max = max;
+            this.tooltip = $"Does {min}-{max} random damage";
         }
 
-        public override void triggerEffect(PlayerBoard player, PlayerBoard opponent)
+        public override void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
         {
-            Random rnd = new Random();
+            int damage = Random.Shared.Next(min, max + 1);
 
-            int damage = rnd.Next(5);
             if (player.debugName == "player") Console.WriteLine($"Did random {damage} damage to {opponent.debugName}");
-            opponent.TakeDamage(damage);
+            opponent.playerStats.TakeDamage(damage);
         }
     }
 
@@ -54,26 +57,31 @@ namespace tarot_card_battler.Game.Cards
             this.heal = heal;
         }
 
-        public override void triggerEffect(PlayerBoard player, PlayerBoard opponent)
+        public override void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
         {
             if (player.debugName == "player") Console.WriteLine($"Healed {heal} damage to {player.debugName}");
-            player.Heal(heal);
+            player.playerStats.Heal(heal);
         }
     }
+
     public class RandomHeal : Effect
     {
-        public RandomHeal()
+        private int min;
+        private int max;
+        public RandomHeal(int min, int max)
         {
-            this.tooltip = $"Heals random amount";
+            this.min = min;
+            this.max = max;
+
+            this.tooltip = $"Heals {min}-{max} random amount";
         }
 
-        public override void triggerEffect(PlayerBoard player, PlayerBoard opponent)
+        public override void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
         {
-            Random rnd = new Random();
+            int heal = Random.Shared.Next(min, max + 1);
 
-            int heal = rnd.Next(5);
             if (player.debugName == "player") Console.WriteLine($"Did random {heal} damage to {opponent.debugName}");
-            opponent.Heal(heal);
+            opponent.playerStats.Heal(heal);
         }
     }
 
@@ -84,7 +92,7 @@ namespace tarot_card_battler.Game.Cards
             this.tooltip = "Draw 1 extra card next turn";
         }
 
-        public override void triggerEffect(PlayerBoard player, PlayerBoard opponent)
+        public override void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
         {
             if (player.debugName == "player") Console.WriteLine($"Player drew 1 card");
         }
@@ -109,42 +117,30 @@ namespace tarot_card_battler.Game.Cards
             this.tooltip = "Copies opposite fields card effect";
         }
 
-        public override void triggerEffect(PlayerBoard player, PlayerBoard opponent)
+        public override void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
         {
-            if ((player.field.past.pastEffect is CopyOpposite) && (opponent.field.past.pastEffect is CopyOpposite))
+            FieldSlot opponentSlot = opponent.field.slots[slot.number];
+            Card opponentCard = opponentSlot.card;
+
+            Effect opponentEffect = opponentCard.pastEffect;
+            if (opponentSlot.number == 1)
+            {
+                opponentEffect = opponentCard.presentEffect;
+            }
+            else if (opponentSlot.number == 2)
+            {
+                opponentEffect = opponentCard.futureEffect;
+            }
+
+            if (opponentEffect is CopyOpposite)
             {
                 if (player.debugName == "player") Console.WriteLine($"Skipping as magician is in both fields");
                 return;
             }
-            if ((player.field.present.presentEffect is CopyOpposite) && (opponent.field.present.presentEffect is CopyOpposite))
-            {
-                if (player.debugName == "player") Console.WriteLine($"Skipping as magician is in both fields");
-                return;
-            }
-            if ((player.field.future.futureEffect is CopyOpposite) && !(opponent.field.future.futureEffect is CopyOpposite))
-            {
-                if (player.debugName == "player") Console.WriteLine($"Skipping as magician is in both fields");
-                return;
-            }
-            if (fieldIndex == 0)
-            {
-                if (player.debugName == "player") Console.WriteLine($"Player copied past effect of {opponent.field.past.name}");
-                opponent.field.past.pastEffect.triggerEffect(opponent, player);
-            }
-            else if (fieldIndex == 1)
-            {
-                if (player.debugName == "player") Console.WriteLine($"Player copied present effect of {opponent.field.present.name}");
-                opponent.field.past.presentEffect.triggerEffect(opponent, player);
-            }
-            else if (fieldIndex == 2)
-            {
-                if (player.debugName == "player") Console.WriteLine($"Player copied future effect of {opponent.field.future.name}");
-                opponent.field.past.presentEffect.triggerEffect(opponent, player);
-            }
-            else
-            {
-                return;
-            }
+
+            if (player.debugName == "player") Console.WriteLine($"Player copied past effect of {opponent.field.past.card.name}");
+
+            opponentEffect.triggerEffect(player, opponent, slot, card);
         }
     }
 
@@ -156,10 +152,10 @@ namespace tarot_card_battler.Game.Cards
             this.shield = shield; ;
         }
 
-        public override void triggerEffect(PlayerBoard player, PlayerBoard opponent)
+        public override void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
         {
             if (player.debugName == "player") Console.WriteLine($"Player added {shield} shield");
-            player.Shield(shield);
+            player.playerStats.Shield(shield);
         }
     }
 
@@ -170,7 +166,7 @@ namespace tarot_card_battler.Game.Cards
             this.tooltip = "Randomises Opponent Field";
         }
 
-        public override void triggerEffect(PlayerBoard player, PlayerBoard opponent)
+        public override void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
         {
             if (player.debugName == "player") Console.WriteLine($"Shuffled opponents field");
             Random random = new Random();
@@ -184,18 +180,15 @@ namespace tarot_card_battler.Game.Cards
             }
 
             Card? placeholder = null;
+            placeholder = opponent.field.past.card;
 
-            placeholder = opponent.field.past;
+            opponent.field.past.card = opponent.field.present.card;
+            opponent.field.present.card = opponent.field.future.card;
+            opponent.field.future.card = placeholder;
 
-            opponent.field.past = opponent.field.present;
-
-            opponent.field.present = opponent.field.future;
-
-            opponent.field.future = placeholder;
-
-            opponent.field.SetPastCardPosition();
-            opponent.field.SetPresentCardPosition();
-            opponent.field.SetFutureCardPosition();
+            opponent.field.past.SetCardPosition();
+            opponent.field.present.SetCardPosition();
+            opponent.field.future.SetCardPosition();
         }
     }
 
@@ -206,16 +199,16 @@ namespace tarot_card_battler.Game.Cards
             this.tooltip = "Shuffles discarded cards back into deck";
         }
 
-        public override void triggerEffect(PlayerBoard player, PlayerBoard opponent)
+        public override void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
         {
             if (player.debugName == "player") Console.WriteLine($"Player shuffled discard pile");
             List<Card> discardCards = player.discards.cards.ToList();
             CardList.Shuffle(discardCards);
 
-            foreach (Card card in discardCards)
+            foreach (Card discard in discardCards)
             {
-                player.discards.cards.Remove(card);
-                player.deck.Add(card);
+                player.discards.cards.Remove(discard);
+                player.deck.Add(discard);
             }
             player.deck.SetCardPositions();
         }
@@ -228,29 +221,29 @@ namespace tarot_card_battler.Game.Cards
             this.tooltip = "Does a random effect from the discard pile";
         }
 
-        public override void triggerEffect(PlayerBoard player, PlayerBoard opponent)
+        public override void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
         {
             if (player.debugName == "player") Console.WriteLine($"Triggered random discard effect;");
             List<Card> discardCards = player.discards.cards.ToList();
             CardList.Shuffle(discardCards);
 
-            Card card = discardCards[0];
+            Card discard = discardCards[0];
             Random rnd = new Random();
             int randomInt = rnd.Next(2);
 
             switch (randomInt)
             {
                 case 0:
-                    card.pastEffect.triggerEffect(player, opponent);
+                    discard.pastEffect.triggerEffect(player, opponent, null, null);
                     break;
                 case 1:
-                    card.presentEffect.triggerEffect(player, opponent);
+                    discard.presentEffect.triggerEffect(player, opponent, null, null);
                     break;
                 case 2:
-                    card.futureEffect.triggerEffect(player, opponent);
+                    discard.futureEffect.triggerEffect(player, opponent, null, null);
                     break;
                 default:
-                    card.pastEffect.triggerEffect(player, opponent);
+                    discard.pastEffect.triggerEffect(player, opponent, null, null);
                     break;
             }
 

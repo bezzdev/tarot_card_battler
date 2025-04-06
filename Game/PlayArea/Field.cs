@@ -8,80 +8,59 @@ namespace tarot_card_battler.Game.PlayArea
 {
     public class Field
     {
-        public Card? past;
-        public Card? present;
-        public Card? future;
+        public FieldSlot past = new FieldSlot(0);
+        public FieldSlot present = new FieldSlot(1);
+        public FieldSlot future = new FieldSlot(2);
 
+        public List<FieldSlot> slots = new List<FieldSlot>();
         public Coord position = new Coord(0, 0);
-        public Coord pastPosition = new Coord(-170, 0);
-        public Coord presentPosition = new Coord(0, 0);
-        public Coord futurePosition = new Coord(170, 0);
         public float cardSpeed = 2000f;
+
+        public Field()
+        {
+            past.field = this;
+            past.position.x = -170;
+
+            present.field = this;
+            present.position.x = 0;
+
+            future.field = this;
+            future.position.x = 170;
+
+            slots.Add(past);
+            slots.Add(present);
+            slots.Add(future);
+        }
 
         public void Update()
         {
-            if (past != null)
-                past.Update();
-            if (present != null)
-                present.Update();
-            if (future != null)
-                future.Update();
+            past.Update();
+            present.Update();
+            future.Update();
         }
 
         public void SetPastCard(Card card)
         {
-            past = card;
-            card.faceup = true;
-            SetPastCardPosition();
+            past.SetCard(card);
         }
 
-        public void SetPastCardPosition(bool instant = false)
-        {
-            double goalX = position.x + pastPosition.x;
-            double goalY = position.y + pastPosition.y;
-
-            past.mover.SetPosition(goalX, goalY, instant ? float.MaxValue : cardSpeed);
-        }
 
         public void SetPresentCard(Card card)
         {
-            present = card;
-            card.faceup = true;
-            SetPresentCardPosition();
+            present.SetCard(card);
         }
 
-        public void SetPresentCardPosition(bool instant = false)
-        {
-            double goalX = position.x + presentPosition.x;
-            double goalY = position.y + presentPosition.y;
-
-            present.mover.SetPosition(goalX, goalY, instant ? float.MaxValue : cardSpeed);
-        }
         public void SetFutureCard(Card card)
         {
-            future = card;
-            card.faceup = true;
-            SetFutureCardPosition();
+            future.SetCard(card);
         }
 
-        public void SetFutureCardPosition(bool instant = false)
-        {
-            double goalX = position.x + futurePosition.x;
-            double goalY = position.y + futurePosition.y;
-
-            future.mover.SetPosition(goalX, goalY, instant ? float.MaxValue : cardSpeed);
-        }
 
         public void Render()
         {
-            if (past != null)
-                past.Render();
-
-            if (present != null)
-                present.Render();
-
-            if (future != null)
-                future.Render();
+            past.Render();
+            present.Render();
+            future.Render();
         }
     }
 }

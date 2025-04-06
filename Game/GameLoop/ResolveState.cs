@@ -41,31 +41,37 @@ namespace tarot_card_battler.Game.GameLoop
             // past
             if (delay1.CompletedOnce())
             {
-                player.field.past.TriggerPastEffect(player, opponent);
+                if (player.field.past.card != null)
+                    player.field.past.card.TriggerPastEffect(player, opponent);
             }
             if (delay2.CompletedOnce())
             {
-                opponent.field.past.TriggerPastEffect(opponent, player);
+                if (opponent.field.past.card != null)
+                    opponent.field.past.card.TriggerPastEffect(opponent, player);
             }
 
             // present
             if (delay3.CompletedOnce())
             {
-                player.field.present.TriggerPresentEffect(player, opponent);
+                if (player.field.present.card != null)
+                    player.field.present.card.TriggerPresentEffect(player, opponent);
             }
             if (delay4.CompletedOnce())
             {
-                player.field.present.TriggerPresentEffect(opponent, player);
+                if (opponent.field.present.card != null)
+                    opponent.field.present.card.TriggerPresentEffect(opponent, player);
             }
 
             // future
             if (delay5.CompletedOnce())
             {
-                player.field.future.TriggerFutureEffect(player, opponent);
+                if (player.field.future.card != null)
+                    player.field.future.card.TriggerFutureEffect(player, opponent);
             }
             if (delay6.CompletedOnce())
             {
-                player.field.future.TriggerFutureEffect(opponent, player);
+                if (opponent.field.future.card != null)
+                    opponent.field.future.card.TriggerFutureEffect(opponent, player);
             }
 
             if (delay7.Completed())

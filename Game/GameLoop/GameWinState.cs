@@ -24,9 +24,9 @@ namespace tarot_card_battler.Game.GameLoop
             {
                 foreach(PlayerBoard player in board.players)
                 {
-                    player.level += 1;
+                    player.playerStats.level += 1;
                 }
-                stateMachine.SetState(new SetupState(board, board.player.level));
+                stateMachine.SetState(new SetupState(board, board.player.playerStats.level));
             }
         }
 

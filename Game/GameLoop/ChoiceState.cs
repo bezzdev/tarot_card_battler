@@ -43,16 +43,27 @@ namespace tarot_card_battler.Game.GameLoop
 
             var screen = Coordinates.ScreenToWorld(x, y);
 
+            // determine valid hover targets
             hoverableCards.Clear();
+
+
             hoverableCards.AddRange(board.player.hand.cards);
+            foreach (PlayerBoard player in board.players)
+            {
+                if (player.field.past.card != null)
+                    hoverableCards.Add(player.field.past.card);
+                if (player.field.present.card != null)
+                    hoverableCards.Add(player.field.present.card);
+                if (player.field.future.card != null)
+                    hoverableCards.Add(player.field.future.card);
+            }
 
-            // hoverableCards.Add(board.player.hand.cards);
 
-            hoveredCard = Intersections.GetHoveredCard(board.player.hand.cards, screen.x, screen.y);
+            hoveredCard = Intersections.GetHoveredCard(hoverableCards, screen.x, screen.y);
 
             if (Raylib.IsMouseButtonPressed(MouseButton.Left) && board.buttonIsHovered)
             {
-                if (board.player.field.past != null && board.player.field.present != null && board.player.field.future != null)
+                if (board.player.field.past.card != null && board.player.field.present.card != null && board.player.field.future.card != null)
                 {
                     stateMachine.SetState(new ResolveState(board));
                 }
@@ -68,22 +79,8 @@ namespace tarot_card_battler.Game.GameLoop
                 }
             }
 
-            List<Card> fieldList = new List<Card>();
-
-            if (board.player.field.past != null)
-            {
-                fieldList.Add(board.player.field.past);
-            }
-            else if (board.player.field.present != null)
-            {
-                fieldList.Add(board.player.field.present);
-            }
-            else if (board.player.field.future != null)
-            {
-                fieldList.Add(board.player.field.future);
-            }
-
-            var hoveredField = Intersections.GetHoveredCard(fieldList, screen.x, screen.y);
+            List<Card> fieldCards = board.player.field.slots.Where(s => s.card != null).Select(s => s.card).ToList();
+            var hoveredField = Intersections.GetHoveredCard(fieldCards, screen.x, screen.y);
 
             if (hoveredField != null && Raylib.IsMouseButtonPressed(MouseButton.Left))
             {
@@ -98,31 +95,23 @@ namespace tarot_card_battler.Game.GameLoop
                 if (Raylib.IsMouseButtonReleased(MouseButton.Left))
                 {
                     isDragged = false;
-                    var pastPos = ((int)(board.player.field.position.x + board.player.field.pastPosition.x), (int)(board.player.field.position.y + board.player.field.pastPosition.y));
-                    var presentPosition = ((int)(board.player.field.position.x + board.player.field.presentPosition.x), (int)(board.player.field.position.y + board.player.field.presentPosition.y));
-                    var futurePosition = ((int)(board.player.field.position.x + board.player.field.futurePosition.x), (int)(board.player.field.position.y + board.player.field.futurePosition.y));
+                    var pastPos = board.player.field.past.GetWorldPosition();
+                    var presentPosition = board.player.field.present.GetWorldPosition();
+                    var futurePosition = board.player.field.future.GetWorldPosition();
 
-                    var pastDiffX = screen.x - pastPos.Item1;
-                    var pastDiffY = screen.y - pastPos.Item2;
-                    var pasPyth = Math.Sqrt((pastDiffX * pastDiffX) + (pastDiffY * pastDiffY));
+                    var pastDist = Coordinates.Distance(screen.x, screen.y, pastPos.x, pastPos.y);
+                    var presentDist = Coordinates.Distance(screen.x, screen.y, presentPosition.x, presentPosition.y);
+                    var futureDist = Coordinates.Distance(screen.x, screen.y, futurePosition.x, futurePosition.y);
 
-                    var presentDiffX = screen.x - presentPosition.Item1;
-                    var presentDiffY = screen.y - presentPosition.Item2;
-                    var presentPyth = Math.Sqrt((presentDiffX * presentDiffX) + (presentDiffY * presentDiffY));
-
-                    var futureDiffX = screen.x - futurePosition.Item1;
-                    var futureDiffY = screen.y - futurePosition.Item2;
-                    var futuretPyth = Math.Sqrt((futureDiffX * futureDiffX) + (futureDiffY * futureDiffY));
-
-                    if (pasPyth < 100 && board.player.field.past == null)
+                    if (pastDist < 100 && board.player.field.past.card == null)
                     {
                         SelectPastCard(selectedCard);
                     }
-                    else if (presentPyth < 100 && board.player.field.present == null)
+                    else if (presentDist < 100 && board.player.field.present.card == null)
                     {
                         SelectPresentCard(selectedCard);
                     }
-                    else if (futuretPyth < 100 && board.player.field.future == null)
+                    else if (futureDist < 100 && board.player.field.future.card == null)
                     {
                         SelectFutureCard(selectedCard);
                     }
@@ -144,8 +133,7 @@ namespace tarot_card_battler.Game.GameLoop
             board.player.hand.cards.Remove(card);
             board.player.hand.SetCardPositions();
 
-            board.player.field.past = card;
-            board.player.field.SetPastCardPosition();
+            board.player.field.past.SetCard(card);
         }
 
         public void SelectPresentCard(Card card)
@@ -153,8 +141,7 @@ namespace tarot_card_battler.Game.GameLoop
             board.player.hand.cards.Remove(card);
             board.player.hand.SetCardPositions();
 
-            board.player.field.present = card;
-            board.player.field.SetPresentCardPosition();
+            board.player.field.present.SetCard(card);
         }
 
         public void SelectFutureCard(Card card)
@@ -162,23 +149,22 @@ namespace tarot_card_battler.Game.GameLoop
             board.player.hand.cards.Remove(card);
             board.player.hand.SetCardPositions();
 
-            board.player.field.future = card;
-            board.player.field.SetFutureCardPosition();
+            board.player.field.future.SetCard(card);
         }
 
         public void RemoveCardFromField(Card card)
         {
-            if (board.player.field.past == card)
+            if (board.player.field.past.card == card)
             {
-                board.player.field.past = null;
+                board.player.field.past.card = null;
             }
-            else if (board.player.field.present == card)
+            else if (board.player.field.present.card == card)
             {
-                board.player.field.present = null;
+                board.player.field.present.card = null;
             }
-            else if (board.player.field.future == card)
+            else if (board.player.field.future.card == card)
             {
-                board.player.field.future = null;
+                board.player.field.future.card = null;
             }
 
             board.player.hand.Add(card);
@@ -186,7 +172,7 @@ namespace tarot_card_battler.Game.GameLoop
             board.player.hand.SetCardPositions();
         }
 
-        public override void Render()
+        public override void EarlyRender()
         {
             if (hoveredCard != null && isDragged == false)
             {
@@ -199,14 +185,29 @@ namespace tarot_card_battler.Game.GameLoop
                 int x = screen.x - (int)(width / 2);
                 int y = screen.y - (int)(height / 2);
 
+                Raylib.DrawRectangle(x, y, (int)width, (int)height, Color.Yellow); //CARD HOVER
+            }
+        }
+
+        public override void Render()
+        {
+            if (hoveredCard != null && isDragged == false)
+            {
+                var screen = Coordinates.WorldToScreen((int)hoveredCard.position.x, (int)hoveredCard.position.y);
+                float scale = 1f;
+
+                float width = hoveredCard.cardArt.Width * scale;
+                float height = hoveredCard.cardArt.Height * scale;
+
+                int x = screen.x - (int)(width / 2);
+                int y = screen.y - (int)(height / 2);
+
                 string pastText = $"Past: {hoveredCard.pastEffect.tooltip}";
                 string presentText = $"Present: {hoveredCard.presentEffect.tooltip}";
                 string futureText = $"Future: {hoveredCard.futureEffect.tooltip}";
 
                 int maxLength = new [] { pastText.Length, presentText.Length, futureText.Length }.Max();
                 int maxSize = maxLength * 12;
-
-                Raylib.DrawRectangle(x, y, (int)width, (int)height, Color.Yellow); //CARD HOVER
 
                 Raylib.DrawRectangle((int)(x - (maxSize / 2)), (y - 200), maxSize, (int)height / 2, Color.White); //CARD TOOLTIP
                 Raylib.DrawText("Past: " + hoveredCard.pastEffect.tooltip, x - (maxSize / 2), (int)(y - 200), 24, Color.Purple);

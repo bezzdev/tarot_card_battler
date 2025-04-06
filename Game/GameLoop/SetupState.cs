@@ -35,9 +35,9 @@ namespace tarot_card_battler.Game.GameLoop
                 player.hand.cards.Clear();
                 player.deck.cards.Clear();
                 player.discards.cards.Clear();
-                player.field.past = null;
-                player.field.present = null;
-                player.field.future = null;
+                player.field.past.card = null;
+                player.field.present.card = null;
+                player.field.future.card = null;
 
                 List<Card> cards = null;
 

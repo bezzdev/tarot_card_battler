@@ -75,17 +75,17 @@ namespace tarot_card_battler.Game.Cards
         }
         public virtual void TriggerPastEffect(PlayerBoard player, PlayerBoard opponent)
         {
-            pastEffect.triggerEffect(player, opponent);
+            pastEffect.triggerEffect(player, opponent, null, null);
         }
 
         public virtual void TriggerPresentEffect(PlayerBoard player, PlayerBoard opponent)
         {
-            presentEffect.triggerEffect(player, opponent);
+            presentEffect.triggerEffect(player, opponent, null, null);
         }
 
         public virtual void TriggerFutureEffect(PlayerBoard player, PlayerBoard opponent)
         {
-            futureEffect.triggerEffect(player, opponent);
+            futureEffect.triggerEffect(player, opponent, null, null);
         }
         public virtual bool IsInBounds(double x, double y)
         {

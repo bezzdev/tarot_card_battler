@@ -21,8 +21,8 @@ namespace tarot_card_battler.Game
             int y = screen.y; // - (int)(height / 2);
 
             Raylib.DrawText(playerBoard.health.ToString(), x, y, 48, Color.Orange);
-            if(playerBoard.shield != 0){
-                Raylib.DrawText(playerBoard.shield.ToString(), x + 100, y, 48, Color.Gray);
+            if(playerBoard.playerStats.shield != 0){
+                Raylib.DrawText(playerBoard.playerStats.shield.ToString(), x + 100, y, 48, Color.Gray);
             }
         }
     }

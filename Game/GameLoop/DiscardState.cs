@@ -31,23 +31,23 @@ namespace tarot_card_battler.Game.GameLoop
             foreach (PlayerBoard player in board.players)
             {
                 if (player.field.past != null) { 
-                    Card past = player.field.past;
-                    player.field.past = null;
+                    Card past = player.field.past.card;
+                    player.field.past.card = null;
                     player.discards.Add(past);
                 }
 
                 if (player.field.present != null)
                 {
-                    Card present = player.field.present;
-                    player.field.present = null;
+                    Card present = player.field.present.card;
+                    player.field.present.card = null;
                     player.discards.Add(present);
                 }
 
 
                 if (player.field.future != null)
                 {
-                    Card future = player.field.future;
-                    player.field.future = null;
+                    Card future = player.field.future.card;
+                    player.field.future.card = null;
                     player.discards.Add(future);
                 }
 

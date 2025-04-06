@@ -1,9 +1,8 @@
-﻿using System.Runtime.CompilerServices;
-using Raylib_cs;
-using tarot_card_battler.Core;
+﻿using Raylib_cs;
 using tarot_card_battler.Core.Statemachines;
 using tarot_card_battler.Game;
 using tarot_card_battler.Game.States;
+
 
 References.window_width = 1200;
 References.window_height = 800;

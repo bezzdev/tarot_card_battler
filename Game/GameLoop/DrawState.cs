@@ -2,6 +2,7 @@
 using tarot_card_battler.Core.Statemachines;
 using tarot_card_battler.Game.Cards;
 using tarot_card_battler.Game.PlayArea;
+using tarot_card_battler.Game.Stats;
 
 namespace tarot_card_battler.Game.GameLoop
 {
@@ -15,8 +16,8 @@ namespace tarot_card_battler.Game.GameLoop
 
         public DrawState(Board board)
         {
-            board.players[0].shield = 0;
-            board.players[1].shield = 0;
+            board.players[0].playerStats.shield = 0;
+            board.players[1].playerStats.shield = 0;
             this.board = board;
         }
 

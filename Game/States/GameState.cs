@@ -1,4 +1,5 @@
 ﻿using Raylib_cs;
+using tarot_card_battler.Core;
 using tarot_card_battler.Core.Statemachines;
 using tarot_card_battler.Game.GameLoop;
 using tarot_card_battler.Game.PlayArea;
