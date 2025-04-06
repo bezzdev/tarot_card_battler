@@ -163,28 +163,31 @@ namespace tarot_card_battler.Game.Cards
     {
         public ShuffleField()
         {
-            this.tooltip = "Randomises Opponent Field";
+            this.tooltip = "Shuffles the Opponent's Field";
         }
 
         public override void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
         {
             if (player.debugName == "player") Console.WriteLine($"Shuffled opponents field");
-            Random random = new Random();
 
-            int[] fieldOrder = [0, 1, 2];
 
-            for (int i = 0; i < fieldOrder.Length - 1; ++i)
+            int choice = Random.Shared.Next(0, 2);
+
+            Card a = opponent.field.past.card;
+            Card b = opponent.field.present.card;
+            Card c = opponent.field.future.card;
+
+            if (choice == 0)
             {
-                int r = random.Next(i, fieldOrder.Length);
-                (fieldOrder[r], fieldOrder[i]) = (fieldOrder[i], fieldOrder[r]);
+                opponent.field.past.card = b;
+                opponent.field.present.card = c;
+                opponent.field.future.card = a;
+            } else
+            {
+                opponent.field.past.card = c;
+                opponent.field.present.card = a;
+                opponent.field.future.card = b;
             }
-
-            Card? placeholder = null;
-            placeholder = opponent.field.past.card;
-
-            opponent.field.past.card = opponent.field.present.card;
-            opponent.field.present.card = opponent.field.future.card;
-            opponent.field.future.card = placeholder;
 
             opponent.field.past.SetCardPosition();
             opponent.field.present.SetCardPosition();
@@ -234,16 +237,16 @@ namespace tarot_card_battler.Game.Cards
             switch (randomInt)
             {
                 case 0:
-                    discard.pastEffect.triggerEffect(player, opponent, null, null);
+                    discard.pastEffect.triggerEffect(player, opponent, slot, card);
                     break;
                 case 1:
-                    discard.presentEffect.triggerEffect(player, opponent, null, null);
+                    discard.presentEffect.triggerEffect(player, opponent, slot, card);
                     break;
                 case 2:
-                    discard.futureEffect.triggerEffect(player, opponent, null, null);
+                    discard.futureEffect.triggerEffect(player, opponent, slot, card);
                     break;
                 default:
-                    discard.pastEffect.triggerEffect(player, opponent, null, null);
+                    discard.pastEffect.triggerEffect(player, opponent, slot, card);
                     break;
             }
 

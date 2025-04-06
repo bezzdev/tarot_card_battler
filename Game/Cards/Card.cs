@@ -85,7 +85,7 @@ namespace tarot_card_battler.Game.Cards
 
         public virtual void TriggerFutureEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
         {
-            futureEffect.triggerEffect(player, opponent, slot, null);
+            futureEffect.triggerEffect(player, opponent, slot, card);
         }
         public virtual bool IsInBounds(double x, double y)
         {
