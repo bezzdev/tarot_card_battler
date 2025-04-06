@@ -18,25 +18,25 @@ namespace tarot_card_battler.Game.States
 
         public MenuState()
         {
-            float height = References.CastButton.Height;
-            float width = References.CastButton.Width / 2;
+            float height = References.StartButton.Height;
+            float width = References.StartButton.Width / 2;
             int x = (int)((References.window_width / 2) - width);
             int y = References.window_height / 2;
 
-            startButton.baseTexture = References.CastButton;
-            startButton.hoverTexture = References.HoverButton;
+            startButton.baseTexture = References.StartButton;
+            startButton.hoverTexture = References.StartButtonHover;
             startButton.position = new Coord(x, y);
 
-            howToPlayButton.baseTexture = References.CastButton;
-            howToPlayButton.hoverTexture = References.HoverButton;
+            howToPlayButton.baseTexture = References.HelpButton;
+            howToPlayButton.hoverTexture = References.HelpButtonHover;
             howToPlayButton.position = new Coord(x, (int)(y + height + 20));
 
-            creditsButton.baseTexture = References.CastButton;
-            creditsButton.hoverTexture = References.HoverButton;
+            creditsButton.baseTexture = References.CreditsButton;
+            creditsButton.hoverTexture = References.CreditsButtonHover;
             creditsButton.position = new Coord(x, y + height + height + 40);
 
-            quitButton.baseTexture = References.CastButton;
-            quitButton.hoverTexture = References.HoverButton;
+            quitButton.baseTexture = References.QuitButton;
+            quitButton.hoverTexture = References.QuitButtonHover;
             quitButton.position = new Coord(x, y + height + height + height + 60);
 
         }

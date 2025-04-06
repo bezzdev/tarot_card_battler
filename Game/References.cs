@@ -62,6 +62,14 @@ namespace tarot_card_battler.Game
         public static Texture2D CastButton;
         public static Texture2D HoverButton; 
         public static Texture2D GameBackground;
+        public static Texture2D StartButton;
+        public static Texture2D StartButtonHover;
+        public static Texture2D HelpButton;
+        public static Texture2D HelpButtonHover;
+        public static Texture2D CreditsButton;
+        public static Texture2D CreditsButtonHover;
+        public static Texture2D QuitButton;
+        public static Texture2D QuitButtonHover;
 
         public static Texture2D CandleBase;
         public static Texture2D CandleSegment;
@@ -105,6 +113,15 @@ namespace tarot_card_battler.Game
             HoverButton = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Button_Cast_Hover.png"));
 
             GameBackground = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Board.png"));
+
+            StartButton = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Menu/Button_Start_Default.png"));
+            StartButtonHover = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Menu/Button_Start_Hover.png"));
+            HelpButton = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Menu/Button_Help_Default.png"));
+            HelpButtonHover = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Menu/Button_Help_Hover.png"));
+            CreditsButton = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Menu/Button_Credits_Default.png"));
+            CreditsButtonHover = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Menu/Button_Credits_Hover.png"));
+            QuitButton = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Menu/Button_Quit_Default.png"));
+            QuitButtonHover = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Menu/Button_Quit_Hover.png"));
 
             CandleBase = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Candle/CandleBase.png"));
             CandleSegment = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Candle/CandleSegment.png"));
