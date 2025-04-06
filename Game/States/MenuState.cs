@@ -77,11 +77,11 @@ namespace tarot_card_battler.Game.States
                 }
                 else if (howToPlayButton.IsInBounds(x, y))
                 {
-                    //howToPlayButton.buttonIsHovered = true;
+                    stateMachine.SetState(new HowToPlayState());
                 }
                 else if (creditsButton.IsInBounds(x, y))
                 {
-                    //creditsButton.buttonIsHovered = true;
+                    stateMachine.SetState(new CreditState());
                 }
                 else if (quitButton.IsInBounds(x, y))
                 {
