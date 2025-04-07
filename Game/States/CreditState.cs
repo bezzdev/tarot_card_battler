@@ -4,12 +4,40 @@ using tarot_card_battler.Core.Statemachines;
 namespace tarot_card_battler.Game.States
 {
     public class CreditState : State {
-        public override void Update(){}
+        private Button backButton = new Button();
+
+        public CreditState(){
+            backButton.baseTexture = References.StartButton;
+            backButton.hoverTexture = References.StartButtonHover;
+            backButton.position = new Core.Coord(10, 10);
+        }
+
+        public override void Update(){
+            int x = Raylib.GetMouseX();
+            int y = Raylib.GetMouseY();
+
+            if (backButton.IsInBounds(x, y))
+            {
+                backButton.buttonIsHovered = true;
+            } else {
+                backButton.buttonIsHovered = false;
+            }
+
+            if (Raylib.IsMouseButtonPressed(MouseButton.Left))
+            {
+                if (backButton.IsInBounds(x, y))
+                {
+                    stateMachine.SetState(new MenuState());
+                }
+            }
+        }
 
         public override void Render()
         {
             Raylib.BeginDrawing();
             Raylib.ClearBackground(Color.Black);
+
+            backButton.Render();
 
             Raylib.DrawText("Credits", (References.window_width / 2) - 300, 100, 80, Color.White);
             Raylib.DrawText("Master Chief", (References.window_width / 2) - 300, 200, 40, Color.White);
