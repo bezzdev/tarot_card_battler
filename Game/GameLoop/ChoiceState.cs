@@ -62,11 +62,12 @@ namespace tarot_card_battler.Game.GameLoop
             draggableCards.Clear();
             draggableCards.AddRange(board.player.hand.cards);
 
-            if (Raylib.IsMouseButtonPressed(MouseButton.Left) && board.buttonIsHovered)
+            if (Raylib.IsMouseButtonDown(MouseButton.Left) && board.castButton.buttonIsHovered)
             {
                 if (board.player.field.past.card != null && board.player.field.present.card != null && board.player.field.future.card != null)
                 {
                     stateMachine.SetState(new ResolveState(board));
+                    return;
                 }
             }
 

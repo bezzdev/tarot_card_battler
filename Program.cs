@@ -12,6 +12,7 @@ Raylib.SetConfigFlags(ConfigFlags.Msaa4xHint);
 // Raylib.SetConfigFlags(ConfigFlags.ResizableWindow);
 Raylib.InitWindow(References.window_width, References.window_height, "Tarot Battler");
 Raylib.SetConfigFlags(ConfigFlags.MaximizedWindow);
+Raylib.SetExitKey(0);
 
 Raylib.SetTargetFPS(60);
 
@@ -40,11 +41,10 @@ while (!Raylib.WindowShouldClose())
 
     Raylib.BeginDrawing();
     Raylib.ClearBackground(Color.Black);
-    
-    gameStateMachine.Render();
-    
-    Raylib.EndDrawing();
 
+    gameStateMachine.Render();
+
+    Raylib.EndDrawing();
 }
 
 Raylib.CloseWindow();

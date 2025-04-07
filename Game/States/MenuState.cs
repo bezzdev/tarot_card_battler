@@ -19,8 +19,7 @@ namespace tarot_card_battler.Game.States
         public MenuState()
         {
             float height = References.StartButton.Height;
-            float width = References.StartButton.Width / 2;
-            int x = (int)((References.window_width / 2) - width);
+            int x = References.window_width / 2;
             int y = References.window_height / 2;
 
             startButton.baseTexture = References.StartButton;
@@ -42,34 +41,15 @@ namespace tarot_card_battler.Game.States
         }
         public override void Update()
         {
-            int x = Raylib.GetMouseX() - startButton.baseTexture.Width / 2; //hehe i'm evil
-            int y = Raylib.GetMouseY()  - startButton.baseTexture.Height / 2;
+            int x = Raylib.GetMouseX();
+            int y = Raylib.GetMouseY();
 
-            if (startButton.IsInBounds(x, y))
-            {
-                startButton.buttonIsHovered = true;
-            }
-            else if (howToPlayButton.IsInBounds(x, y))
-            {
-                howToPlayButton.buttonIsHovered = true;
-            }
-            else if (creditsButton.IsInBounds(x, y))
-            {
-                creditsButton.buttonIsHovered = true;
-            }
-            else if (quitButton.IsInBounds(x, y))
-            {
-                quitButton.buttonIsHovered = true;
-            }
-            else
-            {
-                startButton.buttonIsHovered = false;
-                howToPlayButton.buttonIsHovered = false;
-                creditsButton.buttonIsHovered = false;
-                quitButton.buttonIsHovered = false;
-            }
+            startButton.buttonIsHovered = startButton.IsInBounds(x, y);
+            howToPlayButton.buttonIsHovered = howToPlayButton.IsInBounds(x, y);
+            creditsButton.buttonIsHovered = creditsButton.IsInBounds(x, y);
+            quitButton.buttonIsHovered  = quitButton.IsInBounds(x, y);
 
-            if (Raylib.IsMouseButtonPressed(MouseButton.Left))
+            if (Raylib.IsMouseButtonDown(MouseButton.Left))
             {
                 if (startButton.IsInBounds(x, y))
                 {
@@ -89,6 +69,9 @@ namespace tarot_card_battler.Game.States
                 }
             } else if (Raylib.IsKeyDown(KeyboardKey.Space)){
                 stateMachine.SetState(new GameState());
+            } else if (Raylib.IsKeyPressed(KeyboardKey.Escape))
+            {
+                Raylib.CloseWindow();
             }
         }
 
@@ -98,11 +81,6 @@ namespace tarot_card_battler.Game.States
             Raylib.ClearBackground(Color.Black);
 
             Raylib.DrawText("Tarot Battler", (References.window_width / 2) - 300, 100, 80, Color.White);
-
-            float height = References.CastButton.Height;
-            float width = References.CastButton.Width / 2;
-            int x = (int)((References.window_width / 2) - width);
-            int y = References.window_height / 2;
 
             startButton.Render();
             howToPlayButton.Render();
