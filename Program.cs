@@ -12,6 +12,7 @@ Raylib.SetConfigFlags(ConfigFlags.Msaa4xHint);
 // Raylib.SetConfigFlags(ConfigFlags.ResizableWindow);
 Raylib.InitWindow(References.window_width, References.window_height, "Tarot Battler");
 Raylib.SetConfigFlags(ConfigFlags.MaximizedWindow);
+Raylib.SetExitKey(0);
 
 Raylib.SetTargetFPS(60);
 

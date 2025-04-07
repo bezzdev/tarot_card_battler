@@ -73,6 +73,11 @@ namespace tarot_card_battler.Game.States
         {
             gameLoop.Update();
             board.Update();
+
+            if (Raylib.IsKeyPressed(KeyboardKey.Escape))
+            {
+                stateMachine.SetState(new MenuState());
+            }
         }
         public override void Render()
         {
