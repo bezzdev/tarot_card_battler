@@ -30,6 +30,7 @@ namespace tarot_card_battler.Game.Cards
             });
             cards.Add(new Card("The_High_Priestess", 02, References.The_High_Priestess)
             {
+                pastEffect = new ShuffleDiscard(),
                 presentEffect = new Heal(2),
             });
             cards.Add(new Card("The_Empress", 03, References.The_Empress)
@@ -55,6 +56,7 @@ namespace tarot_card_battler.Game.Cards
             cards.Add(new Card("Strength", 08, References.Strength)
             {
                 presentEffect = new Damage(3),
+                futureEffect = new Strength()
             });
 
             cards.Add(new Card("The_Hermit", 09, References.The_Hermit)

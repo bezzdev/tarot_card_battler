@@ -19,11 +19,15 @@ namespace tarot_card_battler.Game.States
             player.hand.position.x = 600;
             player.hand.position.y = -54;
 
+
             player.field.position.x = 600;
             player.field.position.y = 221;
 
             player.candle.position.x = 140;
             player.candle.position.y = 140;
+
+            player.playerStats.position.x = 10;
+            player.playerStats.position.y = 280;
 
             player.discards.position.x = player.candle.position.x;
             player.discards.position.y = player.candle.position.y;
@@ -38,6 +42,10 @@ namespace tarot_card_battler.Game.States
 
             opponent.field.position.x = 600;
             opponent.field.position.y = 579;
+
+            //Uncomment to render opponent playerstats 
+            // opponent.playerStats.position.x = 940; 
+            // opponent.playerStats.position.y = 720;
 
             opponent.candle.position.x = 1060;
             opponent.candle.position.y = 580;

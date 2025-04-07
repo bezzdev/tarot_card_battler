@@ -20,7 +20,7 @@ namespace tarot_card_battler.Game.Effects
 
         public override void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
         {
-            if (player.debugName == "player") Console.WriteLine($"Did {damage} damage to {opponent.debugName}");
+            if (player.debugName == "player") Console.WriteLine($"Did {damage + player.playerStats.strength} damage to {opponent.debugName} (strength: {player.playerStats.strength})(weakness: {opponent.playerStats.weakness})");
             opponent.playerStats.TakeDamage(damage);
         }
     }
@@ -88,13 +88,41 @@ namespace tarot_card_battler.Game.Effects
         public int shield;
         public Shield(int shield)
         {
-            this.shield = shield; ;
+            this.shield = shield;
+            this.tooltip = $"Adds {shield} shield";
         }
 
         public override void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
         {
             if (player.debugName == "player") Console.WriteLine($"Player added {shield} shield");
             player.playerStats.Shield(shield);
+        }
+    }
+
+    public class Strength : Effect
+    {
+        public Strength()
+        {
+            this.tooltip = $"Adds 1 strength";
+        }
+
+        public override void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
+        {
+            if (player.debugName == "player") Console.WriteLine($"Player added 1 strength");
+            player.playerStats.AddStrength();
+        }
+    }
+
+    public class Weakness : Effect
+    {
+        public Weakness()
+        {
+            this.tooltip = $"Adds 1 weakness";
+        }
+        public override void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
+        {
+            if (player.debugName == "player") Console.WriteLine($"Player added 1 weakness to opponent");
+            opponent.playerStats.AddWeakness();
         }
     }
 

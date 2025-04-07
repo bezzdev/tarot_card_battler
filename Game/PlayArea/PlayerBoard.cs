@@ -36,6 +36,7 @@ namespace tarot_card_battler.Game.PlayArea
             candle.Render(this);
             deck.Render();
             hand.Render();
+            playerStats.Render();
             //discards.Render();
         }
     }
