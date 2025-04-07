@@ -12,7 +12,7 @@ namespace tarot_card_battler.Game.States
         public Board board;
 
         public GameState() {
-            PlayerBoard player = new PlayerBoard(name: "player");
+            PlayerBoard player = new PlayerBoard("player");
             player.deck.position.x = 1060;
             player.deck.position.y = 140;
 
@@ -32,7 +32,7 @@ namespace tarot_card_battler.Game.States
             player.discards.position.x = player.candle.position.x;
             player.discards.position.y = player.candle.position.y;
 
-            PlayerBoard opponent = new PlayerBoard(name: "opponent");
+            PlayerBoard opponent = new PlayerBoard("opponent");
             opponent.deck.position.x = 140;
             opponent.deck.position.y = 580;
 
@@ -52,6 +52,9 @@ namespace tarot_card_battler.Game.States
 
             opponent.discards.position.x = opponent.candle.position.x;
             opponent.discards.position.y = opponent.candle.position.y;
+
+            player.opponent = opponent;
+            opponent.opponent = player;
 
             board = new Board()
             {
@@ -87,7 +90,6 @@ namespace tarot_card_battler.Game.States
 
             board.Render();
             EntityLayerManager.RenderLayer(2);
-
         }
     }
 }

@@ -3,6 +3,7 @@ using tarot_card_battler.Core.Statemachines;
 using tarot_card_battler.Game.Animations;
 using tarot_card_battler.Game.Cards;
 using tarot_card_battler.Game.PlayArea;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace tarot_card_battler.Game.GameLoop
 {
@@ -10,112 +11,67 @@ namespace tarot_card_battler.Game.GameLoop
     {
         private Board board;
 
-        private Delay delay1 = new Delay(1f);
-        private Delay delay2 = new Delay(1.5f);
+        private Delay nextCardDelaydelay = new Delay(1f);
+        private Delay endDelay = new Delay(3f);
 
-        private Delay delay3 = new Delay(2.5f);
-        private Delay delay4 = new Delay(3f);
-
-        private Delay delay5 = new Delay(4f);
-        private Delay delay6 = new Delay(4.5f);
-        
-        private Delay delay7 = new Delay(6f);
-
+        private List<FieldSlot> slots = new List<FieldSlot>();
 
         public ResolveState(Board board)
         {
             this.board = board;
         }
 
+        public override void OnEnter()
+        {
+            slots.Add(board.players[0].field.past);
+            slots.Add(board.players[1].field.past);
+            
+            slots.Add(board.players[0].field.present);
+            slots.Add(board.players[1].field.present);
+
+            slots.Add(board.players[0].field.future);
+            slots.Add(board.players[1].field.future);
+        }
+
         public override void Update()
         {
-            delay1.Update(References.delta);
-            delay2.Update(References.delta);
-            delay3.Update(References.delta);
-            delay4.Update(References.delta);
-            delay5.Update(References.delta);
-            delay6.Update(References.delta);
-            delay7.Update(References.delta);
-            
-            PlayerBoard player = board.player;
-            PlayerBoard opponent = board.players[1];
+            if (slots.Count > 0)
+            {
+                nextCardDelaydelay.Update(References.delta);
 
-            // past
-            if (delay1.CompletedOnce())
-            {
-                FieldSlot slot = player.field.past;
-                if (slot.card != null)
+                if (nextCardDelaydelay.CompletedOnce())
                 {
-                    EntityLayerManager.AddEntity(new CardActivateAnimation(slot.card.position.x, slot.card.position.y), CardActivateAnimation.defaultLayer);
-                    slot.card.TriggerPastEffect(player, opponent, slot, slot.card);
+                    FieldSlot slot = slots[0];
+                    if (slot.card != null)
+                    {
+                        EntityLayerManager.AddEntity(new CardActivateAnimation(slot.card.position.x, slot.card.position.y), CardActivateAnimation.defaultLayer);
+                        slot.card.TriggerPastEffect(slot.field.player, slot.field.player.opponent, slot, slot.card);
+                    }
+                    slots.Remove(slot);
+                    nextCardDelaydelay.Reset();
                 }
             }
-            if (delay2.CompletedOnce())
+            else
             {
-                FieldSlot slot = opponent.field.past;
-                if (slot.card != null)
-                {
-                    EntityLayerManager.AddEntity(new CardActivateAnimation(slot.card.position.x, slot.card.position.y), CardActivateAnimation.defaultLayer); 
-                    slot.card.TriggerPastEffect(opponent, player, slot, slot.card);
-                }
-            }
+                endDelay.Update(References.delta);
 
-            // present
-            if (delay3.CompletedOnce())
-            {
-                FieldSlot slot = player.field.present;
-                if (slot.card != null)
+                if (endDelay.CompletedOnce())
                 {
-                    EntityLayerManager.AddEntity(new CardActivateAnimation(slot.card.position.x, slot.card.position.y), CardActivateAnimation.defaultLayer);
-                    slot.card.TriggerPresentEffect(player, opponent, slot, slot.card);
-                }
-            }
-            if (delay4.CompletedOnce())
-            {
-                FieldSlot slot = opponent.field.present;
-                if (slot.card != null)
-                {
-                    EntityLayerManager.AddEntity(new CardActivateAnimation(slot.card.position.x, slot.card.position.y), CardActivateAnimation.defaultLayer);
-                    slot.card.TriggerPresentEffect(opponent, player, slot, slot.card);
-                }
-            }
+                    // player game over
+                    if (board.player.playerStats.health == 0)
+                    {
+                        stateMachine.SetState(new GameOverState(board));
+                    }
 
-            // future
-            if (delay5.CompletedOnce())
-            {
-                FieldSlot slot = player.field.future;
-                if (slot.card != null)
-                {
-                    EntityLayerManager.AddEntity(new CardActivateAnimation(slot.card.position.x, slot.card.position.y), CardActivateAnimation.defaultLayer);
-                    slot.card.TriggerFutureEffect(player, opponent, slot, slot.card);
-                }
-            }
-            if (delay6.CompletedOnce())
-            {
-                FieldSlot slot = opponent.field.future;
-                if (slot.card != null)
-                {
-                    EntityLayerManager.AddEntity(new CardActivateAnimation(slot.card.position.x, slot.card.position.y), CardActivateAnimation.defaultLayer);
-                    slot.card.TriggerFutureEffect(opponent, player, slot, slot.card);
-                }
-            }
-
-            if (delay7.Completed())
-            {
-                // player game over
-                if (board.player.playerStats.health == 0)
-                {
-                    stateMachine.SetState(new GameOverState(board));
-                }
-
-                // opponent game over, player wins
-                else if (board.players[1].playerStats.health == 0)
-                {
-                    stateMachine.SetState(new GameWinState(board));
-                } 
-                else
-                {
-                    stateMachine.SetState(new DiscardState(board));
+                    // opponent game over, player wins
+                    else if (board.players[1].playerStats.health == 0)
+                    {
+                        stateMachine.SetState(new GameWinState(board));
+                    }
+                    else
+                    {
+                        stateMachine.SetState(new DiscardState(board));
+                    }
                 }
             }
         }

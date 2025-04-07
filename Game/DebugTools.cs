@@ -13,7 +13,7 @@ namespace tarot_card_battler.Game
         {
             if (Raylib.IsKeyPressed(KeyboardKey.Minus))
             {
-                References.gameSpeed = MathF.Max(1f, References.gameSpeed / 2f);
+                References.gameSpeed = MathF.Max(0.1f, References.gameSpeed / 2f);
             }
             if (Raylib.IsKeyPressed(KeyboardKey.Equal))
             {

@@ -15,6 +15,11 @@
             time += delta;
         }
 
+        public void Reset()
+        {
+            resolved = false;
+            time = 0f;
+        }
 
         public bool Completed()
         {

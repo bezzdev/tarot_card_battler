@@ -4,17 +4,25 @@ using tarot_card_battler.Game.Stats;
 
 namespace tarot_card_battler.Game.PlayArea
 {
-    public class PlayerBoard(string name)
+    public class PlayerBoard
     {
-        public string debugName = name;
+        public string debugName;
+        public PlayerBoard opponent;
+
         public Deck deck = new Deck();
         public Hand hand = new Hand();
-        public Field field = new Field();
+        public Field field;
         public Candle candle = new Candle();
         public Discards discards = new Discards();
         public List<Effect> pendingEffects = new List<Effect>();
 
         public PlayerStats playerStats = new PlayerStats();
+
+        public PlayerBoard(string name)
+        {
+            debugName = name;
+            field = new Field(this);
+        }
         
         public void Update()
         {

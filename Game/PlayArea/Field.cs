@@ -8,6 +8,8 @@ namespace tarot_card_battler.Game.PlayArea
 {
     public class Field
     {
+        public PlayerBoard player;
+
         public FieldSlot past = new FieldSlot(0);
         public FieldSlot present = new FieldSlot(1);
         public FieldSlot future = new FieldSlot(2);
@@ -16,8 +18,10 @@ namespace tarot_card_battler.Game.PlayArea
         public Coord position = new Coord(0, 0);
         public float cardSpeed = 2000f;
 
-        public Field()
+        public Field(PlayerBoard player)
         {
+            this.player = player;
+
             past.field = this;
             past.position.x = -170;
 
