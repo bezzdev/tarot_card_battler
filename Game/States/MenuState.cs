@@ -44,31 +44,12 @@ namespace tarot_card_battler.Game.States
             int x = Raylib.GetMouseX();
             int y = Raylib.GetMouseY();
 
-            if (startButton.IsInBounds(x, y))
-            {
-                startButton.buttonIsHovered = true;
-            }
-            else if (howToPlayButton.IsInBounds(x, y))
-            {
-                howToPlayButton.buttonIsHovered = true;
-            }
-            else if (creditsButton.IsInBounds(x, y))
-            {
-                creditsButton.buttonIsHovered = true;
-            }
-            else if (quitButton.IsInBounds(x, y))
-            {
-                quitButton.buttonIsHovered = true;
-            }
-            else
-            {
-                startButton.buttonIsHovered = false;
-                howToPlayButton.buttonIsHovered = false;
-                creditsButton.buttonIsHovered = false;
-                quitButton.buttonIsHovered = false;
-            }
+            startButton.buttonIsHovered = startButton.IsInBounds(x, y);
+            howToPlayButton.buttonIsHovered = howToPlayButton.IsInBounds(x, y);
+            creditsButton.buttonIsHovered = creditsButton.IsInBounds(x, y);
+            quitButton.buttonIsHovered  = quitButton.IsInBounds(x, y);
 
-            if (Raylib.IsMouseButtonPressed(MouseButton.Left))
+            if (Raylib.IsMouseButtonDown(MouseButton.Left))
             {
                 if (startButton.IsInBounds(x, y))
                 {
