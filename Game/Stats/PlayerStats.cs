@@ -29,7 +29,7 @@ namespace tarot_card_battler.Game.Stats
         {
             if (shield > 0)
             {
-                shield -= (damage + strength - weakness);
+                shield -= damage;
 
                 if (shield < 0)
                 {
@@ -43,7 +43,7 @@ namespace tarot_card_battler.Game.Stats
                 }
             }
 
-            health -= (damage + strength - weakness);
+            health -= damage;
 
             if (health < 0)
             {

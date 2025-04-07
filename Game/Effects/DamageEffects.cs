@@ -21,7 +21,7 @@ namespace tarot_card_battler.Game.Effects
         public override void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
         {
             if (player.debugName == "player") Console.WriteLine($"Did {damage + player.playerStats.strength} damage to {opponent.debugName} (strength: {player.playerStats.strength})(weakness: {opponent.playerStats.weakness})");
-            opponent.playerStats.TakeDamage(damage);
+            opponent.playerStats.TakeDamage(damage + player.playerStats.strength - player.playerStats.weakness);
         }
     }
 
