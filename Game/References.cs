@@ -15,9 +15,7 @@ namespace tarot_card_battler.Game
         public static int window_width = 1200;
         public static int window_height = 800;
 
-        public static World world = new World();
-        public static Player player = new Player() { size = 1};
-        public static Controller controller = new Controller(player);
+        public static EntityLayer world = new EntityLayer();
 
         public static float frameDelta;
         public static float gameSpeed = 1f;

@@ -1,4 +1,5 @@
 ﻿using Raylib_cs;
+using tarot_card_battler.Core;
 using tarot_card_battler.Core.Statemachines;
 using tarot_card_battler.Game;
 using tarot_card_battler.Game.States;
@@ -31,7 +32,19 @@ while (!Raylib.WindowShouldClose())
 
     References.frameDelta = delta;
     gameStateMachine.Update();
+    EntityLayerManager.Update();
+
+#if DEBUG
+    DebugTools.Update();
+#endif
+
+    Raylib.BeginDrawing();
+    Raylib.ClearBackground(Color.Black);
+    
     gameStateMachine.Render();
+    
+    Raylib.EndDrawing();
+
 }
 
 Raylib.CloseWindow();

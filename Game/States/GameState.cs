@@ -73,18 +73,21 @@ namespace tarot_card_battler.Game.States
         }
         public override void Render()
         {
-            Raylib.BeginDrawing();
-            Raylib.ClearBackground(Color.Black);
-
             Raylib.DrawTexture(References.GameBackground, 0, 0, Color.White);
 
+            EntityLayerManager.RenderLayer(-2);
             gameLoop.EarlyRender();
+            EntityLayerManager.RenderLayer(-1);
             board.EarlyRender();
 
-            gameLoop.Render();
-            board.Render();
+            EntityLayerManager.RenderLayer(0);
 
-            Raylib.EndDrawing();
+            gameLoop.Render();
+            EntityLayerManager.RenderLayer(1);
+
+            board.Render();
+            EntityLayerManager.RenderLayer(2);
+
         }
     }
 }

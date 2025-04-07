@@ -34,15 +34,10 @@ namespace tarot_card_battler.Game.States
 
         public override void Render()
         {
-            Raylib.BeginDrawing();
-            Raylib.ClearBackground(Color.Black);
-
             backButton.Render();
 
             Raylib.DrawText("Credits", (References.window_width / 2) - 300, 100, 80, Color.White);
             Raylib.DrawText("Master Chief", (References.window_width / 2) - 300, 200, 40, Color.White);
-
-            Raylib.EndDrawing();
         }
     }
 }

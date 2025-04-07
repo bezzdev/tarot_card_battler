@@ -36,14 +36,9 @@ namespace tarot_card_battler.Game.States
 
         public override void Render()
         {
-            Raylib.BeginDrawing();
-            Raylib.ClearBackground(Color.Black);
-
             backButton.Render();
 
             Raylib.DrawText("How To Play", (References.window_width / 2) - 300, 100, 80, Color.White);
-
-            Raylib.EndDrawing();
         }
     }
 }

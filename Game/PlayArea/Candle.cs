@@ -5,10 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Raylib_cs;
 using tarot_card_battler.Core;
-using tarot_card_battler.Game.PlayArea;
 using tarot_card_battler.Util;
 
-namespace tarot_card_battler.Game
+namespace tarot_card_battler.Game.PlayArea
 {
     public class Candle
     {
@@ -21,14 +20,16 @@ namespace tarot_card_battler.Game
             int y = screen.y; // - (int)(height / 2);
 
             Raylib.DrawTexture(References.CandleBase, x, y, Color.White);
-            
-            for (int i = 0; i < playerBoard.playerStats.health; i++){
-                Raylib.DrawTexture(References.CandleSegment, x, y - (9 * i), Color.White);
+
+            for (int i = 0; i < playerBoard.playerStats.health; i++)
+            {
+                Raylib.DrawTexture(References.CandleSegment, x, y - 9 * i, Color.White);
             }
 
-            Raylib.DrawTexture(References.CandleTop, x, y - (9 * playerBoard.playerStats.health), Color.White);
+            Raylib.DrawTexture(References.CandleTop, x, y - 9 * playerBoard.playerStats.health, Color.White);
 
-            if(playerBoard.playerStats.shield != 0){
+            if (playerBoard.playerStats.shield != 0)
+            {
                 Raylib.DrawText(playerBoard.playerStats.shield.ToString(), x + 100, y, 48, Color.Gray);
             }
         }

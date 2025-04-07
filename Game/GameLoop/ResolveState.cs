@@ -1,5 +1,6 @@
 ﻿using tarot_card_battler.Core;
 using tarot_card_battler.Core.Statemachines;
+using tarot_card_battler.Game.Animations;
 using tarot_card_battler.Game.Cards;
 using tarot_card_battler.Game.PlayArea;
 
@@ -42,37 +43,61 @@ namespace tarot_card_battler.Game.GameLoop
             // past
             if (delay1.CompletedOnce())
             {
-                if (player.field.past.card != null)
-                    player.field.past.card.TriggerPastEffect(player, opponent, player.field.past, player.field.past.card);
+                FieldSlot slot = player.field.past;
+                if (slot.card != null)
+                {
+                    EntityLayerManager.AddEntity(new CardActivateAnimation(slot.card.position.x, slot.card.position.y), CardActivateAnimation.defaultLayer);
+                    slot.card.TriggerPastEffect(player, opponent, slot, slot.card);
+                }
             }
             if (delay2.CompletedOnce())
             {
-                if (opponent.field.past.card != null)
-                    opponent.field.past.card.TriggerPastEffect(opponent, player, opponent.field.past, opponent.field.past.card);
+                FieldSlot slot = opponent.field.past;
+                if (slot.card != null)
+                {
+                    EntityLayerManager.AddEntity(new CardActivateAnimation(slot.card.position.x, slot.card.position.y), CardActivateAnimation.defaultLayer); 
+                    slot.card.TriggerPastEffect(opponent, player, slot, slot.card);
+                }
             }
 
             // present
             if (delay3.CompletedOnce())
             {
-                if (player.field.present.card != null)
-                    player.field.present.card.TriggerPresentEffect(player, opponent, player.field.present, player.field.present.card);
+                FieldSlot slot = player.field.present;
+                if (slot.card != null)
+                {
+                    EntityLayerManager.AddEntity(new CardActivateAnimation(slot.card.position.x, slot.card.position.y), CardActivateAnimation.defaultLayer);
+                    slot.card.TriggerPresentEffect(player, opponent, slot, slot.card);
+                }
             }
             if (delay4.CompletedOnce())
             {
-                if (opponent.field.present.card != null)
-                    opponent.field.present.card.TriggerPresentEffect(opponent, player, opponent.field.present, opponent.field.present.card);
+                FieldSlot slot = opponent.field.present;
+                if (slot.card != null)
+                {
+                    EntityLayerManager.AddEntity(new CardActivateAnimation(slot.card.position.x, slot.card.position.y), CardActivateAnimation.defaultLayer);
+                    slot.card.TriggerPresentEffect(opponent, player, slot, slot.card);
+                }
             }
 
             // future
             if (delay5.CompletedOnce())
             {
-                if (player.field.future.card != null)
-                    player.field.future.card.TriggerFutureEffect(player, opponent, player.field.future, player.field.future.card);
+                FieldSlot slot = player.field.future;
+                if (slot.card != null)
+                {
+                    EntityLayerManager.AddEntity(new CardActivateAnimation(slot.card.position.x, slot.card.position.y), CardActivateAnimation.defaultLayer);
+                    slot.card.TriggerFutureEffect(player, opponent, slot, slot.card);
+                }
             }
             if (delay6.CompletedOnce())
             {
-                if (opponent.field.future.card != null)
-                    opponent.field.future.card.TriggerFutureEffect(opponent, player, opponent.field.future, opponent.field.future.card);
+                FieldSlot slot = opponent.field.future;
+                if (slot.card != null)
+                {
+                    EntityLayerManager.AddEntity(new CardActivateAnimation(slot.card.position.x, slot.card.position.y), CardActivateAnimation.defaultLayer);
+                    slot.card.TriggerFutureEffect(opponent, player, slot, slot.card);
+                }
             }
 
             if (delay7.Completed())
