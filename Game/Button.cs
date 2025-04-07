@@ -13,10 +13,16 @@ namespace tarot_card_battler.Game {
         public void Update(){}
 
         public void Render(){
-            if(buttonIsHovered){
-                Raylib.DrawTexture(hoverTexture, (int )position.x, (int) position.y, Color.White);
+            float width = baseTexture.Width;
+            float height = baseTexture.Height;
+
+            int x = (int)position.x - (int)(width / 2);
+            int y = (int)position.y - (int)(height / 2);
+
+            if (buttonIsHovered){
+                Raylib.DrawTextureEx(hoverTexture, new System.Numerics.Vector2(x, y), 0f, 1f, Color.White);
             } else {
-                Raylib.DrawTexture(baseTexture, (int )position.x, (int) position.y, Color.White);
+                Raylib.DrawTextureEx(baseTexture, new System.Numerics.Vector2(x, y), 0f, 1f, Color.White);
             }
         }
 

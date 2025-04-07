@@ -64,7 +64,6 @@ namespace tarot_card_battler.Game.Cards
 
             int x = screen.x - (int)(width / 2);
             int y = screen.y - (int)(height/ 2);
-
             
             if (faceup)
             {

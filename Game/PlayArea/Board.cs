@@ -18,8 +18,6 @@ namespace tarot_card_battler.Game.PlayArea
             int x = Raylib.GetMouseX();
             int y = Raylib.GetMouseY();
 
-            var screen = Coordinates.ScreenToWorld(x, y);
-
             if (x > buttonX - References.CastButton.Width / 2 && x < buttonX + References.CastButton.Width / 2)
             {
                 if (y > buttonY - References.CastButton.Height / 2 && y < buttonY + References.CastButton.Height / 2)

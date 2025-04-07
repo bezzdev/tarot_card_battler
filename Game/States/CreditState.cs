@@ -9,7 +9,7 @@ namespace tarot_card_battler.Game.States
         public CreditState(){
             backButton.baseTexture = References.StartButton;
             backButton.hoverTexture = References.StartButtonHover;
-            backButton.position = new Core.Coord(10, 10);
+            backButton.position = new Core.Coord(180, 40);
         }
 
         public override void Update(){

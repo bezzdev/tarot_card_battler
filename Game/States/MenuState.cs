@@ -19,8 +19,7 @@ namespace tarot_card_battler.Game.States
         public MenuState()
         {
             float height = References.StartButton.Height;
-            float width = References.StartButton.Width / 2;
-            int x = (int)((References.window_width / 2) - width);
+            int x = References.window_width / 2;
             int y = References.window_height / 2;
 
             startButton.baseTexture = References.StartButton;
@@ -42,8 +41,8 @@ namespace tarot_card_battler.Game.States
         }
         public override void Update()
         {
-            int x = Raylib.GetMouseX() - startButton.baseTexture.Width / 2; //hehe i'm evil
-            int y = Raylib.GetMouseY()  - startButton.baseTexture.Height / 2;
+            int x = Raylib.GetMouseX();
+            int y = Raylib.GetMouseY();
 
             if (startButton.IsInBounds(x, y))
             {
@@ -98,11 +97,6 @@ namespace tarot_card_battler.Game.States
             Raylib.ClearBackground(Color.Black);
 
             Raylib.DrawText("Tarot Battler", (References.window_width / 2) - 300, 100, 80, Color.White);
-
-            float height = References.CastButton.Height;
-            float width = References.CastButton.Width / 2;
-            int x = (int)((References.window_width / 2) - width);
-            int y = References.window_height / 2;
 
             startButton.Render();
             howToPlayButton.Render();
