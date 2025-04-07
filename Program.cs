@@ -41,11 +41,10 @@ while (!Raylib.WindowShouldClose())
 
     Raylib.BeginDrawing();
     Raylib.ClearBackground(Color.Black);
-    
-    gameStateMachine.Render();
-    
-    Raylib.EndDrawing();
 
+    gameStateMachine.Render();
+
+    Raylib.EndDrawing();
 }
 
 Raylib.CloseWindow();

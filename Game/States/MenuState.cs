@@ -69,6 +69,9 @@ namespace tarot_card_battler.Game.States
                 }
             } else if (Raylib.IsKeyDown(KeyboardKey.Space)){
                 stateMachine.SetState(new GameState());
+            } else if (Raylib.IsKeyPressed(KeyboardKey.Escape))
+            {
+                Raylib.CloseWindow();
             }
         }
 
