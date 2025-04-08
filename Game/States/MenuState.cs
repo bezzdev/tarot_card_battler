@@ -53,18 +53,22 @@ namespace tarot_card_battler.Game.States
             {
                 if (startButton.IsInBounds(x, y))
                 {
+                    startButton.Click();
                     stateMachine.SetState(new GameState());
                 }
                 else if (howToPlayButton.IsInBounds(x, y))
                 {
+                    howToPlayButton.Click();
                     stateMachine.SetState(new HowToPlayState());
                 }
                 else if (creditsButton.IsInBounds(x, y))
                 {
+                    creditsButton.Click();
                     stateMachine.SetState(new CreditState());
                 }
                 else if (quitButton.IsInBounds(x, y))
                 {
+                    quitButton.Click();
                     Raylib.CloseWindow();
                 }
             } else if (Raylib.IsKeyDown(KeyboardKey.Space)){

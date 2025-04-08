@@ -1,5 +1,6 @@
 using Raylib_cs;
 using tarot_card_battler.Core;
+using tarot_card_battler.Game.Sounds;
 
 namespace tarot_card_battler.Game.PlayArea
 {
@@ -10,6 +11,7 @@ namespace tarot_card_battler.Game.PlayArea
 
         public Button castButton = new Button()
         {
+            clickSound = AudioReferences.castButtonClick,
             hoverTexture = References.HoverButton,
             baseTexture = References.CastButton,
             position = new Coord(600, 400)

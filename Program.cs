@@ -2,6 +2,7 @@
 using tarot_card_battler.Core;
 using tarot_card_battler.Core.Statemachines;
 using tarot_card_battler.Game;
+using tarot_card_battler.Game.Sounds;
 using tarot_card_battler.Game.States;
 
 
@@ -16,7 +17,10 @@ Raylib.SetExitKey(0);
 
 Raylib.SetTargetFPS(60);
 
+Raylib.InitAudioDevice();
+
 References.Load();
+AudioReferences.Load();
 
 StateMachine gameStateMachine = new StateMachine(new MenuState());
 
@@ -47,6 +51,9 @@ while (!Raylib.WindowShouldClose())
     Raylib.EndDrawing();
 }
 
+Raylib.CloseAudioDevice();
+
 Raylib.CloseWindow();
+
 
 return 0;

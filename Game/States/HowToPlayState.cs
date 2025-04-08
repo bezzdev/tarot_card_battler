@@ -29,6 +29,7 @@ namespace tarot_card_battler.Game.States
             {
                 if (backButton.IsInBounds(x, y))
                 {
+                    backButton.Click();
                     stateMachine.SetState(new MenuState());
                 }
             }

@@ -1,12 +1,43 @@
 using Raylib_cs;
 using tarot_card_battler.Core;
+using tarot_card_battler.Game.Sounds;
 
 namespace tarot_card_battler.Game {
     public class Button {
         public Texture2D hoverTexture;
-        public Texture2D baseTexture; 
+        public Texture2D baseTexture;
 
-        public bool buttonIsHovered;
+        public Sound hoverSound;
+        public Sound clickSound;
+
+        public Button()
+        {
+            position = new Coord(0, 0);
+            hoverSound = AudioReferences.buttonHover;
+            clickSound = AudioReferences.buttonClick;
+        }
+
+        public bool buttonIsHovered {
+            get
+            {
+                return hover;
+            }
+            set
+            {
+                if (value && hover != value)
+                {
+                    AudioReferences.PlaySound(hoverSound);
+                }
+                hover = value;
+            }
+        }
+        private bool hover;
+
+        public void Click()
+        {
+            AudioReferences.PlaySound(clickSound);
+        }
+
         
         public Coord position;
 

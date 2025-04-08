@@ -2,6 +2,7 @@
 using tarot_card_battler.Core.Statemachines;
 using tarot_card_battler.Game.Cards;
 using tarot_card_battler.Game.PlayArea;
+using tarot_card_battler.Game.Sounds;
 
 namespace tarot_card_battler.Game.GameLoop
 {
@@ -54,6 +55,7 @@ namespace tarot_card_battler.Game.GameLoop
             player.hand.SetCardPositions();
 
             player.field.SetPastCard(card);
+            AudioReferences.PlaySound(AudioReferences.cardSet);
         }
 
         public void SelectPresentCard(Card card)
@@ -62,6 +64,7 @@ namespace tarot_card_battler.Game.GameLoop
             player.hand.SetCardPositions();
 
             player.field.SetPresentCard(card);
+            AudioReferences.PlaySound(AudioReferences.cardSet);
         }
 
         public void SelectFutureCard(Card card)
@@ -70,6 +73,7 @@ namespace tarot_card_battler.Game.GameLoop
             player.hand.SetCardPositions();
 
             player.field.SetFutureCard(card);
+            AudioReferences.PlaySound(AudioReferences.cardSet);
         }
     }
 }

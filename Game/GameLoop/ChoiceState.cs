@@ -9,6 +9,7 @@ using System.Data.Common;
 using System.Runtime.InteropServices;
 using System.Text;
 using tarot_card_battler.Game.PlayArea;
+using tarot_card_battler.Game.Sounds;
 
 namespace tarot_card_battler.Game.GameLoop
 {
@@ -66,6 +67,7 @@ namespace tarot_card_battler.Game.GameLoop
             {
                 if (board.player.field.past.card != null && board.player.field.present.card != null && board.player.field.future.card != null)
                 {
+                    board.castButton.Click();
                     stateMachine.SetState(new ResolveState(board));
                     return;
                 }
@@ -136,6 +138,8 @@ namespace tarot_card_battler.Game.GameLoop
             board.player.hand.SetCardPositions();
 
             board.player.field.past.SetCard(card);
+
+            AudioReferences.PlaySound(AudioReferences.cardSet);
         }
 
         public void SelectPresentCard(Card card)
@@ -144,6 +148,8 @@ namespace tarot_card_battler.Game.GameLoop
             board.player.hand.SetCardPositions();
 
             board.player.field.present.SetCard(card);
+
+            AudioReferences.PlaySound(AudioReferences.cardSet);
         }
 
         public void SelectFutureCard(Card card)
@@ -152,6 +158,8 @@ namespace tarot_card_battler.Game.GameLoop
             board.player.hand.SetCardPositions();
 
             board.player.field.future.SetCard(card);
+
+            AudioReferences.PlaySound(AudioReferences.cardSet);
         }
 
         public void RemoveCardFromField(Card card)
@@ -172,6 +180,7 @@ namespace tarot_card_battler.Game.GameLoop
             board.player.hand.Add(card);
 
             board.player.hand.SetCardPositions();
+            AudioReferences.PlaySound(AudioReferences.cardDraw);
         }
 
         public override void EarlyRender()

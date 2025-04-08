@@ -1,5 +1,6 @@
 ﻿using Raylib_cs;
 using tarot_card_battler.Core;
+using tarot_card_battler.Game.Sounds;
 using tarot_card_battler.Util;
 
 namespace tarot_card_battler.Game.Animations
@@ -14,6 +15,7 @@ namespace tarot_card_battler.Game.Animations
             this.position.x = x;
             this.position.y = y;
             deathTimer = new Delay(duration);
+            AudioReferences.PlaySound(AudioReferences.cardEffectActivate);
         }
 
         public override void Update()
