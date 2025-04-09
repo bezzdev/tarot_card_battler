@@ -59,6 +59,7 @@ namespace tarot_card_battler.Game
 
         public static Texture2D CastButton;
         public static Texture2D HoverButton; 
+        public static Texture2D CastButtonInactive;
         public static Texture2D GameBackground;
         public static Texture2D StartButton;
         public static Texture2D StartButtonHover;
@@ -117,6 +118,7 @@ namespace tarot_card_battler.Game
 
             CastButton = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Button_Cast_Default.png"));
             HoverButton = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Button_Cast_Hover.png"));
+            CastButtonInactive = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Button_Cast_Inactive.png"));
 
             GameBackground = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Board.png"));
 
