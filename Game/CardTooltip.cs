@@ -2,7 +2,6 @@
 using tarot_card_battler.Core;
 using tarot_card_battler.Game.Cards;
 using tarot_card_battler.Util;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace tarot_card_battler.Game
 {
@@ -36,19 +35,23 @@ namespace tarot_card_battler.Game
                 int effectHeight = height;
 
                 int widthPerLine = effectWidth;
-                int widthPerCharacter = 4;
 
                 Color textColor = Color.White;
 
                 Color effectNonActiveColor = new Color(1f, 1f, 1f, 0.1f);
-                Color effectActiveColor = new Color(1f, 1f, 1f, 0.5f);
+                Color effectActiveColor = new Color(1f, 1f, 1f, 0.2f);
 
                 int effectActiveSlot = hoveredCard.slotIndex;
                 int textMargin = 4;
 
-                bool showPast = (effectActiveSlot == -1 || effectActiveSlot == 0) || Raylib.IsKeyDown(KeyboardKey.LeftShift);
-                bool showPresent = (effectActiveSlot == -1 || effectActiveSlot == 1) || Raylib.IsKeyDown(KeyboardKey.LeftShift);
-                bool showFuture = (effectActiveSlot == -1 || effectActiveSlot == 2) || Raylib.IsKeyDown(KeyboardKey.LeftShift);
+                bool inHand = effectActiveSlot == -1;
+                bool inPast = effectActiveSlot == 0;
+                bool inPresent = effectActiveSlot == 1;
+                bool inFuture = effectActiveSlot == 2;
+
+                bool showPast = inHand || inPast || Raylib.IsKeyDown(KeyboardKey.LeftShift);
+                bool showPresent = inHand || inPresent || Raylib.IsKeyDown(KeyboardKey.LeftShift);
+                bool showFuture = inHand || inFuture || Raylib.IsKeyDown(KeyboardKey.LeftShift);
 
                 if (showPast)
                 {
