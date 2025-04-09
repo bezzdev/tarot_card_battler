@@ -45,7 +45,13 @@ namespace tarot_card_battler.Game.GameLoop
                     if (slot.card != null)
                     {
                         EntityLayerManager.AddEntity(new CardActivateAnimation(slot.card.position.x, slot.card.position.y), CardActivateAnimation.defaultLayer);
-                        slot.card.TriggerPastEffect(slot.field.player, slot.field.player.opponent, slot, slot.card);
+
+                        if (slot.number == 0)
+                            slot.card.TriggerPastEffect(slot.field.player, slot.field.player.opponent, slot, slot.card);
+                        else if (slot.number == 1)
+                            slot.card.TriggerPresentEffect(slot.field.player, slot.field.player.opponent, slot, slot.card);
+                        else 
+                            slot.card.TriggerFutureEffect(slot.field.player, slot.field.player.opponent, slot, slot.card);
                     }
                     slots.Remove(slot);
                     nextCardDelaydelay.Reset();
