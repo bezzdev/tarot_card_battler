@@ -24,19 +24,19 @@ namespace tarot_card_battler.Game.States
 
             startButton.baseTexture = References.StartButton;
             startButton.hoverTexture = References.StartButtonHover;
-            startButton.position = new Coord(x, y);
+            startButton.position = new Coord(304, 330);
 
             howToPlayButton.baseTexture = References.HelpButton;
             howToPlayButton.hoverTexture = References.HelpButtonHover;
-            howToPlayButton.position = new Coord(x, (int)(y + height + 20));
+            howToPlayButton.position = new Coord(304, 420);
 
             creditsButton.baseTexture = References.CreditsButton;
             creditsButton.hoverTexture = References.CreditsButtonHover;
-            creditsButton.position = new Coord(x, y + height + height + 40);
+            creditsButton.position = new Coord(304, 510);
 
             quitButton.baseTexture = References.QuitButton;
             quitButton.hoverTexture = References.QuitButtonHover;
-            quitButton.position = new Coord(x, y + height + height + height + 60);
+            quitButton.position = new Coord(304, 600);
 
         }
         public override void Update()
