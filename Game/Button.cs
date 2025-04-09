@@ -32,7 +32,10 @@ namespace tarot_card_battler.Game
             {
                 if (value && hover != value)
                 {
-                    AudioReferences.PlaySound(hoverSound);
+                    if (!disabled)
+                    {
+                        AudioReferences.PlaySound(hoverSound);
+                    }
                 }
                 hover = value;
             }
