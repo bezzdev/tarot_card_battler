@@ -79,23 +79,23 @@ namespace tarot_card_battler.Game.Stats
             int x = screen.x;
             int y = screen.y;
             Vector2 pos = new Vector2(x, y);
-            Raylib.DrawTextureEx(References.Shield, pos, 0f, 0.5f, Color.White);
+            Raylib.DrawTextureEx(References.ShieldIcon, pos, 0f, 1f, Color.White);
             Raylib.DrawText(shield.ToString(), x + 70, y + 5, 48, Color.White);
 
             y += spacing;
             pos = new Vector2(x, y);
-            Raylib.DrawTextureEx(References.Shield, pos, 0f, 0.5f, Color.Orange);
-            Raylib.DrawText(strength.ToString(), x + 70, y + 5, 48, Color.Orange);
+            Raylib.DrawTextureEx(References.StrengthIcon, pos, 0f, 1f, Color.White);
+            Raylib.DrawText(strength.ToString(), x + 70, y + 5, 48, Color.White);
 
             y += spacing;
             pos = new Vector2(x, y);
-            Raylib.DrawTextureEx(References.Shield, pos, 0f, 0.5f, Color.Red);
-            Raylib.DrawText(weakness.ToString(), x + 70, y + 5, 48, Color.Red);
+            Raylib.DrawTextureEx(References.WeaknessIcon, pos, 0f, 1f, Color.White);
+            Raylib.DrawText(weakness.ToString(), x + 70, y + 5, 48, Color.White);
 
             y += spacing;
             pos = new Vector2(x, y);
-            Raylib.DrawTextureEx(References.Shield, pos, 0f, 0.5f, Color.Blue);
-            Raylib.DrawText(drawPerTurn.ToString(), x + 70, y + 5, 48, Color.Blue);
+            Raylib.DrawTextureEx(References.GoldIcon, pos, 0f, 1f, Color.White);
+            Raylib.DrawText(drawPerTurn.ToString(), x + 70, y + 5, 48, Color.White); //todo change
         }
     }
 }
