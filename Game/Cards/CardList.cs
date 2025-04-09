@@ -20,7 +20,7 @@ namespace tarot_card_battler.Game.Cards
             {
                 pastEffect = new ShuffleField(),
                 presentEffect = new SwapAboveWithRandomFromHand(),
-                futureEffect = new ShuffleDiscard()
+                futureEffect = new Nullify()
             });
             cards.Add(new Card("The_Magician", 01, References.The_Magician)
             {
@@ -75,7 +75,9 @@ namespace tarot_card_battler.Game.Cards
             });
             cards.Add(new Card("The_Hanged_Man", 12, References.The_Hanged_Man)
             {
-                presentEffect = new Damage(3),
+                pastEffect = new Nullify(),
+                presentEffect = new Nullify(),
+                futureEffect = new Nullify()
             });
             cards.Add(new Card("Death", 13, References.Death)
             {

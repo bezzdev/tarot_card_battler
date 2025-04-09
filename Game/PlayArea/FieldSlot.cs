@@ -18,6 +18,7 @@ namespace tarot_card_battler.Game.PlayArea
         public Card? card = null;
         public float cardSpeed = 1400f;
         public bool faceup = true;
+        public bool isLocked = false;
         public string debugName = "";
 
         public FieldSlot(int number)
