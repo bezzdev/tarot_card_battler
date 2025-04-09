@@ -77,17 +77,32 @@ namespace tarot_card_battler.Game.Cards
         }
         public virtual void TriggerPastEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
         {
-            pastEffect.triggerEffect(player, opponent, slot, card);
+            if(opponent.field.slots[slot.number].isLocked){
+                // ANIMATION?
+            } {
+                pastEffect.triggerEffect(player, opponent, slot, card);
+                opponent.field.slots[slot.number].isLocked = false;
+            }
         }
 
         public virtual void TriggerPresentEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
         {
-            presentEffect.triggerEffect(player, opponent, slot, card);
+            if(opponent.field.slots[slot.number].isLocked){
+                // ANIMATION?
+            } {
+                presentEffect.triggerEffect(player, opponent, slot, card);
+                opponent.field.slots[slot.number].isLocked = false;
+            }
         }
 
         public virtual void TriggerFutureEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
         {
-            futureEffect.triggerEffect(player, opponent, slot, card);
+            if(opponent.field.slots[slot.number].isLocked){
+                // ANIMATION?
+            } {
+                futureEffect.triggerEffect(player, opponent, slot, card);
+                opponent.field.slots[slot.number].isLocked = false;
+            }
         }
         public virtual bool IsInBounds(double x, double y)
         {

@@ -97,4 +97,18 @@ namespace tarot_card_battler.Game.Effects
             player.deck.SetCardPositions();
         }
     }
+
+    public class Nullify : Effect
+    {
+        public Nullify()
+        {
+            tooltip = "Blocks opposite cards effect";
+        }
+
+        public override void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
+        {
+            if (player.debugName == "player") Console.WriteLine($"Player nullified {slot.debugName}");
+            opponent.field.slots[slot.number].isLocked = true;
+        }
+    }
 }
