@@ -75,6 +75,16 @@ namespace tarot_card_battler.Game.Cards
                 Raylib.DrawTextureEx(cardBack, new System.Numerics.Vector2(x, y), rotation, scale, Color.White);
             }
         }
+        public virtual void TriggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot)
+        {
+            if (slot.number == 0)
+                this.TriggerPastEffect(slot.field.player, slot.field.player.opponent, slot, this);
+            else if (slot.number == 1)
+                this.TriggerPresentEffect(slot.field.player, slot.field.player.opponent, slot, this);
+            else
+                this.TriggerFutureEffect(slot.field.player, slot.field.player.opponent, slot, this);
+        }
+
         public virtual void TriggerPastEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
         {
             if(opponent.field.slots[slot.number].isLocked){
