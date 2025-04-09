@@ -10,6 +10,7 @@ namespace tarot_card_battler.Game.States
     {
         public StateMachine gameLoop;
         public Board board;
+        public CardTooltip cardTooltip = new CardTooltip();
 
         public GameState() {
             PlayerBoard player = new PlayerBoard("player");
@@ -18,7 +19,6 @@ namespace tarot_card_battler.Game.States
 
             player.hand.position.x = 600;
             player.hand.position.y = -54;
-
 
             player.field.position.x = 600;
             player.field.position.y = 221;
@@ -67,12 +67,17 @@ namespace tarot_card_battler.Game.States
             };
 
             gameLoop = new StateMachine(new SetupState(board, 0));
+
+            new InteractionManager(board);
         }
 
         public override void Update()
         {
             gameLoop.Update();
             board.Update();
+
+            InteractionManager.instance.Update();
+            cardTooltip.Update();
 
             if (Raylib.IsKeyPressed(KeyboardKey.Escape))
             {

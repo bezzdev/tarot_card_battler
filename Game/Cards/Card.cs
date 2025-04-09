@@ -22,6 +22,7 @@ namespace tarot_card_battler.Game.Cards
         public bool faceup = true;
         public Coord position;
         public Mover mover;
+        public PlayerBoard owner;
 
         public Card(string name, int number, Texture2D cardArt)
         {
