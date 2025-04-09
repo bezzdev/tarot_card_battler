@@ -14,7 +14,9 @@ namespace tarot_card_battler.Game.PlayArea
             clickSound = AudioReferences.castButtonClick,
             hoverTexture = References.HoverButton,
             baseTexture = References.CastButton,
-            position = new Coord(600, 400)
+            inactiveTexture = References.CastButtonInactive,
+            position = new Coord(600, 400),
+            disabled = true
         };
 
         public void Update()

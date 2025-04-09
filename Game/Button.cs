@@ -2,13 +2,18 @@ using Raylib_cs;
 using tarot_card_battler.Core;
 using tarot_card_battler.Game.Sounds;
 
-namespace tarot_card_battler.Game {
-    public class Button {
+namespace tarot_card_battler.Game
+{
+    public class Button
+    {
         public Texture2D hoverTexture;
         public Texture2D baseTexture;
+        public Texture2D inactiveTexture;
 
         public Sound hoverSound;
         public Sound clickSound;
+
+        public bool disabled;
 
         public Button()
         {
@@ -17,7 +22,8 @@ namespace tarot_card_battler.Game {
             clickSound = AudioReferences.buttonClick;
         }
 
-        public bool buttonIsHovered {
+        public bool buttonIsHovered
+        {
             get
             {
                 return hover;
@@ -38,22 +44,33 @@ namespace tarot_card_battler.Game {
             AudioReferences.PlaySound(clickSound);
         }
 
-        
+
         public Coord position;
 
-        public void Update(){}
+        public void Update() { }
 
-        public void Render(){
+        public void Render()
+        {
             float width = baseTexture.Width;
             float height = baseTexture.Height;
 
             int x = (int)position.x - (int)(width / 2);
             int y = (int)position.y - (int)(height / 2);
 
-            if (buttonIsHovered){
-                Raylib.DrawTextureEx(hoverTexture, new System.Numerics.Vector2(x, y), 0f, 1f, Color.White);
-            } else {
-                Raylib.DrawTextureEx(baseTexture, new System.Numerics.Vector2(x, y), 0f, 1f, Color.White);
+            if (disabled)
+            {
+                Raylib.DrawTextureEx(inactiveTexture, new System.Numerics.Vector2(x, y), 0f, 1f, Color.White);
+            }
+            else
+            {
+                if (buttonIsHovered)
+                {
+                    Raylib.DrawTextureEx(hoverTexture, new System.Numerics.Vector2(x, y), 0f, 1f, Color.White);
+                }
+                else
+                {
+                    Raylib.DrawTextureEx(baseTexture, new System.Numerics.Vector2(x, y), 0f, 1f, Color.White);
+                }
             }
         }
 
@@ -61,10 +78,11 @@ namespace tarot_card_battler.Game {
         {
             int halfWidth = baseTexture.Width / 2;
             int halfHeight = baseTexture.Height / 2;
-            if (x > position.x - halfWidth && x < position.x + halfWidth && y > position.y - halfHeight && y < position.y + halfHeight){
-                    return true;
+            if (x > position.x - halfWidth && x < position.x + halfWidth && y > position.y - halfHeight && y < position.y + halfHeight)
+            {
+                return true;
             }
-            return false; 
+            return false;
         }
     }
 }

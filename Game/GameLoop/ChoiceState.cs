@@ -31,6 +31,16 @@ namespace tarot_card_battler.Game.GameLoop
             this.board = board;
         }
 
+        public override void OnEnter()
+        {
+            board.castButton.disabled = true;
+        }
+
+        public override void OnLeave()
+        {
+            board.castButton.disabled = true;
+        }
+
         public override void Update()
         {
             delay1.Update(References.delta);
@@ -45,14 +55,19 @@ namespace tarot_card_battler.Game.GameLoop
             Card hoveredCard = InteractionManager.instance.hoveredCard;
 
 
-            if (Raylib.IsMouseButtonDown(MouseButton.Left) && board.castButton.buttonIsHovered)
+            if (board.player.field.past.card != null && board.player.field.present.card != null && board.player.field.future.card != null)
             {
-                if (board.player.field.past.card != null && board.player.field.present.card != null && board.player.field.future.card != null)
+                board.castButton.disabled = false;
+
+                if (Raylib.IsMouseButtonDown(MouseButton.Left) && board.castButton.buttonIsHovered)
                 {
                     board.castButton.Click();
                     stateMachine.SetState(new ResolveState(board));
                     return;
                 }
+            } else
+            {
+                board.castButton.disabled = true;
             }
 
             draggableCards.Clear();
