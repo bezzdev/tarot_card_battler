@@ -73,7 +73,12 @@ namespace tarot_card_battler.Game
         public static Texture2D CandleSegment;
         public static Texture2D CandleTop;
 
-        public static Texture2D Shield;
+        public static Texture2D ShieldIcon;
+        public static Texture2D WeaknessIcon;
+        public static Texture2D StrengthIcon;
+
+        public static Texture2D GoldIcon;
+
 
         public static void Load()
         {
@@ -127,7 +132,11 @@ namespace tarot_card_battler.Game
             CandleSegment = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Candle/CandleSegment.png"));
             CandleTop = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Candle/CandleTop.png"));
 
-            Shield = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Shield.png"));
+            ShieldIcon = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Shield.png"));
+            StrengthIcon = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Strength.png"));
+            WeaknessIcon = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Weakness.png"));
+            GoldIcon = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Gold.png"));
+
 
             CardList.cards = CardList.GetAllCards();
         }
