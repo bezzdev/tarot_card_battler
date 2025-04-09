@@ -56,6 +56,7 @@ namespace tarot_card_battler.Game.GameLoop
 
                 foreach (Card card in cards)
                 {
+                    card.owner = player;
                     player.deck.Add(card);
                 }
                 player.deck.SetCardPositions(true);
