@@ -35,6 +35,15 @@ namespace tarot_card_battler.Game.PlayArea
             SetCardPosition();
         }
 
+        public void RemoveCard()
+        {
+            if (card != null)
+            {
+                card.slotIndex = -1;
+                card = null;
+            }
+        }
+
         public void SetCardPosition(bool instant = false)
         {
             var world = GetWorldPosition();

@@ -28,15 +28,15 @@ namespace tarot_card_battler.Game.Effects
 
             if (choice == 0)
             {
-                opponent.field.past.card = b;
-                opponent.field.present.card = c;
-                opponent.field.future.card = a;
+                opponent.field.past.SetCard(b);
+                opponent.field.present.SetCard(c);
+                opponent.field.future.SetCard(a);
             }
             else
             {
-                opponent.field.past.card = c;
-                opponent.field.present.card = a;
-                opponent.field.future.card = b;
+                opponent.field.past.SetCard(c);
+                opponent.field.present.SetCard(a);
+                opponent.field.future.SetCard(b);
             }
 
             opponent.field.past.SetCardPosition();
@@ -62,14 +62,14 @@ namespace tarot_card_battler.Game.Effects
             {
                 int choice = Random.Shared.Next(0, opponentHand.cards.Count);
                 Card cardChoice = opponentHand.cards[choice];
-                opponentSlot.card = null;
-
+                
+                opponentSlot.RemoveCard();
                 opponentHand.Add(opponentCard);
-                opponentHand.cards.Remove(cardChoice);
-                opponentHand.SetCardPositions();
 
+                opponentHand.cards.Remove(cardChoice);
                 opponentSlot.SetCard(cardChoice);
 
+                opponentHand.SetCardPositions();
                 if (player.debugName == "player") Console.WriteLine($"Swapping opponents {opponentSlot.debugName} card with a random card from their hand");
             }
         }

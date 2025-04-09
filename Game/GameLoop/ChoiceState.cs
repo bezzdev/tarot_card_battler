@@ -150,15 +150,15 @@ namespace tarot_card_battler.Game.GameLoop
         {
             if (board.player.field.past.card == card)
             {
-                board.player.field.past.card = null;
+                board.player.field.past.RemoveCard();
             }
             else if (board.player.field.present.card == card)
             {
-                board.player.field.present.card = null;
+                board.player.field.present.RemoveCard();
             }
             else if (board.player.field.future.card == card)
             {
-                board.player.field.future.card = null;
+                board.player.field.future.RemoveCard();
             }
 
             board.player.hand.Add(card);

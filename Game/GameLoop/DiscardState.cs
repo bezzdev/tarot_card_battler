@@ -32,14 +32,14 @@ namespace tarot_card_battler.Game.GameLoop
             {
                 if (player.field.past != null) { 
                     Card past = player.field.past.card;
-                    player.field.past.card = null;
+                    player.field.past.RemoveCard();
                     player.discards.Add(past);
                 }
 
                 if (player.field.present != null)
                 {
                     Card present = player.field.present.card;
-                    player.field.present.card = null;
+                    player.field.present.RemoveCard();
                     player.discards.Add(present);
                 }
 
@@ -47,7 +47,7 @@ namespace tarot_card_battler.Game.GameLoop
                 if (player.field.future != null)
                 {
                     Card future = player.field.future.card;
-                    player.field.future.card = null;
+                    player.field.future.RemoveCard();
                     player.discards.Add(future);
                 }
 
