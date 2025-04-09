@@ -8,6 +8,10 @@ namespace tarot_card_battler.Game.Effects
         public string tooltip = "Generic tooltip";
 
         public virtual void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card) { }
+        public virtual string GetTooltip()
+        {
+            return tooltip;
+        }
 
     }
 

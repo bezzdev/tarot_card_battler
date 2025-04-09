@@ -23,6 +23,7 @@ namespace tarot_card_battler.Game.Cards
         public Coord position;
         public Mover mover;
         public PlayerBoard owner;
+        public int slotIndex = -1;
 
         public Card(string name, int number, Texture2D cardArt)
         {

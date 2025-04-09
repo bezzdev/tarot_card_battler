@@ -31,6 +31,7 @@ namespace tarot_card_battler.Game.PlayArea
         {
             this.card = card;
             card.faceup = true;
+            card.slotIndex = number;
             SetCardPosition();
         }
 
