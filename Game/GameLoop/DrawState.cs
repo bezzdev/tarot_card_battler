@@ -12,9 +12,6 @@ namespace tarot_card_battler.Game.GameLoop
         private Board board;
         private Delay delay = new Delay(0.5f);
 
-        private int playerDraw = 3;
-        private int opponentDraw = 3;
-
         public DrawState(Board board)
         {
             board.players[0].playerStats.shield = 0;
@@ -26,13 +23,13 @@ namespace tarot_card_battler.Game.GameLoop
         {
             delay.Update(References.delta);
 
-            if (opponentDraw > 0)
+            if (board.players[1].playerStats.drawPerTurn > 0)
             {
                 if (delay.Completed()) {
                     if (TryDrawCard(board.players[1]))
                     {
                         DrawCard(board.players[1]);
-                        opponentDraw -= 1;
+                        board.players[1].playerStats.drawPerTurn -= 1;
                         delay.time = 0f;
                     } else
                     {
@@ -42,14 +39,14 @@ namespace tarot_card_battler.Game.GameLoop
                 }
             }
 
-            if (playerDraw > 0)
+            if (board.player.playerStats.drawPerTurn > 0)
             {
                 if (delay.Completed())
                 {
                     if (TryDrawCard(board.player))
                 {
                         DrawCard(board.player);
-                        playerDraw -= 1;
+                        board.player.playerStats.drawPerTurn -= 1;
                         delay.time = 0f;
                     }
                     else
@@ -62,6 +59,8 @@ namespace tarot_card_battler.Game.GameLoop
 
             if (delay.Completed())
             {
+                board.player.playerStats.drawPerTurn = 3;
+                board.players[1].playerStats.drawPerTurn = 3;
                 stateMachine.SetState(new OpponentChoiceState(board, board.players[1]));
             }
         }

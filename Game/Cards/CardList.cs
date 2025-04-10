@@ -36,6 +36,7 @@ namespace tarot_card_battler.Game.Cards
             cards.Add(new Card("The_Empress", 03, References.The_Empress)
             {
                 presentEffect = new Heal(2),
+                futureEffect = new Draw()
             });
             cards.Add(new Card("The_Emperor", 04, References.The_Emperor)
             {

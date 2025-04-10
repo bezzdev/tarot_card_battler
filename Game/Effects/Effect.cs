@@ -24,7 +24,8 @@ namespace tarot_card_battler.Game.Effects
 
         public override void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
         {
-            if (player.debugName == "player") Console.WriteLine($"Player drew 1 card");
+            if (player.debugName == "player") Console.WriteLine($"Player draws 1 extra card next turn");
+            player.playerStats.drawPerTurn = 4;
         }
     }
 
