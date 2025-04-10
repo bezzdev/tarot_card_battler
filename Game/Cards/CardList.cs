@@ -117,6 +117,7 @@ namespace tarot_card_battler.Game.Cards
             {
                 pastEffect = new HealGoldAmount(),
                 presentEffect = new Heal(3),
+                futureEffect = new StrengthHeal()
             });
             cards.Add(new Card("Judgement", 20, References.Judgement)
             {

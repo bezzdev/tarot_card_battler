@@ -83,6 +83,21 @@ namespace tarot_card_battler.Game.Effects
         }
     }
 
+    public class StrengthHeal : Effect
+    {
+        public StrengthHeal()
+        {
+
+            tooltip = $"Heals amount equal to your strength";
+        }
+
+        public override void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
+        {
+            if (player.debugName == "player") Console.WriteLine($"Did random {player.playerStats.strength} damage to {opponent.debugName}");
+            player.playerStats.Heal(player.playerStats.strength);
+        }
+    }
+
     public class Shield : Effect
     {
         public int shield;
