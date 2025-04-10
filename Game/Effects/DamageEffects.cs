@@ -79,7 +79,7 @@ namespace tarot_card_battler.Game.Effects
             int heal = Random.Shared.Next(min, max + 1);
 
             if (player.debugName == "player") Console.WriteLine($"Did random {heal} damage to {opponent.debugName}");
-            opponent.playerStats.Heal(heal);
+            player.playerStats.Heal(heal);
         }
     }
 
