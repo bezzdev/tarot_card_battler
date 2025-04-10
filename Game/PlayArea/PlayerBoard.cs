@@ -15,7 +15,6 @@ namespace tarot_card_battler.Game.PlayArea
         public Candle candle = new Candle();
         public Discards discards = new Discards();
         public List<Effect> pendingEffects = new List<Effect>();
-
         public PlayerStats playerStats = new PlayerStats();
 
         public PlayerBoard(string name)
@@ -45,6 +44,7 @@ namespace tarot_card_battler.Game.PlayArea
             deck.Render();
             hand.Render();
             playerStats.Render();
+
             //discards.Render();
         }
     }

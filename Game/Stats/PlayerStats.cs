@@ -16,17 +16,19 @@ namespace tarot_card_battler.Game.Stats
 
         public int health = 0;
         public int maxHealth = 20;
-
         public int level = 0;
-        
         public int drawPerTurn = 3;
-
         public int shield = 0;
         public int strength = 0;
         public int weakness = 0;
+        public int gold = 0;
+        public bool deathCountdown = false;
+        public bool renderStats = false;
+        public int countdown = 2;
 
         public void TakeDamage(int damage)
         {
+            if (damage < 0) return;
             if (shield > 0)
             {
                 shield -= damage;
@@ -65,37 +67,62 @@ namespace tarot_card_battler.Game.Stats
             this.shield += shield;
         }
 
-        public void AddStrength(){
+        public void AddStrength()
+        {
             this.strength += 1;
         }
 
-        public void AddWeakness(){
+        public void AddWeakness()
+        {
             this.weakness += 1;
         }
 
-        public void Render(){
+        public void AddGold(int gold)
+        {
+            this.gold += gold;
+        }
+
+        public void RemoveGold(int gold)
+        {
+            this.gold -= gold;
+        }
+
+        public void Render()
+        {
             var screen = Coordinates.WorldToScreen((int)position.x, (int)position.y);
             int spacing = 60;
             int x = screen.x;
             int y = screen.y;
+
+            y -= spacing;
             Vector2 pos = new Vector2(x, y);
-            Raylib.DrawTextureEx(References.ShieldIcon, pos, 0f, 1f, Color.White);
-            Raylib.DrawText(shield.ToString(), x + 70, y + 5, 48, Color.White);
+            if (deathCountdown == true)
+            {
+                Raylib.DrawTextureEx(References.ShieldIcon, pos, 0f, 1f, Color.White); //todo change
+                Raylib.DrawText(countdown.ToString(), x + 70, y + 5, 48, Color.White);
+            }
+            if (renderStats)
+            {
+                y += spacing;
+                pos = new Vector2(x, y);
+                Raylib.DrawTextureEx(References.ShieldIcon, pos, 0f, 1f, Color.White);
+                Raylib.DrawText(strength.ToString(), x + 70, y + 5, 48, Color.White);
 
-            y += spacing;
-            pos = new Vector2(x, y);
-            Raylib.DrawTextureEx(References.StrengthIcon, pos, 0f, 1f, Color.White);
-            Raylib.DrawText(strength.ToString(), x + 70, y + 5, 48, Color.White);
+                y += spacing;
+                pos = new Vector2(x, y);
+                Raylib.DrawTextureEx(References.StrengthIcon, pos, 0f, 1f, Color.White);
+                Raylib.DrawText(strength.ToString(), x + 70, y + 5, 48, Color.White);
 
-            y += spacing;
-            pos = new Vector2(x, y);
-            Raylib.DrawTextureEx(References.WeaknessIcon, pos, 0f, 1f, Color.White);
-            Raylib.DrawText(weakness.ToString(), x + 70, y + 5, 48, Color.White);
+                y += spacing;
+                pos = new Vector2(x, y);
+                Raylib.DrawTextureEx(References.WeaknessIcon, pos, 0f, 1f, Color.White);
+                Raylib.DrawText(weakness.ToString(), x + 70, y + 5, 48, Color.White);
 
-            y += spacing;
-            pos = new Vector2(x, y);
-            Raylib.DrawTextureEx(References.GoldIcon, pos, 0f, 1f, Color.White);
-            Raylib.DrawText(drawPerTurn.ToString(), x + 70, y + 5, 48, Color.White); //todo change
+                y += spacing;
+                pos = new Vector2(x, y);
+                Raylib.DrawTextureEx(References.GoldIcon, pos, 0f, 1f, Color.White);
+                Raylib.DrawText(gold.ToString(), x + 70, y + 5, 48, Color.White);
+            }
         }
     }
 }

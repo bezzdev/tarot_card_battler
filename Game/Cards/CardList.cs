@@ -36,6 +36,7 @@ namespace tarot_card_battler.Game.Cards
             cards.Add(new Card("The_Empress", 03, References.The_Empress)
             {
                 presentEffect = new Heal(2),
+                futureEffect = new Draw()
             });
             cards.Add(new Card("The_Emperor", 04, References.The_Emperor)
             {
@@ -55,13 +56,16 @@ namespace tarot_card_battler.Game.Cards
             });
             cards.Add(new Card("Strength", 08, References.Strength)
             {
+                pastEffect = new Weakness(),
                 presentEffect = new Damage(3),
                 futureEffect = new Strength()
             });
 
             cards.Add(new Card("The_Hermit", 09, References.The_Hermit)
             {
+                pastEffect = new StealOpponentGold(1),
                 presentEffect = new Damage(3),
+                futureEffect = new StealOpponentGold(1),
             });
             cards.Add(new Card("Wheel_Of_Fortune", 10, References.Wheel_Of_Fortune)
             {
@@ -71,7 +75,9 @@ namespace tarot_card_battler.Game.Cards
             });
             cards.Add(new Card("Justice", 11, References.Justice)
             {
+                pastEffect = new AddGold(1),
                 presentEffect = new Damage(3),
+                futureEffect = new AddGold(1)
             });
             cards.Add(new Card("The_Hanged_Man", 12, References.The_Hanged_Man)
             {
@@ -82,14 +88,18 @@ namespace tarot_card_battler.Game.Cards
             cards.Add(new Card("Death", 13, References.Death)
             {
                 presentEffect = new Damage(6),
+                futureEffect = new DeathCountdown()
             });
             cards.Add(new Card("Temperance", 14, References.Temperance)
             {
+                pastEffect = new DamageGoldAmount(),
                 presentEffect = new Damage(3),
+                futureEffect = new AddGold(1),
             });
             cards.Add(new Card("The_Devil", 15, References.The_Devil)
             {
                 presentEffect = new Damage(3),
+                futureEffect = new Weakness()
             });
             cards.Add(new Card("The_Tower", 16, References.The_Tower)
             {
@@ -101,11 +111,14 @@ namespace tarot_card_battler.Game.Cards
             });
             cards.Add(new Card("The_Moon", 18, References.The_Moon)
             {
+                pastEffect = new DamageGoldAmount(),
                 presentEffect = new Damage(3),
             });
             cards.Add(new Card("The_Sun", 19, References.The_Sun)
             {
+                pastEffect = new HealGoldAmount(),
                 presentEffect = new Heal(3),
+                futureEffect = new StrengthHeal()
             });
             cards.Add(new Card("Judgement", 20, References.Judgement)
             {
