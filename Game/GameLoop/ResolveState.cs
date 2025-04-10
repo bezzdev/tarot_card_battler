@@ -25,12 +25,32 @@ namespace tarot_card_battler.Game.GameLoop
         {
             slots.Add(board.players[0].field.past);
             slots.Add(board.players[1].field.past);
-            
+
             slots.Add(board.players[0].field.present);
             slots.Add(board.players[1].field.present);
 
             slots.Add(board.players[0].field.future);
             slots.Add(board.players[1].field.future);
+
+            if (board.player.playerStats.deathCountdown == true)
+            {
+                board.player.playerStats.countdown -= 1;
+                Console.WriteLine($"Player countdown is {board.player.playerStats.countdown}");
+            }
+            else if (board.players[1].playerStats.deathCountdown == true)
+            {
+                board.players[1].playerStats.countdown -= 1;
+                Console.WriteLine($"Opponent countdown is {board.players[0].playerStats.countdown}");
+            }
+
+            if (board.player.playerStats.countdown == 0)
+            {
+                stateMachine.SetState(new GameOverState(board));
+            }
+            else if (board.players[1].playerStats.countdown == 0)
+            {
+                stateMachine.SetState(new GameWinState(board));
+            }
         }
 
         public override void Update()

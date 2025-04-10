@@ -25,7 +25,7 @@ namespace tarot_card_battler.Game.Effects
         public StealOpponentGold(int gold)
         {
             this.gold = gold;
-            tooltip = $"Stole {gold} gold from opponent";
+            tooltip = $"Steals {gold} gold from opponent";
         }
 
         public override void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)

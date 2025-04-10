@@ -28,9 +28,19 @@ namespace tarot_card_battler.Game.Effects
         }
     }
 
-    public class Countdown : Effect
+    public class DeathCountdown : Effect
     {
+        public DeathCountdown()
+        {
+            tooltip = "Give opponent 99 shield, in 5 turns win the game";
+        }
 
+        public override void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
+        {
+            if (player.debugName == "player") Console.WriteLine($"Player played death");
+            opponent.playerStats.Shield(99);
+            opponent.playerStats.deathCountdown = true;
+        }
     }
 
     public class BlockOpponentEffect : Effect

@@ -87,6 +87,7 @@ namespace tarot_card_battler.Game.Cards
             cards.Add(new Card("Death", 13, References.Death)
             {
                 presentEffect = new Damage(6),
+                futureEffect = new DeathCountdown()
             });
             cards.Add(new Card("Temperance", 14, References.Temperance)
             {
