@@ -18,10 +18,6 @@ namespace tarot_card_battler.Game.Sounds
         }
         public static void Update()
         {
-            //int p = Raylib.GetCharPressed();
-            //if (p != 0)
-            //    Console.WriteLine(p);
-
             if (!Raylib.IsSoundPlaying(currentTrack))
             {
                 Play();
