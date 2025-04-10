@@ -24,6 +24,7 @@ namespace tarot_card_battler.Game.Stats
         public int shield = 0;
         public int strength = 0;
         public int weakness = 0;
+        public int gold = 0;
 
         public void TakeDamage(int damage)
         {
@@ -73,6 +74,14 @@ namespace tarot_card_battler.Game.Stats
             this.weakness += 1;
         }
 
+        public void AddGold(int gold){
+            this.gold += gold;
+        }
+
+        public void RemoveGold(int gold){
+            this.gold -= gold;
+        }
+
         public void Render(){
             var screen = Coordinates.WorldToScreen((int)position.x, (int)position.y);
             int spacing = 60;
@@ -95,7 +104,7 @@ namespace tarot_card_battler.Game.Stats
             y += spacing;
             pos = new Vector2(x, y);
             Raylib.DrawTextureEx(References.GoldIcon, pos, 0f, 1f, Color.White);
-            Raylib.DrawText(drawPerTurn.ToString(), x + 70, y + 5, 48, Color.White); //todo change
+            Raylib.DrawText(gold.ToString(), x + 70, y + 5, 48, Color.White); //todo change
         }
     }
 }
