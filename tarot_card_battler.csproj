@@ -32,6 +32,9 @@
        <None Update="./Game/Res/Candle/*">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
+       <None Update="./Game/Res/Effects/*">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
       <None Update="./Game/Res/Menu/*">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>

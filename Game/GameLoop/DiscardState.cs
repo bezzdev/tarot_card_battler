@@ -8,11 +8,13 @@ namespace tarot_card_battler.Game.GameLoop
     public class DiscardState : State
     {
         private Board board;
-        private Delay delay = new Delay(3f);
+        private Delay delay = new Delay(1f);
+        private State nextState;
 
-        public DiscardState(Board board)
+        public DiscardState(Board board, State nextState)
         {
             this.board = board;
+            this.nextState = nextState;
         }
         public override void Update()
         {
@@ -20,14 +22,12 @@ namespace tarot_card_battler.Game.GameLoop
 
             if (delay.Completed())
             {
-                stateMachine.SetState(new DrawState(board));
+                stateMachine.SetState(nextState);
             }
         }
 
         public override void OnEnter()
         {
-            int draw = 3;
-
             foreach (PlayerBoard player in board.players)
             {
                 if (player.field.past != null) { 
@@ -42,7 +42,6 @@ namespace tarot_card_battler.Game.GameLoop
                     player.field.present.RemoveCard();
                     player.discards.Add(present);
                 }
-
 
                 if (player.field.future != null)
                 {

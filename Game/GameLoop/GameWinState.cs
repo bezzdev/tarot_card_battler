@@ -8,11 +8,14 @@ namespace tarot_card_battler.Game.GameLoop
     public class GameWinState : State
     {
         private Board board;
-        private Delay delay = new Delay(3f);
+        private Delay delay = new Delay(0.5f);
 
         public GameWinState(Board board)
         {
             this.board = board;
+        }
+        public override void OnEnter()
+        {
         }
 
         public override void Update()
@@ -26,7 +29,7 @@ namespace tarot_card_battler.Game.GameLoop
                 {
                     player.playerStats.level += 1;
                 }
-                stateMachine.SetState(new SetupState(board, board.player.playerStats.level));
+                stateMachine.SetState(new NextGameState(board, board.player.playerStats.level));
             }
         }
 

@@ -39,6 +39,8 @@ while (!Raylib.WindowShouldClose())
     gameStateMachine.Update();
     EntityLayerManager.Update();
 
+    MusicHandler.Update();
+
 #if DEBUG
     DebugTools.Update();
 #endif

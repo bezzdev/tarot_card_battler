@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Raylib_cs;
 using tarot_card_battler.Core;
+using tarot_card_battler.Game.Animations;
 using tarot_card_battler.Game.Cards;
 
 namespace tarot_card_battler.Game
@@ -16,6 +17,7 @@ namespace tarot_card_battler.Game
         public static int window_height = 800;
 
         public static EntityLayer world = new EntityLayer();
+        public static OpponentDeathAnimation opponentDeathAnimation;
 
         public static float frameDelta;
         public static float gameSpeed = 1f;
@@ -29,6 +31,7 @@ namespace tarot_card_battler.Game
 
         public static Texture2D sampleTexture;
 
+        // cards
         public static Texture2D The_Fool;
         public static Texture2D The_Magician;
         public static Texture2D The_High_Priestess;
@@ -52,16 +55,16 @@ namespace tarot_card_battler.Game
         public static Texture2D Judgement;
         public static Texture2D The_World;
 
+        // card backs
         public static Texture2D Back_Plain;
         public static Texture2D Back_Text;
         public static Texture2D Back_Marbled;
         public static Texture2D Back_Eye_Sigil;
 
+        // buttons
         public static Texture2D CastButton;
         public static Texture2D HoverButton; 
         public static Texture2D CastButtonInactive;
-        public static Texture2D GameBackground;
-        public static Texture2D MenuBackground;
         public static Texture2D StartButton;
         public static Texture2D StartButtonHover;
         public static Texture2D HelpButton;
@@ -71,17 +74,24 @@ namespace tarot_card_battler.Game
         public static Texture2D QuitButton;
         public static Texture2D QuitButtonHover;
 
+        // menus
+        public static Texture2D GameBackground;
+        public static Texture2D MenuBackground;
+
+        // candle
         public static Texture2D CandleBase;
         public static Texture2D CandleSegment;
         public static Texture2D CandleTop;
         public static Texture2D CandleTopOut;
 
+        // stats
         public static Texture2D ShieldIcon;
         public static Texture2D WeaknessIcon;
         public static Texture2D StrengthIcon;
-
         public static Texture2D GoldIcon;
 
+        // effects
+        public static Texture2D OpponentShadow;
 
         public static void Load()
         {
@@ -121,9 +131,6 @@ namespace tarot_card_battler.Game
             HoverButton = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Button_Cast_Hover.png"));
             CastButtonInactive = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Button_Cast_Inactive.png"));
 
-            GameBackground = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Board.png"));
-            MenuBackground = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/MenuBG.png"));
-
             StartButton = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Menu/Button_Start_Default.png"));
             StartButtonHover = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Menu/Button_Start_Hover.png"));
             HelpButton = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Menu/Button_Help_Default.png"));
@@ -132,6 +139,9 @@ namespace tarot_card_battler.Game
             CreditsButtonHover = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Menu/Button_Credits_Hover.png"));
             QuitButton = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Menu/Button_Quit_Default.png"));
             QuitButtonHover = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Menu/Button_Quit_Hover.png"));
+
+            GameBackground = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Board.png"));
+            MenuBackground = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/MenuBG.png"));
 
             CandleBase = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Candle/CandleBase.png"));
             CandleSegment = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Candle/CandleSegment.png"));
@@ -143,6 +153,7 @@ namespace tarot_card_battler.Game
             WeaknessIcon = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Weakness.png"));
             GoldIcon = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Gold.png"));
 
+            OpponentShadow = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Effects/OpponentShadow.png"));
 
             CardList.cards = CardList.GetAllCards();
         }

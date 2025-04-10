@@ -25,14 +25,13 @@ namespace tarot_card_battler.Game.GameLoop
         {
             delay.Update(References.delta);
 
-            if (opponentDraw > 0)
+            if (board.players[1].hand.cards.Count < opponentDraw)
             {
                 if (delay.Completed())
                 {
                     if (TryDrawCard(board.players[1]))
                     {
                         DrawCard(board.players[1]);
-                        opponentDraw -= 1;
                         delay.time = 0f;
                     }
                     else
@@ -43,14 +42,13 @@ namespace tarot_card_battler.Game.GameLoop
                 }
             }
 
-            if (playerDraw > 0)
+            if (board.player.hand.cards.Count < playerDraw)
             {
                 if (delay.Completed())
                 {
                     if (TryDrawCard(board.player))
                     {
                         DrawCard(board.player);
-                        playerDraw -= 1;
                         delay.time = 0f;
                     }
                     else
