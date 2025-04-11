@@ -15,7 +15,7 @@ namespace tarot_card_battler.Game.Effects
         public override void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
         {
             if (player.debugName == "player") Console.WriteLine($"Added {gold} gold");
-            player.playerStats.AddGold(gold + (card.isBuffed ? 2 : 0));
+            player.playerStats.AddGold(gold + card.cardBuff);
         }
     }
 
@@ -31,8 +31,8 @@ namespace tarot_card_battler.Game.Effects
         public override void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
         {
             if (player.debugName == "player") Console.WriteLine($"Stole {gold} gold from opponent");
-            player.playerStats.AddGold(gold + (card.isBuffed ? 2 : 0));
-            opponent.playerStats.RemoveGold(gold + (card.isBuffed ? 2 : 0));
+            player.playerStats.AddGold(gold  + card.cardBuff);
+            opponent.playerStats.RemoveGold(gold  + card.cardBuff);
         }
     }
 
@@ -47,7 +47,7 @@ namespace tarot_card_battler.Game.Effects
         public override void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
         {
             if (player.debugName == "player") Console.WriteLine($"Did {player.playerStats.gold} damage");
-            opponent.playerStats.TakeDamage(player.playerStats.gold * (card.isBuffed ? 2 : 1));
+            opponent.playerStats.TakeDamage(player.playerStats.gold * card.cardBuff);
         }
     }
 
@@ -62,7 +62,7 @@ namespace tarot_card_battler.Game.Effects
         public override void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
         {
             if (player.debugName == "player") Console.WriteLine($"Healed {player.playerStats.gold} damage");
-            opponent.playerStats.Heal(player.playerStats.gold * (card.isBuffed ? 2 : 1));
+            opponent.playerStats.Heal(player.playerStats.gold * card.cardBuff);
         }
     }
 
