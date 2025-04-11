@@ -105,16 +105,8 @@ namespace tarot_card_battler.Game.GameLoop
                     {
                         if (slot.card != null)
                         {
-                            earlyEffectResolveTimer.SetGoal(0);
-                            if (!slot.isLocked)
-                            {
-                                earlyEffectResolveTimer.SetGoal(earlyResolveTime);
-                                effect.triggerEarlyEffect(slot.field.player, slot.field.player.opponent, slot, slot.card);
-                            }
-                            else
-                            {
-                                slot.isLocked = false;
-                            }
+                            earlyEffectResolveTimer.SetGoal(earlyResolveTime);
+                            effect.triggerEarlyEffect(slot.field.player, slot.field.player.opponent, slot, slot.card);
                         }
                     }
 
@@ -183,14 +175,14 @@ namespace tarot_card_battler.Game.GameLoop
                         if (slot.card != null)
                         {
                             effectResolveTimer.SetGoal(0);
-                            if (!slot.isLocked)
+                            if (slot.isLocked)
                             {
-                                effectResolveTimer.SetGoal(resolveTime);
-                                effect.triggerEffect(slot.field.player, slot.field.player.opponent, slot, slot.card);
+                                slot.isLocked = false;
                             }
                             else
                             {
-                                slot.isLocked = false;
+                                effectResolveTimer.SetGoal(resolveTime);
+                                effect.triggerEffect(slot.field.player, slot.field.player.opponent, slot, slot.card);
                             }
                         }
                     }

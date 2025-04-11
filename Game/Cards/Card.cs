@@ -78,36 +78,6 @@ namespace tarot_card_battler.Game.Cards
             }
         }
 
-        public virtual void TriggerEarlyEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot)
-        {
-            if (slot.number == 0)
-            {
-                pastEffect.triggerEarlyEffect(player, opponent, slot, this);
-                opponent.field.slots[slot.number].isLocked = false;
-        }
-            else if (slot.number == 1)
-            {
-                if (opponent.field.slots[slot.number].isLocked)
-                {
-                    // ANIMATION?
-                }
-                {
-                    presentEffect.triggerEarlyEffect(player, opponent, slot, this);
-                    opponent.field.slots[slot.number].isLocked = false;
-                }
-            }
-            else
-            {
-                if (opponent.field.slots[slot.number].isLocked)
-                {
-                    // ANIMATION?
-                }
-                {
-                    futureEffect.triggerEarlyEffect(player, opponent, slot, this);
-                    opponent.field.slots[slot.number].isLocked = false;
-                }
-            }
-        }
         public virtual Effect GetEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot)
         {
             if (slot.number == 0)
@@ -123,22 +93,7 @@ namespace tarot_card_battler.Game.Cards
                 return futureEffect;
             }
         }
-        public virtual void TriggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot)
-        {
-            if (slot.number == 0)
-            {
-                pastEffect.triggerEffect(player, opponent, slot, this);
-            }
-            else if (slot.number == 1)
-            {
-                presentEffect.triggerEffect(player, opponent, slot, this);
-            }
-            else
-            {
-                futureEffect.triggerEffect(player, opponent, slot, this);
-            }
-        }
-
+      
         public virtual bool IsInBounds(double x, double y)
         {
             int halfWidth = cardArt.Width / 2;
