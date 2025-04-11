@@ -79,6 +79,9 @@ namespace tarot_card_battler.Game
         public static Texture2D GameBackground;
         public static Texture2D MenuBackground;
 
+        // cursor
+        public static Texture2D Cursor;
+
         // candle
         public static Texture2D CandleBase;
         public static Texture2D CandleSegment;
@@ -144,6 +147,8 @@ namespace tarot_card_battler.Game
 
             GameBackground = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Board.png"));
             MenuBackground = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/MenuBG.png"));
+
+            Cursor = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Cursor.png"));
 
             CandleBase = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Candle/CandleBase.png"));
             CandleSegment = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Candle/CandleSegment.png"));
