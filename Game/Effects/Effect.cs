@@ -61,7 +61,7 @@ namespace tarot_card_battler.Game.Effects
             opponent.playerStats.countdown = 5;
         }
     }
-    
+
     public class BuffAdjacentSlot : Effect
     {
         public int slotBuffed;
@@ -101,7 +101,7 @@ namespace tarot_card_battler.Game.Effects
         {
             if (player.debugName == "player") Console.WriteLine($"Player debuffed slot {slotBuffed + 1}");
             FieldSlot buffedSlot = opponent.field.slots[slotBuffed];
-            buffedSlot.card.cardBuff = buff;
+            buffedSlot.card.cardBuff = buff - card.cardBuff;
         }
     }
 }

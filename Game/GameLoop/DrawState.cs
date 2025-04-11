@@ -14,8 +14,6 @@ namespace tarot_card_battler.Game.GameLoop
 
         public DrawState(Board board)
         {
-            board.players[0].playerStats.shield = 0;
-            board.players[1].playerStats.shield = 0;
             this.board = board;
         }
 
