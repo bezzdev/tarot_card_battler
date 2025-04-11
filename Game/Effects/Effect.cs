@@ -55,7 +55,10 @@ namespace tarot_card_battler.Game.Effects
         public BuffAdjacentSlot(int slot)
         {
             this.slotBuffed = slot;
-            tooltip = "Buffs card in the ";
+            string slotName = "past";
+            if(slot == 1) {slotName = "present";}
+            if(slot == 2) {slotName = "future";}
+            tooltip = $"Buffs card in the {slotName} slot";
         }
         public override void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
         {
