@@ -107,7 +107,7 @@ namespace tarot_card_battler.Game.Stats
                 y += spacing;
                 pos = new Vector2(x, y);
                 Raylib.DrawTextureEx(References.ShieldIcon, pos, 0f, 1f, Color.White);
-                Raylib.DrawText(strength.ToString(), x + 70, y + 5, 48, Color.White);
+                Raylib.DrawText(shield.ToString(), x + 70, y + 5, 48, Color.White);
 
                 y += spacing;
                 pos = new Vector2(x, y);

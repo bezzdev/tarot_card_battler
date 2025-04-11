@@ -116,9 +116,9 @@ namespace tarot_card_battler.Game.Cards
             });
             cards.Add(new Card("The_Tower", 16, References.The_Tower)
             {
-                pastEffect = new BlockOpponentEffect(),
+                pastEffect = new Nullify(),
                 presentEffect = new Damage(3),
-                futureEffect = new BlockOpponentEffect()
+                futureEffect = new Nullify()
             });
             cards.Add(new Card("The_Star", 17, References.The_Star)
             {

@@ -61,12 +61,7 @@ namespace tarot_card_battler.Game.Effects
             opponent.playerStats.countdown = 5;
         }
     }
-
-    public class BlockOpponentEffect : Effect
-    {
-
-    }
-
+    
     public class BuffAdjacentSlot : Effect
     {
         public int slotBuffed;

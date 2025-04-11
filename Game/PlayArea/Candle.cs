@@ -34,11 +34,6 @@ namespace tarot_card_battler.Game.PlayArea
             {
                 Raylib.DrawTexture(References.CandleTop, x, y - 9 * playerBoard.playerStats.health, Color.White);
             }
-
-            if (playerBoard.playerStats.shield != 0)
-            {
-                Raylib.DrawText(playerBoard.playerStats.shield.ToString(), x + 100, y, 48, Color.Gray);
-            }
         }
     }
 }
