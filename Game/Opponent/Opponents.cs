@@ -9,7 +9,7 @@ namespace tarot_card_battler.Game.Opponent
         public static OpponentData GetOpponentForLevel(int level)
         {
             OpponentData opponent = new OpponentData();
-            Texture2D cardBack = GetCardBack(level);
+            Texture2D cardBack = GetCardBack(Random.Shared.Next(0, 4));
 
             opponent.name = level.ToString();
             opponent.level = level;
