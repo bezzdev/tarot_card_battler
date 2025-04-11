@@ -21,6 +21,11 @@
             time = 0f;
         }
 
+        public void SetGoal(float duration)
+        {
+            this.goal = duration;
+        }
+
         public bool Completed()
         {
             return time >= goal;

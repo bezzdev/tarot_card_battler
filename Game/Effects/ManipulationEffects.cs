@@ -13,9 +13,11 @@ namespace tarot_card_battler.Game.Effects
         public ShuffleField()
         {
             tooltip = "Shuffles the Opponent's Field";
+            resolveDuration = 0f;
+            earlyResolveDuration = 1f;
         }
 
-        public override void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
+        public override void triggerEarlyEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
         {
             if (player.debugName == "player") Console.WriteLine($"Shuffled opponents field");
 
@@ -50,9 +52,11 @@ namespace tarot_card_battler.Game.Effects
         public SwapAboveWithRandomFromHand()
         {
             tooltip = "Swaps the above card with a random card from the opponents hand";
+            resolveDuration = 0f;
+            earlyResolveDuration = 1f;
         }
 
-        public override void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
+        public override void triggerEarlyEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
         {
             FieldSlot opponentSlot = opponent.field.slots[slot.number];
             Card opponentCard = opponentSlot.card;
@@ -103,9 +107,10 @@ namespace tarot_card_battler.Game.Effects
         public Nullify()
         {
             tooltip = "Blocks opposite cards effect";
+            resolveDuration = 0f;
+            earlyResolveDuration = 1f;
         }
-
-        public override void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
+        public override void triggerEarlyEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
         {
             if (player.debugName == "player") Console.WriteLine($"Player nullified {slot.debugName}");
             opponent.field.slots[slot.number].isLocked = true;

@@ -95,6 +95,7 @@ namespace tarot_card_battler.Game
         public static Texture2D GoldIcon;
 
         // effects
+        public static Texture2D NegateEffect;
         public static Texture2D OpponentShadow;
 
         public static void Load()
@@ -160,7 +161,8 @@ namespace tarot_card_battler.Game
             WeaknessIcon = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Weakness.png"));
             GoldIcon = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Gold.png"));
 
-            OpponentShadow = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Effects/OpponentShadow.png"));
+            NegateEffect = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Effects/negate_effect.png"));
+            OpponentShadow = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Effects/opponent_shadow.png"));
 
             CardList.cards = CardList.GetAllCards();
         }

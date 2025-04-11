@@ -5,17 +5,18 @@ using tarot_card_battler.Util;
 
 namespace tarot_card_battler.Game.Animations
 {
-    public class CardActivateAnimation : Animation
+    public class NoEffectAnimation : Animation
     {
         public static int defaultLayer = -1;
         public Delay deathTimer;
+        public Color color;
 
-        public CardActivateAnimation(double x, double y)
+        public NoEffectAnimation(double x, double y, Color col)
         {
             this.position.x = x;
             this.position.y = y;
+            this.color = col;
             deathTimer = new Delay(duration);
-            AudioReferences.PlaySound(AudioReferences.cardEffectActivate);
         }
 
         public override void Update()
@@ -28,23 +29,11 @@ namespace tarot_card_battler.Game.Animations
             }
         }
 
-        private float duration = 0.5f;
+        private float duration = 0.2f;
 
         public override void Render()
         {
-            float time = deathTimer.time;
-            float percent = time / duration;
-
-            float amp = 0f;
-
-            float growDuration = 0.5f;
-            if (percent < growDuration)
-            {
-                amp = Math.Max(0, MathF.Sin(time / growDuration));
-            }
-
-            float growScale = 0.2f;
-            float scale = 1f + (amp * growScale);
+            float scale = 1f;
 
             var screen = Coordinates.WorldToScreen((int)position.x, (int)position.y);
 
@@ -57,7 +46,7 @@ namespace tarot_card_battler.Game.Animations
             int x = screen.x - (int)(width / 2);
             int y = screen.y - (int)(height / 2);
 
-            Raylib.DrawRectangle((int)x, (int)y, (int)width, (int)height, new Color(1f, 0.8f, 0f, 0.6f));
+            Raylib.DrawRectangle((int)x, (int)y, (int)width, (int)height, color);
         }
     }
 }

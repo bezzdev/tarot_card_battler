@@ -5,12 +5,12 @@ using tarot_card_battler.Util;
 
 namespace tarot_card_battler.Game.Animations
 {
-    public class CardActivateAnimation : Animation
+    public class EarlyCardActivateAnimation : Animation
     {
         public static int defaultLayer = -1;
         public Delay deathTimer;
 
-        public CardActivateAnimation(double x, double y)
+        public EarlyCardActivateAnimation(double x, double y)
         {
             this.position.x = x;
             this.position.y = y;
@@ -28,7 +28,7 @@ namespace tarot_card_battler.Game.Animations
             }
         }
 
-        private float duration = 0.5f;
+        private float duration = 1f;
 
         public override void Render()
         {
@@ -37,7 +37,7 @@ namespace tarot_card_battler.Game.Animations
 
             float amp = 0f;
 
-            float growDuration = 0.5f;
+            float growDuration = 0.2f;
             if (percent < growDuration)
             {
                 amp = Math.Max(0, MathF.Sin(time / growDuration));
@@ -57,7 +57,7 @@ namespace tarot_card_battler.Game.Animations
             int x = screen.x - (int)(width / 2);
             int y = screen.y - (int)(height / 2);
 
-            Raylib.DrawRectangle((int)x, (int)y, (int)width, (int)height, new Color(1f, 0.8f, 0f, 0.6f));
+            Raylib.DrawRectangle((int)x, (int)y, (int)width, (int)height, new Color(1f, 0f, 0f, 0.6f));
         }
     }
 }

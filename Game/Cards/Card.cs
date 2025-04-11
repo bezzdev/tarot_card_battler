@@ -61,68 +61,93 @@ namespace tarot_card_battler.Game.Cards
             var screen = Coordinates.WorldToScreen((int)position.x, (int)position.y);
             float rotation = 0f;
             float scale = 1f;
-            
+
             float width = cardArt.Width * scale;
             float height = cardArt.Height * scale;
 
             int x = screen.x - (int)(width / 2);
-            int y = screen.y - (int)(height/ 2);
-            
+            int y = screen.y - (int)(height / 2);
+
             if (faceup)
             {
                 Raylib.DrawTextureEx(cardArt, new System.Numerics.Vector2(x, y), rotation, scale, Color.White);
-            } else
+            }
+            else
             {
                 Raylib.DrawTextureEx(cardBack, new System.Numerics.Vector2(x, y), rotation, scale, Color.White);
+            }
+        }
+
+        public virtual void TriggerEarlyEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot)
+        {
+            if (slot.number == 0)
+            {
+                pastEffect.triggerEarlyEffect(player, opponent, slot, this);
+                opponent.field.slots[slot.number].isLocked = false;
+        }
+            else if (slot.number == 1)
+            {
+                if (opponent.field.slots[slot.number].isLocked)
+                {
+                    // ANIMATION?
+                }
+                {
+                    presentEffect.triggerEarlyEffect(player, opponent, slot, this);
+                    opponent.field.slots[slot.number].isLocked = false;
+                }
+            }
+            else
+            {
+                if (opponent.field.slots[slot.number].isLocked)
+                {
+                    // ANIMATION?
+                }
+                {
+                    futureEffect.triggerEarlyEffect(player, opponent, slot, this);
+                    opponent.field.slots[slot.number].isLocked = false;
+                }
+            }
+        }
+        public virtual Effect GetEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot)
+        {
+            if (slot.number == 0)
+            {
+                return pastEffect;
+            }
+            else if (slot.number == 1)
+            {
+                return presentEffect;
+            }
+            else
+            {
+                return futureEffect;
             }
         }
         public virtual void TriggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot)
         {
             if (slot.number == 0)
-                this.TriggerPastEffect(slot.field.player, slot.field.player.opponent, slot, this);
+            {
+                pastEffect.triggerEffect(player, opponent, slot, this);
+            }
             else if (slot.number == 1)
-                this.TriggerPresentEffect(slot.field.player, slot.field.player.opponent, slot, this);
+            {
+                presentEffect.triggerEffect(player, opponent, slot, this);
+            }
             else
-                this.TriggerFutureEffect(slot.field.player, slot.field.player.opponent, slot, this);
-        }
-
-        public virtual void TriggerPastEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
-        {
-            if(opponent.field.slots[slot.number].isLocked){
-                // ANIMATION?
-            } {
-                pastEffect.triggerEffect(player, opponent, slot, card);
-                opponent.field.slots[slot.number].isLocked = false;
+            {
+                futureEffect.triggerEffect(player, opponent, slot, this);
             }
         }
 
-        public virtual void TriggerPresentEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
-        {
-            if(opponent.field.slots[slot.number].isLocked){
-                // ANIMATION?
-            } {
-                presentEffect.triggerEffect(player, opponent, slot, card);
-                opponent.field.slots[slot.number].isLocked = false;
-            }
-        }
-
-        public virtual void TriggerFutureEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
-        {
-            if(opponent.field.slots[slot.number].isLocked){
-                // ANIMATION?
-            } {
-                futureEffect.triggerEffect(player, opponent, slot, card);
-                opponent.field.slots[slot.number].isLocked = false;
-            }
-        }
         public virtual bool IsInBounds(double x, double y)
         {
             int halfWidth = cardArt.Width / 2;
             int halfHeight = cardArt.Height / 2;
-            if (x > position.x - halfWidth && x < position.x + halfWidth && y > position.y - halfHeight && y < position.y + halfHeight){
-                    return true;
+            if (x > position.x - halfWidth && x < position.x + halfWidth && y > position.y - halfHeight && y < position.y + halfHeight)
+            {
+                return true;
             }
-            return false; 
+            return false;
         }
     }
 }
