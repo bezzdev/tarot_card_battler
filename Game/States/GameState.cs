@@ -47,7 +47,7 @@ namespace tarot_card_battler.Game.States
 
             opponent.playerStats.position.x = 940; 
             opponent.playerStats.position.y = 720;
-            opponent.playerStats.renderStats = false;
+            opponent.playerStats.renderStats = true;
 
             opponent.candle.position.x = 1060;
             opponent.candle.position.y = 580;
