@@ -1,4 +1,6 @@
-﻿using tarot_card_battler.Game.Cards;
+﻿using Raylib_cs;
+using System.Reflection.Emit;
+using tarot_card_battler.Game.Cards;
 
 namespace tarot_card_battler.Game.Opponent
 {
@@ -7,6 +9,8 @@ namespace tarot_card_battler.Game.Opponent
         public static OpponentData GetOpponentForLevel(int level)
         {
             OpponentData opponent = new OpponentData();
+            Texture2D cardBack = GetCardBack(level);
+
             opponent.name = level.ToString();
             opponent.level = level;
             opponent.health = 20;
@@ -38,9 +42,33 @@ namespace tarot_card_battler.Game.Opponent
                 int offset = i % (cardPoolEnd - cardPoolStart);
                 int choice = cardPoolStart + offset;
 
-                opponent.cards.Add(CardList.GetCard(choice));
+                Card card = CardList.GetCard(choice);
+                card.cardBack = cardBack;
+                opponent.cards.Add(card);
             }
             return opponent;
+        }
+
+        public static Texture2D GetCardBack(int level)
+        {
+            int n = (level + 1) % 4;
+            if (n == 0)
+            {
+                return References.Back_Plain;
+            }
+            else if (n == 1)
+            {
+                return References.Back_Text;
+            }
+            else if (n == 2)
+            {
+                return References.Back_Marbled;
+            }
+            else if (n == 3)
+            {
+                return References.Back_Eye_Sigil;
+            }
+            return References.Back_Plain;
         }
     }
 }
