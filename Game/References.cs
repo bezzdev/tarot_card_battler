@@ -60,6 +60,7 @@ namespace tarot_card_battler.Game
         public static Texture2D Back_Text;
         public static Texture2D Back_Marbled;
         public static Texture2D Back_Eye_Sigil;
+        public static Texture2D Back_Eye_Sigil_Holo;
 
         // buttons
         public static Texture2D CastButton;
@@ -126,6 +127,7 @@ namespace tarot_card_battler.Game
             Back_Text = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Cardbacks/Back_Text.png"));
             Back_Marbled = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Cardbacks/Back_Marbled.png"));
             Back_Eye_Sigil = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Cardbacks/Back_Eye_Sigil.png"));
+            Back_Eye_Sigil_Holo = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Cardbacks/Back_Eye_Sigil_Holo.png"));
 
             CastButton = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Button_Cast_Default.png"));
             HoverButton = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Button_Cast_Hover.png"));
