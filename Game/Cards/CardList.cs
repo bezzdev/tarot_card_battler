@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using tarot_card_battler.Game.Effects;
+using tarot_card_battler.Game.PlayArea;
 
 namespace tarot_card_battler.Game.Cards
 {
@@ -48,6 +49,7 @@ namespace tarot_card_battler.Game.Cards
             });
             cards.Add(new Card("The_Lovers", 06, References.The_Lovers)
             {
+                pastEffect = new BuffAdjacentSlot(1),
                 presentEffect = new Heal(3),
             });
             cards.Add(new Card("The_Chariot", 07, References.The_Chariot)

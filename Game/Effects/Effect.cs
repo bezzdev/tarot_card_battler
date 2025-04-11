@@ -48,4 +48,21 @@ namespace tarot_card_battler.Game.Effects
     {
 
     }
+
+    public class BuffAdjacentSlot : Effect
+    {
+        public int slotBuffed;
+        public BuffAdjacentSlot(int slot)
+        {
+            this.slotBuffed = slot;
+            tooltip = "Buffs card in the ";
+        }
+        public override void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
+        {
+            if (player.debugName == "player") Console.WriteLine($"Player buffed slot {slotBuffed + 1}");
+
+            FieldSlot buffedSlot = player.field.slots[slotBuffed];
+            buffedSlot.card.isBuffed = true;
+        }
+    }
 }

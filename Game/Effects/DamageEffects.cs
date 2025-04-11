@@ -20,8 +20,9 @@ namespace tarot_card_battler.Game.Effects
 
         public override void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
         {
-            if (player.debugName == "player") Console.WriteLine($"Did {damage + player.playerStats.strength} damage to {opponent.debugName} (strength: {player.playerStats.strength})(weakness: {opponent.playerStats.weakness})");
-            opponent.playerStats.TakeDamage(damage + player.playerStats.strength - player.playerStats.weakness);
+            int totalDamage = damage + player.playerStats.strength - player.playerStats.weakness + (card.isBuffed ? 2 : 0);
+            if (player.debugName == "player") Console.WriteLine($"Did {totalDamage} damage to {opponent.debugName} (strength: {player.playerStats.strength})(weakness: {opponent.playerStats.weakness})");
+            opponent.playerStats.TakeDamage(totalDamage);
         }
     }
 
@@ -38,7 +39,7 @@ namespace tarot_card_battler.Game.Effects
 
         public override void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
         {
-            int damage = Random.Shared.Next(min, max + 1);
+            int damage = Random.Shared.Next(min, max + 1) + (card.isBuffed ? 2 : 0);
 
             if (player.debugName == "player") Console.WriteLine($"Did random {damage} damage to {opponent.debugName}");
             opponent.playerStats.TakeDamage(damage);
@@ -57,8 +58,8 @@ namespace tarot_card_battler.Game.Effects
 
         public override void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
         {
-            if (player.debugName == "player") Console.WriteLine($"Healed {heal} damage to {player.debugName}");
-            player.playerStats.Heal(heal);
+            if (player.debugName == "player") Console.WriteLine($"Healed {heal + (card.isBuffed ? 2 : 0)} damage to {player.debugName}");
+            player.playerStats.Heal(heal + (card.isBuffed ? 2 : 0));
         }
     }
 
@@ -76,7 +77,7 @@ namespace tarot_card_battler.Game.Effects
 
         public override void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
         {
-            int heal = Random.Shared.Next(min, max + 1);
+            int heal = Random.Shared.Next(min, max + 1) + (card.isBuffed ? 2 : 0);
 
             if (player.debugName == "player") Console.WriteLine($"Did random {heal} damage to {opponent.debugName}");
             player.playerStats.Heal(heal);
@@ -94,7 +95,7 @@ namespace tarot_card_battler.Game.Effects
         public override void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
         {
             if (player.debugName == "player") Console.WriteLine($"Did random {player.playerStats.strength} damage to {opponent.debugName}");
-            player.playerStats.Heal(player.playerStats.strength);
+            player.playerStats.Heal(player.playerStats.strength + (card.isBuffed ? 1 : 0));
         }
     }
 
@@ -110,7 +111,7 @@ namespace tarot_card_battler.Game.Effects
         public override void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
         {
             if (player.debugName == "player") Console.WriteLine($"Player added {shield} shield");
-            player.playerStats.Shield(shield);
+            player.playerStats.Shield(shield + (card.isBuffed ? 1 : 0));
         }
     }
 
@@ -124,7 +125,7 @@ namespace tarot_card_battler.Game.Effects
         public override void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
         {
             if (player.debugName == "player") Console.WriteLine($"Player added 1 strength");
-            player.playerStats.AddStrength();
+            player.playerStats.AddStrength(1 + (card.isBuffed ? 2 : 0));
         }
     }
 
@@ -137,7 +138,7 @@ namespace tarot_card_battler.Game.Effects
         public override void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
         {
             if (player.debugName == "player") Console.WriteLine($"Player added 1 weakness to opponent");
-            opponent.playerStats.AddWeakness();
+            opponent.playerStats.AddWeakness(1 + (card.isBuffed ? 2 : 0));
         }
     }
 

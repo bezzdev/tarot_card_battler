@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using Raylib_cs;
@@ -67,14 +68,14 @@ namespace tarot_card_battler.Game.Stats
             this.shield += shield;
         }
 
-        public void AddStrength()
+        public void AddStrength(int strength)
         {
-            this.strength += 1;
+            this.strength += strength;
         }
 
-        public void AddWeakness()
+        public void AddWeakness(int weakness)
         {
-            this.weakness += 1;
+            this.weakness += weakness;
         }
 
         public void AddGold(int gold)
