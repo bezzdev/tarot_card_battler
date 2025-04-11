@@ -142,4 +142,17 @@ namespace tarot_card_battler.Game.Effects
         }
     }
 
+    public class ShieldDamage : Effect
+    {
+         public ShieldDamage()
+        {
+            this.tooltip = $"Deals damage equal to shield ";
+        }
+        public override void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
+        {
+            if (player.debugName == "player") Console.WriteLine($"Player did {player.playerStats.shield} damage");
+            opponent.playerStats.TakeDamage(player.playerStats.shield);
+        }
+    }
+
 }

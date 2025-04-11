@@ -29,6 +29,23 @@ namespace tarot_card_battler.Game.Effects
         }
     }
 
+    public class StrengthDeathCountdown : Effect
+    {
+        public StrengthDeathCountdown()
+        {
+            tooltip = "Give yourself 2 strength, in 3 turns you die";
+        }
+
+        public override void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
+        {
+            if (player.debugName == "player") Console.WriteLine($"Player played death present");
+            player.playerStats.AddStrength(2);
+            player.playerStats.deathCountdown = true;
+            player.playerStats.countdown = 2;
+        }
+    }
+
+
     public class DeathCountdown : Effect
     {
         public DeathCountdown()
@@ -41,6 +58,7 @@ namespace tarot_card_battler.Game.Effects
             if (player.debugName == "player") Console.WriteLine($"Player played death");
             opponent.playerStats.Shield(99);
             opponent.playerStats.deathCountdown = true;
+            opponent.playerStats.countdown = 5;
         }
     }
 

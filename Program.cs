@@ -17,6 +17,8 @@ Raylib.SetExitKey(0);
 
 Raylib.SetTargetFPS(60);
 
+Raylib.HideCursor();
+
 Raylib.InitAudioDevice();
 
 References.Load();
