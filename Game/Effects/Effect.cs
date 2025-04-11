@@ -52,20 +52,43 @@ namespace tarot_card_battler.Game.Effects
     public class BuffAdjacentSlot : Effect
     {
         public int slotBuffed;
-        public BuffAdjacentSlot(int slot)
+        public int buff;
+        public BuffAdjacentSlot(int slot, int buff)
         {
             this.slotBuffed = slot;
+            this.buff = buff;
             string slotName = "past";
             if(slot == 1) {slotName = "present";}
             if(slot == 2) {slotName = "future";}
-            tooltip = $"Buffs card in the {slotName} slot";
+            tooltip = $"Buffs card in the {slotName} slot by {buff}";
         }
         public override void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
         {
             if (player.debugName == "player") Console.WriteLine($"Player buffed slot {slotBuffed + 1}");
 
             FieldSlot buffedSlot = player.field.slots[slotBuffed];
-            buffedSlot.card.isBuffed = true;
+            buffedSlot.card.cardBuff = buff;
+        }
+    }
+
+    public class DebuffOppositeSlot : Effect
+    {
+        public int slotBuffed;
+        public int buff;
+        public DebuffOppositeSlot(int slot, int buff)
+        {
+            this.slotBuffed = slot;
+            this.buff = buff;
+            string slotName = "past";
+            if(slot == 1) {slotName = "present";}
+            if(slot == 2) {slotName = "future";}
+            tooltip = $"Debuffs opposite {slotName} slot by {buff}";
+        }
+        public override void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
+        {
+            if (player.debugName == "player") Console.WriteLine($"Player debuffed slot {slotBuffed + 1}");
+            FieldSlot buffedSlot = opponent.field.slots[slotBuffed];
+            buffedSlot.card.cardBuff = buff;
         }
     }
 }

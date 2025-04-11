@@ -24,7 +24,7 @@ namespace tarot_card_battler.Game.Cards
         public Mover mover;
         public PlayerBoard owner;
         public int slotIndex = -1;
-        public bool isBuffed = false;
+        public int cardBuff = 0;
 
         public Card(string name, int number, Texture2D cardArt)
         {

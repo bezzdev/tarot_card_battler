@@ -49,12 +49,14 @@ namespace tarot_card_battler.Game.Cards
             });
             cards.Add(new Card("The_Lovers", 06, References.The_Lovers)
             {
-                pastEffect = new BuffAdjacentSlot(1),
+                pastEffect = new BuffAdjacentSlot(1, 2),
                 presentEffect = new Heal(3),
             });
             cards.Add(new Card("The_Chariot", 07, References.The_Chariot)
             {
+                pastEffect = new DebuffOppositeSlot(1, 2),
                 presentEffect = new Heal(3),
+                futureEffect = new DebuffOppositeSlot(2, 2)
             });
             cards.Add(new Card("Strength", 08, References.Strength)
             {
