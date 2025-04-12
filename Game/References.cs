@@ -97,6 +97,12 @@ namespace tarot_card_battler.Game
         // effects
         public static Texture2D NegateEffect;
         public static Texture2D OpponentShadow;
+        public static Texture2D CardBurnEffect1;
+        public static Texture2D CardBurnEffect2;
+        public static Texture2D CardBurnEffect3;
+        public static Texture2D CardBurnEffect4;
+        public static Texture2D CardBurnEffect5;
+        public static Texture2D CardBurnEffect6;
 
         public static void Load()
         {
@@ -163,6 +169,12 @@ namespace tarot_card_battler.Game
 
             NegateEffect = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Effects/negate_effect.png"));
             OpponentShadow = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Effects/opponent_shadow.png"));
+            CardBurnEffect1 = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Effects/burn_effect_1.png"));
+            CardBurnEffect2 = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Effects/burn_effect_2.png"));
+            CardBurnEffect3 = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Effects/burn_effect_3.png"));
+            CardBurnEffect4 = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Effects/burn_effect_4.png"));
+            CardBurnEffect5 = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Effects/burn_effect_5.png"));
+            CardBurnEffect6 = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Effects/burn_effect_6.png"));
 
             CardList.cards = CardList.GetAllCards();
         }

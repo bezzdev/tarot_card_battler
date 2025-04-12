@@ -13,6 +13,7 @@ namespace tarot_card_battler.Game.Sounds
         public static Sound opponentDeath;
         public static Sound lightCandle;
         public static Sound negated;
+        public static Sound cardBurn;
 
         public static Sound music_1;
         public static Sound music_2;
@@ -28,6 +29,9 @@ namespace tarot_card_battler.Game.Sounds
             Raylib.SetSoundVolume(cardEffectActivate, 0.1f);
             Raylib.SetSoundPitch(cardEffectActivate, 0.6f);
             negated = Raylib.LoadSound("Game/Res/Sounds/negated.wav");
+            cardBurn = Raylib.LoadSound("Game/Res/Sounds/card_burn.wav");
+            Raylib.SetSoundVolume(cardBurn, 0.2f);
+            Raylib.SetSoundPitch(cardBurn, 0.8f);
 
             opponentDeath = Raylib.LoadSound("Game/Res/Sounds/opponent_death.wav");
             Raylib.SetSoundVolume(opponentDeath, 0.1f);
