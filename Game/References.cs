@@ -74,6 +74,8 @@ namespace tarot_card_battler.Game
         public static Texture2D CreditsButtonHover;
         public static Texture2D QuitButton;
         public static Texture2D QuitButtonHover;
+        public static Texture2D BackButton;
+        public static Texture2D BackButtonHover;
 
         // menus
         public static Texture2D GameBackground;
@@ -151,6 +153,8 @@ namespace tarot_card_battler.Game
             CreditsButtonHover = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Menu/Button_Credits_Hover.png"));
             QuitButton = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Menu/Button_Quit_Default.png"));
             QuitButtonHover = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Menu/Button_Quit_Hover.png"));
+            BackButton = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Menu/Button_Back_Default.png"));
+            BackButtonHover = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Menu/Button_Back_Hover.png"));
 
             GameBackground = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Board.png"));
             MenuBackground = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/MenuBG.png"));

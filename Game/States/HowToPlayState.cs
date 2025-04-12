@@ -9,8 +9,8 @@ namespace tarot_card_battler.Game.States
 
         public HowToPlayState()
         {
-            backButton.baseTexture = References.StartButton;
-            backButton.hoverTexture = References.StartButtonHover;
+            backButton.baseTexture = References.BackButton;
+            backButton.hoverTexture = References.BackButtonHover;
             backButton.position = new Core.Coord(180, 40);
         }
 
