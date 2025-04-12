@@ -154,6 +154,12 @@ namespace tarot_card_battler.Game.GameLoop
                             {
                                 if (hasEffect)
                                 {
+                                    
+                                    if(effect is DamageEffect){
+                                        EntityLayerManager.AddEntity(new IndicatorAnimation(slot.card.position.x, slot.card.position.y, (effect as DamageEffect).damage, false), IndicatorAnimation.defaultLayer);
+                                    } else if (effect is HealEffect){
+                                        EntityLayerManager.AddEntity(new IndicatorAnimation(slot.card.position.x, slot.card.position.y, (effect as HealEffect).heal, true), IndicatorAnimation.defaultLayer);
+                                    }
                                     EntityLayerManager.AddEntity(new CardActivateAnimation(slot.card.position.x, slot.card.position.y), CardActivateAnimation.defaultLayer);
                                 }
                                 else

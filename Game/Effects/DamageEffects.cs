@@ -8,10 +8,17 @@ using tarot_card_battler.Game.PlayArea;
 
 namespace tarot_card_battler.Game.Effects
 {
-    public class Damage : Effect
-    {
-        public int damage;
 
+    public class DamageEffect : Effect {
+        public int damage;
+    }
+
+    public class HealEffect : Effect {
+        public int heal;
+    }
+
+    public class Damage : DamageEffect
+    {
         public Damage(int damage)
         {
             tooltip = $"Does {damage} damage";
@@ -26,7 +33,7 @@ namespace tarot_card_battler.Game.Effects
         }
     }
 
-    public class RandomDamage : Effect
+    public class RandomDamage : DamageEffect
     {
         private int min;
         private int max;
@@ -40,16 +47,15 @@ namespace tarot_card_battler.Game.Effects
         public override void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
         {
             int damage = Random.Shared.Next(min, max + 1) + card.cardBuff;
+            this.damage = damage;
 
             if (player.debugName == "player") Console.WriteLine($"Did random {damage} damage to {opponent.debugName}");
             opponent.playerStats.TakeDamage(damage);
         }
     }
 
-    public class Heal : Effect
+    public class Heal : HealEffect
     {
-        public int heal;
-
         public Heal(int heal)
         {
             tooltip = $"Heals {heal} damage";
@@ -63,7 +69,7 @@ namespace tarot_card_battler.Game.Effects
         }
     }
 
-    public class RandomHeal : Effect
+    public class RandomHeal : HealEffect
     {
         private int min;
         private int max;
@@ -78,22 +84,23 @@ namespace tarot_card_battler.Game.Effects
         public override void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
         {
             int heal = Random.Shared.Next(min, max + 1) + card.cardBuff;
+            this.heal = heal;
 
             if (player.debugName == "player") Console.WriteLine($"Did random {heal} damage to {opponent.debugName}");
             player.playerStats.Heal(heal);
         }
     }
 
-    public class StrengthHeal : Effect
+    public class StrengthHeal : HealEffect
     {
         public StrengthHeal()
         {
-
             tooltip = $"Heals amount equal to your strength";
         }
 
         public override void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
         {
+            this.heal = player.playerStats.strength;
             if (player.debugName == "player") Console.WriteLine($"Did random {player.playerStats.strength} damage to {opponent.debugName}");
             player.playerStats.Heal(player.playerStats.strength + card.cardBuff);
         }
@@ -142,7 +149,7 @@ namespace tarot_card_battler.Game.Effects
         }
     }
 
-    public class ShieldDamage : Effect
+    public class ShieldDamage : DamageEffect
     {
          public ShieldDamage()
         {
@@ -150,6 +157,7 @@ namespace tarot_card_battler.Game.Effects
         }
         public override void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
         {
+            this.damage = player.playerStats.shield;
             if (player.debugName == "player") Console.WriteLine($"Player did {player.playerStats.shield} damage");
             opponent.playerStats.TakeDamage(player.playerStats.shield);
         }
