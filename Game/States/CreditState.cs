@@ -7,8 +7,8 @@ namespace tarot_card_battler.Game.States
         private Button backButton = new Button();
 
         public CreditState(){
-            backButton.baseTexture = References.StartButton;
-            backButton.hoverTexture = References.StartButtonHover;
+            backButton.baseTexture = References.BackButton;
+            backButton.hoverTexture = References.BackButtonHover;
             backButton.position = new Core.Coord(180, 40);
         }
 
