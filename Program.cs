@@ -52,6 +52,10 @@ while (!Raylib.WindowShouldClose())
 
     gameStateMachine.Render();
 
+    int x = Raylib.GetMouseX();
+    int y = Raylib.GetMouseY();
+    Raylib.DrawTexture(References.Cursor, x, y, Color.White);
+
     Raylib.EndDrawing();
 }
 

@@ -1,7 +1,4 @@
-﻿using Raylib_cs;
-using tarot_card_battler.Game;
-
-namespace tarot_card_battler.Core.Statemachines
+﻿namespace tarot_card_battler.Core.Statemachines
 {
     public class StateMachine
     {
@@ -33,10 +30,6 @@ namespace tarot_card_battler.Core.Statemachines
             {
                 current_state.Render();
             }
-            int x = Raylib.GetMouseX();
-            int y = Raylib.GetMouseY();
-
-            Raylib.DrawTexture(References.Cursor, x, y, Color.White);
         }
 
         public void SetState(State state)
