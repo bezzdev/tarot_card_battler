@@ -13,6 +13,7 @@ namespace tarot_card_battler.Game
 {
     public static class References
     {
+        public static bool exit;
         public static int window_width = 1200;
         public static int window_height = 800;
 

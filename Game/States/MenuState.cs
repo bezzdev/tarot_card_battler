@@ -69,13 +69,13 @@ namespace tarot_card_battler.Game.States
                 else if (quitButton.IsInBounds(x, y))
                 {
                     quitButton.Click();
-                    Raylib.CloseWindow();
+                    References.exit = true;
                 }
             } else if (Raylib.IsKeyDown(KeyboardKey.Space)){
                 stateMachine.SetState(new GameState());
             } else if (Raylib.IsKeyPressed(KeyboardKey.Escape))
             {
-                Raylib.CloseWindow();
+                References.exit = true;
             }
         }
 

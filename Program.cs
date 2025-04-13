@@ -10,7 +10,11 @@ References.window_width = 1200;
 References.window_height = 800;
 
 Raylib.SetConfigFlags(ConfigFlags.Msaa4xHint);
-// Raylib.SetConfigFlags(ConfigFlags.ResizableWindow);
+
+#if RELEASE
+    Raylib.SetTraceLogLevel(TraceLogLevel.None);
+#endif
+
 Raylib.InitWindow(References.window_width, References.window_height, "Tarot Battler");
 Raylib.SetConfigFlags(ConfigFlags.MaximizedWindow);
 Raylib.SetExitKey(0);
@@ -27,7 +31,7 @@ AudioReferences.Load();
 StateMachine gameStateMachine = new StateMachine(new MenuState());
 
 // game loop
-while (!Raylib.WindowShouldClose())
+while (!Raylib.WindowShouldClose() && !References.exit)
 {
     float delta = Raylib.GetFrameTime();
 
@@ -47,16 +51,19 @@ while (!Raylib.WindowShouldClose())
     DebugTools.Update();
 #endif
 
-    Raylib.BeginDrawing();
-    Raylib.ClearBackground(Color.Black);
+    if (!References.exit)
+    {
+        Raylib.BeginDrawing();
+        Raylib.ClearBackground(Color.Black);
 
-    gameStateMachine.Render();
+        gameStateMachine.Render();
 
-    int x = Raylib.GetMouseX();
-    int y = Raylib.GetMouseY();
-    Raylib.DrawTexture(References.Cursor, x, y, Color.White);
+        int x = Raylib.GetMouseX();
+        int y = Raylib.GetMouseY();
+        Raylib.DrawTexture(References.Cursor, x, y, Color.White);
 
-    Raylib.EndDrawing();
+        Raylib.EndDrawing();
+    }
 }
 
 Raylib.CloseAudioDevice();
