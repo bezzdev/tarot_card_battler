@@ -7,7 +7,6 @@ namespace tarot_card_battler.Util
     {
         public static void RenderLines(string text, int fontSize, Color textColor, int x, int y, int maxWidth)
         {
-            int widthPerCharacter = 10;
             List<string> words = text.Split(" ").ToList();
 
             List<string> lines = new List<string>();
@@ -19,7 +18,8 @@ namespace tarot_card_battler.Util
                 words.RemoveAt(0);
 
                 string newLine = line == "" ? word : line + " " + word;
-                if (newLine.Length * widthPerCharacter > maxWidth)
+                int width = Raylib.MeasureText(newLine, fontSize);
+                if (width > maxWidth)
                 {
                     lines.Add(line);
                     line = word;

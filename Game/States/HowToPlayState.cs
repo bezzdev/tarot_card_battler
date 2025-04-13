@@ -36,21 +36,21 @@ namespace tarot_card_battler.Game.States
                 new TutorialPageData()
                 {
                     image = References.TutorialImage3,
-                    textWidth = 600,
+                    textWidth = 700,
                     text = "Each card has a different effect depending on the position they are in.",
                     imageScale = 0.7f
                 },
                 new TutorialPageData()
                 {
                     image = References.TutorialImage4,
-                    textWidth = 600,
+                    textWidth = 700,
                     text = "Keep an eye on the player stats. The candle represents the health of each player.",
                     imageScale = 1.5f
                 },
                 new TutorialPageData()
                 {
                     image = References.TutorialImage5,
-                    textWidth = 400,
+                    textWidth = 600,
                     text = "Once a player's candle goes out, they lose.",
                     imageScale = 1.5f
                 }
@@ -105,13 +105,13 @@ namespace tarot_card_battler.Game.States
             int imageWidth = (int)(image.Width * scale);
             int imageHeight = (int)(image.Height * scale);
             int imageX = screenX - (imageWidth / 2);
-            int imageY = screenY - (imageHeight / 2);
+            int imageY = screenY - (imageHeight / 2) - 40;
             Raylib.DrawTextureEx(image, new System.Numerics.Vector2(imageX, imageY), 0f, scale, Color.White);
 
             int textWidth = pages[page].textWidth;
             int textX = screenX - (textWidth / 2);
-            int textY = screenY + (imageHeight / 2) + 20;
-            TextRendering.RenderLines(text, 20, Color.White, textX, textY, textWidth);
+            int textY = screenY + (imageHeight / 2) - 20;
+            TextRendering.RenderLines(text, 40, Color.White, textX, textY, textWidth);
         }
     }
 
