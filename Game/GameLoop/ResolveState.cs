@@ -46,27 +46,6 @@ namespace tarot_card_battler.Game.GameLoop
             effectSlots.Add(board.players[1].field.future);
             earlyEffectSlots.AddRange(effectSlots);
 
-            // death countdown
-            if (board.player.playerStats.deathCountdown == true)
-            {
-                board.player.playerStats.countdown -= 1;
-                Console.WriteLine($"Player countdown is {board.player.playerStats.countdown}");
-            }
-            else if (board.players[1].playerStats.deathCountdown == true)
-            {
-                board.players[1].playerStats.countdown -= 1;
-                Console.WriteLine($"Opponent countdown is {board.players[0].playerStats.countdown}");
-            }
-
-            if (board.player.playerStats.countdown == 0)
-            {
-                board.player.playerStats.health = 0;
-            }
-            else if (board.players[1].playerStats.countdown == 0)
-            {
-                board.players[1].playerStats.health = 0;
-            }
-
             // check game state
             CheckWinner();
         }
@@ -225,11 +204,16 @@ namespace tarot_card_battler.Game.GameLoop
 
                 if (endTimer.CompletedOnce())
                 {
-                    // player game over
-                    if (board.player.playerStats.health == 0)
+
+                    if (board.player.playerStats.countdown == 0)
                     {
-                        stateMachine.SetState(new GameOverState(board));
+                        board.player.playerStats.health = 0;
                     }
+                    else if (board.players[1].playerStats.countdown == 0)
+                    {
+                        board.players[1].playerStats.health = 0;
+                    }
+
                     if(!CheckWinner())
                     {
                         stateMachine.SetState(new DiscardState(board, new DrawState(board)));

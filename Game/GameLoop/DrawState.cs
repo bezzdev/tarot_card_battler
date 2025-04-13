@@ -15,7 +15,20 @@ namespace tarot_card_battler.Game.GameLoop
         {
             this.board = board;
         }
-
+        public override void OnEnter()
+        {
+            // death countdown
+            if (board.player.playerStats.deathCountdown == true)
+            {
+                board.player.playerStats.countdown -= 1;
+                Console.WriteLine($"Player countdown is {board.player.playerStats.countdown}");
+            }
+            else if (board.players[1].playerStats.deathCountdown == true)
+            {
+                board.players[1].playerStats.countdown -= 1;
+                Console.WriteLine($"Opponent countdown is {board.players[0].playerStats.countdown}");
+            }
+        }
         public override void Update()
         {
             delay.Update(References.delta);
