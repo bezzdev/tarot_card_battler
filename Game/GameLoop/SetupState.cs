@@ -39,6 +39,8 @@ namespace tarot_card_battler.Game.GameLoop
                 player.field.present.RemoveCard();
                 player.field.future.RemoveCard();
 
+                player.playerStats.Reset();
+
                 List<Card> cards = null;
 
                 if (player == board.player)
