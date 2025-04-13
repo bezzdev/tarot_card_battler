@@ -4,7 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <ApplicationIcon>Game\Res\AppIcon.ico</ApplicationIcon>
+    <ApplicationIcon>Game\Res\Icon.ico</ApplicationIcon>
     <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
     <OutputType>WinExe</OutputType>
     <AssemblyName>Ars Minerva</AssemblyName>
@@ -21,7 +21,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="Game\Res\AppIcon.ico" />
+    <Content Include="Game\Res\Icon.ico" />
   </ItemGroup>
 
   <ItemGroup>
