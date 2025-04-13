@@ -82,7 +82,7 @@ namespace tarot_card_battler.Game.States
         public override void Render()
         {
             Raylib.DrawTexture(References.MenuBackground, 0, 0, Color.White);
-            Raylib.DrawText("Tarot Battler", (References.window_width / 2) - 300, 100, 80, Color.White);
+            Raylib.DrawText("Ars Minerva", (References.window_width / 2) - 300, 100, 80, Color.White);
 
             startButton.Render();
             howToPlayButton.Render();

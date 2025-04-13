@@ -15,7 +15,7 @@ Raylib.SetConfigFlags(ConfigFlags.Msaa4xHint);
     Raylib.SetTraceLogLevel(TraceLogLevel.None);
 #endif
 
-Raylib.InitWindow(References.window_width, References.window_height, "Tarot Battler");
+Raylib.InitWindow(References.window_width, References.window_height, "Ars Minerva");
 Raylib.SetConfigFlags(ConfigFlags.MaximizedWindow);
 Raylib.SetExitKey(0);
 Raylib.SetTargetFPS(60);
