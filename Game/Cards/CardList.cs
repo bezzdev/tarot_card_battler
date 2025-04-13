@@ -43,15 +43,15 @@ namespace tarot_card_battler.Game.Cards
             });
             cards.Add(new Card("The_Emperor", 04, References.The_Emperor)
             {
-                pastEffect = new Shield(5),
-                presentEffect = new Damage(3),
+                pastEffect = new Damage(3),
+                presentEffect = new Shield(5),
                 futureEffect = new AddGold(2)
             });
             cards.Add(new Card("The_Hierophant", 05, References.The_Hierophant)
             {
                 pastEffect = new ShieldDamage(),
                 presentEffect = new Heal(3),
-                futureEffect = new AddGold(2)
+                futureEffect = new Strength()
             });
             cards.Add(new Card("The_Lovers", 06, References.The_Lovers)
             {
@@ -62,27 +62,27 @@ namespace tarot_card_battler.Game.Cards
             cards.Add(new Card("The_Chariot", 07, References.The_Chariot)
             {
                 pastEffect = new DebuffOppositeSlot(0, -2),
-                presentEffect = new Heal(3),
+                presentEffect = new DebuffOppositeSlot(1, -2),
                 futureEffect = new DebuffOppositeSlot(2, -2)
             });
             cards.Add(new Card("Strength", 08, References.Strength)
             {
-                pastEffect = new Weakness(),
-                presentEffect = new Damage(3),
+                pastEffect = new Damage(3),
+                presentEffect = new Weakness(),
                 futureEffect = new Strength()
             });
 
             cards.Add(new Card("The_Hermit", 09, References.The_Hermit)
             {
                 pastEffect = new StealOpponentGold(1),
-                presentEffect = new Damage(3),
+                presentEffect = new StealOpponentGold(1),
                 futureEffect = new StealOpponentGold(1),
             });
             cards.Add(new Card("Wheel_Of_Fortune", 10, References.Wheel_Of_Fortune)
             {
                 pastEffect = new RandomDiscardEffect(),
-                presentEffect = new RandomDamage(1, 5),
-                futureEffect = new RandomHeal(1, 5),
+                presentEffect = new RandomHeal(1, 5),
+                futureEffect = new RandomDamage(1, 5),
             });
             cards.Add(new Card("Justice", 11, References.Justice)
             {
@@ -105,8 +105,8 @@ namespace tarot_card_battler.Game.Cards
             cards.Add(new Card("Temperance", 14, References.Temperance)
             {
                 pastEffect = new DamageGoldAmount(),
-                presentEffect = new Damage(3),
-                futureEffect = new AddGold(1),
+                presentEffect = new AddGold(1),
+                futureEffect = new Damage(3),
             });
             cards.Add(new Card("The_Devil", 15, References.The_Devil)
             {
@@ -116,15 +116,15 @@ namespace tarot_card_battler.Game.Cards
             });
             cards.Add(new Card("The_Tower", 16, References.The_Tower)
             {
-                pastEffect = new Nullify(),
+                pastEffect = new Damage(3),
                 presentEffect = new Damage(3),
-                futureEffect = new Nullify()
+                futureEffect = new Damage(3)
             });
             cards.Add(new Card("The_Star", 17, References.The_Star)
             {
-                pastEffect = new StealOpponentGold(2),
+                pastEffect = new Damage(3),
                 presentEffect = new Damage(3),
-                futureEffect = new CopyOpposite()
+                futureEffect = new Strength()
             });
             cards.Add(new Card("The_Moon", 18, References.The_Moon)
             {
@@ -135,13 +135,13 @@ namespace tarot_card_battler.Game.Cards
             cards.Add(new Card("The_Sun", 19, References.The_Sun)
             {
                 pastEffect = new HealGoldAmount(),
-                presentEffect = new Heal(3),
+                presentEffect = new ShieldHeal(),
                 futureEffect = new StrengthHeal()
             });
             cards.Add(new Card("Judgement", 20, References.Judgement)
             {
-                pastEffect = new ShuffleField(),
-                presentEffect = new Damage(3),
+                pastEffect = new Damage(3),
+                presentEffect = new Weakness(),
                 futureEffect = new DamageGoldAmount()
             });
             cards.Add(new Card("The_World", 21, References.The_World)
