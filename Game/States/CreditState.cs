@@ -128,11 +128,11 @@ namespace tarot_card_battler.Game.States
 
 
             Raylib.DrawText("Programming", column1, headerY, headerSize, Color.White);
-            Raylib.DrawText("bezz >_<", column1, row1, nameSize, Color.White);
+            Raylib.DrawText("bezz", column1, row1, nameSize, Color.White);
             Raylib.DrawText("maya :)", column1, row2, nameSize, Color.White);
 
             Raylib.DrawText("Art", column2, headerY, headerSize, Color.White);
-            Raylib.DrawText("person 3", column2, row1, nameSize, Color.White);
+            Raylib.DrawText("sleepy", column2, row1, nameSize, Color.White);
 
             Raylib.DrawText("Sound Design", column3, headerY, headerSize, Color.White);
             Raylib.DrawText("bezz", column3, row1, nameSize, Color.White);
