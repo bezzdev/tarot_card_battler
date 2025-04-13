@@ -112,6 +112,10 @@ namespace tarot_card_battler.Game.States
 
             backButton.Render();
 
+            int versionTextSize = 30;
+            int versionTextWidth = Raylib.MeasureText(References.gameVersion, versionTextSize);
+            Raylib.DrawText(References.gameVersion, Raylib.GetScreenWidth() - versionTextWidth - 10, 4, versionTextSize, Color.White);
+
             int headerSize = 50;
             int nameSize = 34;
             int rowSpacing = 4;

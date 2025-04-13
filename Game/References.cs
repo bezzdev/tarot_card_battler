@@ -14,6 +14,7 @@ namespace tarot_card_battler.Game
     public static class References
     {
         public static bool exit;
+        public static string gameVersion = "v1.0.0";
         public static int window_width = 1200;
         public static int window_height = 800;
 
@@ -22,6 +23,8 @@ namespace tarot_card_battler.Game
 
         public static float frameDelta;
         public static float gameSpeed = 1f;
+
+
         public static float delta
         {
             get
