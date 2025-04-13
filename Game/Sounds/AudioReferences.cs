@@ -24,7 +24,9 @@ namespace tarot_card_battler.Game.Sounds
             buttonHover = Raylib.LoadSound("Game/Res/Sounds/button_hover.wav");
             buttonClick = Raylib.LoadSound("Game/Res/Sounds/button_click.wav");
             castButtonClick = Raylib.LoadSound("Game/Res/Sounds/cast_button_click.wav");
-            Raylib.SetSoundVolume(castButtonClick, 0.5f);
+            castButtonClick = Raylib.LoadSound("Game/Res/Sounds/cast_button_click.mp3");
+            Raylib.SetSoundPitch(castButtonClick, 0.9f);
+            Raylib.SetSoundVolume(castButtonClick, 1f);
             cardEffectActivate = Raylib.LoadSound("Game/Res/Sounds/card_effect_activate.wav");
             Raylib.SetSoundVolume(cardEffectActivate, 0.1f);
             Raylib.SetSoundPitch(cardEffectActivate, 0.6f);
