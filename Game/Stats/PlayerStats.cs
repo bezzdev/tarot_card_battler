@@ -26,6 +26,17 @@ namespace tarot_card_battler.Game.Stats
         public bool deathCountdown = false;
         public bool renderStats = false;
         public int countdown = 2;
+        
+        public void Reset()
+        {
+            drawPerTurn = 3;
+            shield = 0;
+            strength = 0;
+            weakness = 0;
+            gold = 0;
+            countdown = 2;
+            deathCountdown = false;
+        }
 
         public void TakeDamage(int damage)
         {

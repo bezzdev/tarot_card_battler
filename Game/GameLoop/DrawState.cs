@@ -29,6 +29,7 @@ namespace tarot_card_battler.Game.GameLoop
                 Console.WriteLine($"Opponent countdown is {board.players[0].playerStats.countdown}");
             }
         }
+
         public override void Update()
         {
             delay.Update(References.delta);

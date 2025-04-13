@@ -4,6 +4,7 @@ using tarot_card_battler.Game.Cards;
 using tarot_card_battler.Game.PlayArea;
 using tarot_card_battler.Game.Opponent;
 using tarot_card_battler.Game.Sounds;
+using tarot_card_battler.Game.Stats;
 
 namespace tarot_card_battler.Game.GameLoop
 {
@@ -42,6 +43,8 @@ namespace tarot_card_battler.Game.GameLoop
             {
                 if (player == board.player)
                     continue;
+
+                player.playerStats.Reset();
 
                 player.hand.cards.Clear();
                 player.deck.cards.Clear();
