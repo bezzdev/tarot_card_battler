@@ -177,4 +177,23 @@ namespace tarot_card_battler.Game.Effects
         }
     }
 
+    public class ShieldHeal : HealEffect {
+        public ShieldHeal()
+        {
+            this.tooltip = $"Heals damage equal to shield ";
+        }
+
+        public override void showIndicator(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
+        {
+            this.heal = player.playerStats.shield;
+            base.showIndicator(player, opponent, slot, card);
+        }
+        public override void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
+        {
+            this.heal = player.playerStats.shield;
+            if (player.debugName == "player") Console.WriteLine($"Player did {player.playerStats.shield} damage");
+            player.playerStats.Heal(player.playerStats.shield);
+        }
+    }
+
 }
