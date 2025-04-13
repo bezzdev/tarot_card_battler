@@ -31,6 +31,7 @@ namespace tarot_card_battler.Game
         }
 
         public static Texture2D sampleTexture;
+        public static Image windowIcon;
 
         // cards
         public static Texture2D The_Fool;
@@ -117,8 +118,8 @@ namespace tarot_card_battler.Game
 
         public static void Load()
         {
-
             sampleTexture = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/SingleCardDraft.png"));
+            windowIcon = Raylib.LoadImage("Game/Res/AppIcon.png");
 
             // load textures
             The_Fool = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Cards/00_The_Fool.png"));

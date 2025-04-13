@@ -18,7 +18,6 @@ Raylib.SetConfigFlags(ConfigFlags.Msaa4xHint);
 Raylib.InitWindow(References.window_width, References.window_height, "Tarot Battler");
 Raylib.SetConfigFlags(ConfigFlags.MaximizedWindow);
 Raylib.SetExitKey(0);
-
 Raylib.SetTargetFPS(60);
 
 Raylib.HideCursor();
@@ -27,6 +26,8 @@ Raylib.InitAudioDevice();
 
 References.Load();
 AudioReferences.Load();
+
+Raylib.SetWindowIcon(References.windowIcon);
 
 StateMachine gameStateMachine = new StateMachine(new MenuState());
 
