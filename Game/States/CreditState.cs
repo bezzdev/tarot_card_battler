@@ -148,8 +148,10 @@ namespace tarot_card_battler.Game.States
 
             Raylib.DrawText("Imphenzi", column3, audioY + (audioSize*1), audioSize, Color.White);
             Raylib.DrawText("Zach Striefel", column3, audioY + (audioSize * 2), audioSize, Color.White);
-            Raylib.DrawText("Epic Stock Media", column3, audioY + (audioSize * 3), audioSize, Color.White);
-            Raylib.DrawText("Evil Mind", column3, audioY + (audioSize * 4), audioSize, Color.White);
+            Raylib.DrawText("Dark Fantasy Studio", column3, audioY + (audioSize * 3), audioSize, Color.White);
+            Raylib.DrawText("Epic Stock Media", column3, audioY + (audioSize * 4), audioSize, Color.White);
+            Raylib.DrawText("Evil Mind", column3, audioY + (audioSize * 5), audioSize, Color.White);
+
 
             int cardRow = row2 + rowSpacing + 140;
 
