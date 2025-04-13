@@ -2,7 +2,6 @@
 using tarot_card_battler.Core;
 using tarot_card_battler.Core.Statemachines;
 using tarot_card_battler.Game.Animations;
-using tarot_card_battler.Game.Cards;
 using tarot_card_battler.Game.Effects;
 using tarot_card_battler.Game.PlayArea;
 
@@ -154,13 +153,8 @@ namespace tarot_card_battler.Game.GameLoop
                             {
                                 if (hasEffect)
                                 {
-                                    
-                                    if(effect is DamageEffect){
-                                        EntityLayerManager.AddEntity(new IndicatorAnimation(slot.card.position.x, slot.card.position.y, (effect as DamageEffect).damage, false), IndicatorAnimation.defaultLayer);
-                                    } else if (effect is HealEffect){
-                                        EntityLayerManager.AddEntity(new IndicatorAnimation(slot.card.position.x, slot.card.position.y, (effect as HealEffect).heal, true), IndicatorAnimation.defaultLayer);
-                                    }
                                     EntityLayerManager.AddEntity(new CardActivateAnimation(slot.card.position.x, slot.card.position.y), CardActivateAnimation.defaultLayer);
+                                    effect.showIndicator(slot.field.player, slot.field.player.opponent, slot, slot.card);
                                 }
                                 else
                                 {

@@ -9,6 +9,7 @@ namespace tarot_card_battler.Game.Effects
         public float earlyResolveDuration = 0f;
         public float resolveDuration = 1f;
 
+        public virtual void showIndicator(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card) { }
         public virtual void triggerEarlyEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card) { }
         public virtual void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card) { }
         public virtual string GetTooltip()

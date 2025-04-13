@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Raylib_cs;
+using tarot_card_battler.Core;
+using tarot_card_battler.Game.Animations;
 using tarot_card_battler.Game.Cards;
 using tarot_card_battler.Game.PlayArea;
 
@@ -11,10 +9,20 @@ namespace tarot_card_battler.Game.Effects
 
     public class DamageEffect : Effect {
         public int damage;
+
+        public override void showIndicator(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
+        {
+            EntityLayerManager.AddEntity(new IndicatorAnimation(card.position.x, card.position.y, -damage, new Color(230, 0, 0, 255)), IndicatorAnimation.defaultLayer);
+        }
     }
 
     public class HealEffect : Effect {
         public int heal;
+
+        public override void showIndicator(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
+        {
+            EntityLayerManager.AddEntity(new IndicatorAnimation(card.position.x, card.position.y, heal, new Color(0, 228, 0, 255)), IndicatorAnimation.defaultLayer);
+        }
     }
 
     public class Damage : DamageEffect
@@ -151,9 +159,15 @@ namespace tarot_card_battler.Game.Effects
 
     public class ShieldDamage : DamageEffect
     {
-         public ShieldDamage()
+        public ShieldDamage()
         {
             this.tooltip = $"Deals damage equal to shield ";
+        }
+
+        public override void showIndicator(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
+        {
+            this.damage = player.playerStats.shield;
+            base.showIndicator(player, opponent, slot, card);
         }
         public override void triggerEffect(PlayerBoard player, PlayerBoard opponent, FieldSlot slot, Card card)
         {

@@ -8,16 +8,16 @@ namespace tarot_card_battler.Game.Animations
     {
         public static int defaultLayer = 1;
         public Delay deathTimer;
-        private float duration = 1.5f;
+        private float duration = 1f;
         string indicatorValue = "";
-        private bool isHealIndicator = false;
+        private Color color;
 
-        public IndicatorAnimation(double x, double y, int indicatorValue, bool isHealIndicator)
+        public IndicatorAnimation(double x, double y, int indicatorValue, Color color)
         {
             this.indicatorValue = indicatorValue.ToString();
-            this.isHealIndicator = isHealIndicator;
             this.position.x = x;
             this.position.y = y;
+            this.color = color;
             deathTimer = new Delay(duration);
         }
 
@@ -57,16 +57,7 @@ namespace tarot_card_battler.Game.Animations
             int x = screen.x - (int) (cardWidth / 4);
             int y = screen.y - (int)(height / 2);
 
-            float alpha = 255;
-
-            if (isHealIndicator)
-            {
-                Raylib.DrawText($"+{indicatorValue}", x, y, 48, new Color(0, 228, 0, alpha));
-            }
-            else
-            {
-                Raylib.DrawText($"-{indicatorValue}", x, y, 48, new Color(230, 0, 0, alpha));
-            }
+            Raylib.DrawText($"{indicatorValue}", x, y, 48, color);
         }
 
     }
