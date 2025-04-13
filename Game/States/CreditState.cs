@@ -112,34 +112,44 @@ namespace tarot_card_battler.Game.States
 
             backButton.Render();
 
-            int headerSize = 40;
-            int nameSize = 30;
-            int rowSpacing = 10;
+            int headerSize = 50;
+            int nameSize = 34;
+            int rowSpacing = 4;
 
 
             int column2 = 450;
-            int column1 = 110;
-            int column3 = 850;
+            int column1 = 100;
+            int column3 = 820;
             column2 += 50;
 
             int headerY = 200;
-            int row1 = headerY + headerSize + rowSpacing;
+            int row1 = headerY + headerSize + rowSpacing + 10;
             int row2 = row1 + headerSize + rowSpacing;
 
 
             Raylib.DrawText("Programming", column1, headerY, headerSize, Color.White);
-            Raylib.DrawText("person 1", column1, row1, nameSize, Color.White);
+            Raylib.DrawText("bezz >_<", column1, row1, nameSize, Color.White);
             Raylib.DrawText("maya :)", column1, row2, nameSize, Color.White);
 
             Raylib.DrawText("Art", column2, headerY, headerSize, Color.White);
             Raylib.DrawText("person 3", column2, row1, nameSize, Color.White);
 
             Raylib.DrawText("Sound Design", column3, headerY, headerSize, Color.White);
-            Raylib.DrawText("person 1", column3, row1, nameSize, Color.White);
+            Raylib.DrawText("bezz", column3, row1, nameSize, Color.White);
 
-            int cardRow = row2 + rowSpacing + 70;
+            int audioSize = 14;
+            int audioY = row1 + nameSize + 10;
+            Raylib.DrawText("royalty free audio licensed from:", column3, audioY, 20, Color.White);
+            audioY += 10;
 
-            float cardScale = 1.5f;
+            Raylib.DrawText("Imphenzi", column3, audioY + (audioSize*1), audioSize, Color.White);
+            Raylib.DrawText("Zach Striefel", column3, audioY + (audioSize * 2), audioSize, Color.White);
+            Raylib.DrawText("Epic Stock Media", column3, audioY + (audioSize * 3), audioSize, Color.White);
+            Raylib.DrawText("Evil Mind", column3, audioY + (audioSize * 4), audioSize, Color.White);
+
+            int cardRow = row2 + rowSpacing + 140;
+
+            float cardScale = 1.2f;
             float cardWidth = References.The_Hermit.Width * cardScale;
 
             float sixth = Raylib.GetScreenWidth() / 6f;

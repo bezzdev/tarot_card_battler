@@ -226,6 +226,7 @@ namespace tarot_card_battler.Game.GameLoop
             // player game over
             if (board.player.playerStats.health == 0)
             {
+                EntityLayerManager.AddEntity(new PlayerDeathAnimation(), PlayerDeathAnimation.defaultLayer);
                 stateMachine.SetState(new GameOverState(board));
                 return true;
             }
