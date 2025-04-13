@@ -106,6 +106,14 @@ namespace tarot_card_battler.Game
         public static Texture2D CardBurnEffect5;
         public static Texture2D CardBurnEffect6;
 
+        // tutorial
+        public static Texture2D HowToPlayBG;
+        public static Texture2D TutorialImage1;
+        public static Texture2D TutorialImage2;
+        public static Texture2D TutorialImage3;
+        public static Texture2D TutorialImage4;
+        public static Texture2D TutorialImage5;
+
         public static void Load()
         {
 
@@ -179,6 +187,13 @@ namespace tarot_card_battler.Game
             CardBurnEffect4 = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Effects/burn_effect_4.png"));
             CardBurnEffect5 = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Effects/burn_effect_5.png"));
             CardBurnEffect6 = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/Effects/burn_effect_6.png"));
+
+            HowToPlayBG = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/HowToPlay/HowToPlayBG.png"));
+            TutorialImage1 = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/HowToPlay/SelectCard.png"));
+            TutorialImage2 = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/HowToPlay/CastFate.png"));
+            TutorialImage3 = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/HowToPlay/CardEffects.png"));
+            TutorialImage4 = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/HowToPlay/PlayerStats.png"));
+            TutorialImage5 = Raylib.LoadTextureFromImage(Raylib.LoadImage("Game/Res/HowToPlay/CandleOut.png"));
 
             CardList.cards = CardList.GetAllCards();
         }

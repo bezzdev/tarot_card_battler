@@ -1,6 +1,7 @@
 ﻿using Raylib_cs;
 using tarot_card_battler.Core;
 using tarot_card_battler.Core.Statemachines;
+using tarot_card_battler.Game.Animations;
 using tarot_card_battler.Game.GameLoop;
 using tarot_card_battler.Game.PlayArea;
 
@@ -71,6 +72,10 @@ namespace tarot_card_battler.Game.States
             gameLoop = new StateMachine(new SetupState(board, 0));
 
             new InteractionManager(board);
+
+            //CardBurnEffect burn = new CardBurnEffect(player.field.position.x, player.field.position.y);
+            //EntityLayerManager.AddEntity(burn, CardBurnEffect.defaultLayer);
+            // burn.end = true;
         }
 
         public override void Update()

@@ -38,6 +38,9 @@
       <None Update="./Game/Res/Menu/*">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
+      <None Update="./Game/Res/HowToPlay/*">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
       <None Update="./Game/Res/Sounds/*">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
