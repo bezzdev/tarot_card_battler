@@ -110,7 +110,7 @@ namespace tarot_card_battler.Game.Stats
             Vector2 pos = new Vector2(x, y);
             if (deathCountdown == true)
             {
-                Raylib.DrawTextureEx(References.ShieldIcon, pos, 0f, 1f, Color.White); //todo change
+                Raylib.DrawTextureEx(References.SkullIcon, pos, 0f, 1f, Color.White);
                 Raylib.DrawText(countdown.ToString(), x + 70, y + 5, 48, Color.White);
             }
             if (renderStats)
