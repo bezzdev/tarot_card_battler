@@ -23,28 +23,28 @@ namespace tarot_card_battler.Game.States
                 {
                     image = References.TutorialImage1,
                     textWidth = 800,
-                    text = "Drag a card from your hand into each of the past, present, and future slots.",
+                    text = "Drag a card from your hand into each of the past, present, and future slots. (click to continue)",
                     imageScale = 1f
                 },
                 new TutorialPageData()
                 {
                     image = References.TutorialImage2,
                     textWidth = 700,
-                    text = "Click \"CAST FATE\" once 3 cards have been chosen to end the turn.",
+                    text = "Click \"CAST FATE\" once 3 cards have been chosen to end the turn. (click to continue)",
                     imageScale = 1f
                 },
                 new TutorialPageData()
                 {
                     image = References.TutorialImage3,
                     textWidth = 700,
-                    text = "Each card has a different effect depending on the position they are in.",
+                    text = "Each card has a different effect depending on the position they are in. (click to continue)",
                     imageScale = 0.7f
                 },
                 new TutorialPageData()
                 {
                     image = References.TutorialImage4,
                     textWidth = 700,
-                    text = "Keep an eye on the player stats. The candle represents the health of each player.",
+                    text = "Keep an eye on the player stats. The candle represents the health of each player. (click to continue)",
                     imageScale = 1.5f
                 },
                 new TutorialPageData()
